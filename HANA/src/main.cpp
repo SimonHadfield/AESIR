@@ -8,14 +8,59 @@
 #include "VBO.h"
 #include "EBO.h"
 
-// create vertices
+/*
+// 2D vertices
 GLfloat vertices[] =
 {
 	//		COORDINATES				//	COLORS				// TEXTURE COORD
-	-0.5f,  -0.5f, 0.0f,			1.0f, 0.0f,  0.0f,		 0.0f, 0.0f, // lower left corner
+	-0.5f,  -0.5f, 0.0f,			1.0f, 0.5f,  0.0f,		 0.0f, 0.0f, // lower left corner
 	-0.5f,   0.5f, 0.0f,			0.0f, 1.0f,  0.0f,		 0.0f, 1.0f, // upper left corner	
 	 0.5f,   0.5f, 0.0f,			0.0f, 0.0f,  1.0f,		 1.0f, 1.0f, // upper right corner
 	 0.5f,  -0.5f, 0.0f,			1.0f, 1.0f,  1.0f,		 1.0f, 0.0f // lower left corner
+};
+*/
+
+// 3D vertices
+GLfloat vertices[] =
+{
+	//  COORDINATES	
+	-0.5f, -0.5f, -0.5f, 0.0f, 0.0f,
+	 0.5f, -0.5f, -0.5f, 1.0f, 0.0f,
+	 0.5f,  0.5f, -0.5f, 1.0f, 1.0f,
+	 0.5f,  0.5f, -0.5f, 1.0f, 1.0f,
+	 0.5f,  0.5f, -0.5f, 0.0f, 1.0f,
+	-0.5f, -0.5f, -0.5f, 0.0f, 0.0f,
+	-0.5f, -0.5f,  0.5f, 0.0f, 0.0f,
+	 0.5f, -0.5f,  0.5f, 1.0f, 0.0f,
+	 0.5f,  0.5f,  0.5f, 1.0f, 1.0f,
+	 0.5f,  0.5f,  0.5f, 1.0f, 1.0f,
+	-0.5f,  0.5f,  0.5f, 0.0f, 1.0f,
+	-0.5f, -0.5f,  0.5f, 0.0f, 0.0f,
+	-0.5f,  0.5f,  0.5f, 1.0f, 0.0f,
+	-0.5f,  0.5f, -0.5f, 1.0f, 1.0f,
+	-0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
+	-0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
+	-0.5f, -0.5f,  0.5f, 0.0f, 0.0f,
+	-0.5f,  0.5f,  0.5f, 1.0f, 0.0f,
+	 0.5f,  0.5f,  0.5f, 1.0f, 0.0f,
+	 0.5f,  0.5f, -0.5f, 1.0f, 1.0f,
+	 0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
+	 0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
+	 0.5f, -0.5f,  0.5f, 0.0f, 0.0f,
+	 0.5f,  0.5f,  0.5f, 1.0f, 0.0f,
+	-0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
+	 0.5f, -0.5f, -0.5f, 1.0f, 1.0f,
+	 0.5f, -0.5f,  0.5f, 1.0f, 0.0f,
+	 0.5f, -0.5f,  0.5f, 1.0f, 0.0f,
+	-0.5f, -0.5f,  0.5f, 0.0f, 0.0f,
+	-0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
+	-0.5f,  0.5f, -0.5f, 0.0f, 1.0f,
+	 0.5f,  0.5f, -0.5f, 1.0f, 1.0f,
+	 0.5f,  0.5f,  0.5f, 1.0f, 0.0f,
+	 0.5f,  0.5f,  0.5f, 1.0f, 0.0f,
+	-0.5f,  0.5f,  0.5f, 0.0f, 0.0f,
+	-0.5f,  0.5f, -0.5f, 0.0f, 1.0f
+
 };
 
 // index buffer
@@ -103,6 +148,7 @@ int main()
 
 	}
 
+	
 	GLuint texture;
 	glGenTextures(1, &texture);
 	glActiveTexture(GL_TEXTURE0);
@@ -115,7 +161,7 @@ int main()
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, widthImg, heightImg, 0, GL_RGBA, GL_UNSIGNED_BYTE, bytes);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, widthImg, heightImg, 0, GL_RGB, GL_UNSIGNED_BYTE, bytes);
 
 	glGenerateMipmap(GL_TEXTURE_2D);
 
@@ -123,6 +169,7 @@ int main()
 	glBindTexture(GL_TEXTURE_2D, 0);
 
 	GLuint tex0Uni = glGetUniformLocation(shaderProgram.ID, "tex0");
+	
 	shaderProgram.Activate();
 	glUniform1i(tex0Uni, 0);
 
