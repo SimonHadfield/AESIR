@@ -6,12 +6,15 @@ layout (location = 2) in vec2 aTex;
 out vec3 color;
 
 uniform float scale;
+uniform mat4 model;
+uniform mat4 view;
+uniform mat4 projection;
 
 out vec2 texCoord;
 
 void main()
 {
-	gl_Position = vec4(aPos.x + aPos.x * scale, aPos.y + aPos.y * scale, aPos.z + aPos.z * scale, 1.0);
+	gl_Position = projection * view * model * vec4(aPos.x + aPos.x * scale, aPos.y + aPos.y * scale, aPos.z + aPos.z * scale, 1.0);
 	color = aColor;
 	texCoord = aTex;
 }

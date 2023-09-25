@@ -8,6 +8,11 @@
 #include "VBO.h"
 #include "EBO.h"
 
+#include "glm/glm.hpp"
+#include "glm/gtc/matrix_transform.hpp"
+#include "glm/gtc/type_ptr.hpp"
+
+
 /*
 // 2D vertices
 GLfloat vertices[] =
@@ -23,52 +28,63 @@ GLfloat vertices[] =
 // 3D vertices
 GLfloat vertices[] =
 {
-	//  COORDINATES	
-	-0.5f, -0.5f, -0.5f, 0.0f, 0.0f,
-	 0.5f, -0.5f, -0.5f, 1.0f, 0.0f,
-	 0.5f,  0.5f, -0.5f, 1.0f, 1.0f,
-	 0.5f,  0.5f, -0.5f, 1.0f, 1.0f,
-	 0.5f,  0.5f, -0.5f, 0.0f, 1.0f,
-	-0.5f, -0.5f, -0.5f, 0.0f, 0.0f,
-	-0.5f, -0.5f,  0.5f, 0.0f, 0.0f,
-	 0.5f, -0.5f,  0.5f, 1.0f, 0.0f,
-	 0.5f,  0.5f,  0.5f, 1.0f, 1.0f,
-	 0.5f,  0.5f,  0.5f, 1.0f, 1.0f,
-	-0.5f,  0.5f,  0.5f, 0.0f, 1.0f,
-	-0.5f, -0.5f,  0.5f, 0.0f, 0.0f,
-	-0.5f,  0.5f,  0.5f, 1.0f, 0.0f,
-	-0.5f,  0.5f, -0.5f, 1.0f, 1.0f,
-	-0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
-	-0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
-	-0.5f, -0.5f,  0.5f, 0.0f, 0.0f,
-	-0.5f,  0.5f,  0.5f, 1.0f, 0.0f,
-	 0.5f,  0.5f,  0.5f, 1.0f, 0.0f,
-	 0.5f,  0.5f, -0.5f, 1.0f, 1.0f,
-	 0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
-	 0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
-	 0.5f, -0.5f,  0.5f, 0.0f, 0.0f,
-	 0.5f,  0.5f,  0.5f, 1.0f, 0.0f,
-	-0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
-	 0.5f, -0.5f, -0.5f, 1.0f, 1.0f,
-	 0.5f, -0.5f,  0.5f, 1.0f, 0.0f,
-	 0.5f, -0.5f,  0.5f, 1.0f, 0.0f,
-	-0.5f, -0.5f,  0.5f, 0.0f, 0.0f,
-	-0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
-	-0.5f,  0.5f, -0.5f, 0.0f, 1.0f,
-	 0.5f,  0.5f, -0.5f, 1.0f, 1.0f,
-	 0.5f,  0.5f,  0.5f, 1.0f, 0.0f,
-	 0.5f,  0.5f,  0.5f, 1.0f, 0.0f,
-	-0.5f,  0.5f,  0.5f, 0.0f, 0.0f,
-	-0.5f,  0.5f, -0.5f, 0.0f, 1.0f
+	//  COORDINATES				// COLORS
+	-0.5f, -0.5f, -0.5f,		0.0f, 0.0f,
+	 0.5f, -0.5f, -0.5f,		1.0f, 0.0f,
+	 0.5f,  0.5f, -0.5f,		1.0f, 1.0f,
+	 0.5f,  0.5f, -0.5f,		1.0f, 1.0f,
+	 0.5f,  0.5f, -0.5f,		0.0f, 1.0f,
+	-0.5f, -0.5f, -0.5f,		0.0f, 0.0f,
+
+	-0.5f, -0.5f,  0.5f,		0.0f, 0.0f,
+	 0.5f, -0.5f,  0.5f,		1.0f, 0.0f,
+	 0.5f,  0.5f,  0.5f,		1.0f, 1.0f,
+	 0.5f,  0.5f,  0.5f,		1.0f, 1.0f,
+	-0.5f,  0.5f,  0.5f,		0.0f, 1.0f,
+	-0.5f, -0.5f,  0.5f,		0.0f, 0.0f,
+
+	-0.5f,  0.5f,  0.5f,		1.0f, 0.0f,
+	-0.5f,  0.5f, -0.5f,		1.0f, 1.0f,
+	-0.5f, -0.5f, -0.5f,		0.0f, 1.0f,
+	-0.5f, -0.5f, -0.5f,		0.0f, 1.0f,
+	-0.5f, -0.5f,  0.5f,		0.0f, 0.0f,
+	-0.5f,  0.5f,  0.5f,		1.0f, 0.0f,
+
+	 0.5f,  0.5f,  0.5f,		1.0f, 0.0f,
+	 0.5f,  0.5f, -0.5f,		1.0f, 1.0f,
+	 0.5f, -0.5f, -0.5f,		0.0f, 1.0f,
+	 0.5f, -0.5f, -0.5f,		0.0f, 1.0f,
+	 0.5f, -0.5f,  0.5f,		0.0f, 0.0f,
+	 0.5f,  0.5f,  0.5f,		1.0f, 0.0f,
+
+	-0.5f, -0.5f, -0.5f,		0.0f, 1.0f,
+	 0.5f, -0.5f, -0.5f,		1.0f, 1.0f,
+	 0.5f, -0.5f,  0.5f,		1.0f, 0.0f,
+	 0.5f, -0.5f,  0.5f,		1.0f, 0.0f,
+	-0.5f, -0.5f,  0.5f,		0.0f, 0.0f,
+	-0.5f, -0.5f, -0.5f,		0.0f, 1.0f,
+
+	-0.5f,  0.5f, -0.5f,		0.0f, 1.0f,
+	 0.5f,  0.5f, -0.5f,		1.0f, 1.0f,
+	 0.5f,  0.5f,  0.5f,		1.0f, 0.0f,
+	 0.5f,  0.5f,  0.5f,		1.0f, 0.0f,
+	-0.5f,  0.5f,  0.5f,		0.0f, 0.0f,
+	-0.5f,  0.5f, -0.5f,		0.0f, 1.0f
 
 };
 
+/*
 // index buffer
 GLuint indices[] =
 {
 	0, 2, 1,	// upper left triangle
 	0, 3, 2,	// lower right triangle
 };
+*/
+
+glm::mat4 projection = glm::perspective(glm::radians(45.0f), 800.0f / 600.0f, 0.1f, 100.0f);
+glm::mat4 view = glm::mat4(1.0f);
+glm::mat4 model = glm::mat4(1.0f);
 
 int main()
 {
@@ -105,7 +121,7 @@ int main()
 	VAO1.Bind();
 
 	VBO VBO1(vertices, sizeof(vertices));
-	EBO EBO1(indices, sizeof(indices));
+	//EBO EBO1(indices, sizeof(indices));
 
 	// links VBO to VAO
 	VAO1.LinkAttrib(VBO1, 0, 3, GL_FLOAT, 8 * sizeof(float), (void*)0);
@@ -114,7 +130,7 @@ int main()
 	// Unbind to prevent modifying
 	VAO1.Unbind();
 	VBO1.Unbind();
-	EBO1.Unbind();
+	//EBO1.Unbind();
 
 	GLuint uniID = glGetUniformLocation(shaderProgram.ID, "scale");
 
@@ -180,9 +196,10 @@ int main()
 		glClear(GL_COLOR_BUFFER_BIT);
 		shaderProgram.Activate();
 		glUniform1f(uniID, scale);
-		glBindTexture(GL_TEXTURE_2D, texture);
+		//glBindTexture(GL_TEXTURE_2D, texture);
 		VAO1.Bind();
-		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+		//glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 		glfwSwapBuffers(window);
 
 		glfwPollEvents();
@@ -190,7 +207,7 @@ int main()
 
 	VAO1.Delete();
 	VBO1.Delete();
-	EBO1.Delete();
+	//EBO1.Delete();
 	shaderProgram.Delete();
 	glDeleteTextures(1, &texture);
 
