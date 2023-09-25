@@ -279,8 +279,11 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 
 void processInput(GLFWwindow* window)
 {
-	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
-		glfwSetWindowShouldClose(window, true);
+	if ((glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) && (GLFW_CURSOR_DISABLED))
+		glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+	//if ((glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) && (GLFW_CURSOR_NORMAL))
+		//glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+		//glfwSetWindowShouldClose(window, true);
 
 	const float cameraSpeed = 2.5f * deltaTime; // adjust accordingly
 	if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
