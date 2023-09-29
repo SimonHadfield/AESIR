@@ -3,24 +3,24 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33723.286
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Sandbox", "Sandbox\Sandbox.vcxproj", "{8CD8510D-A9C7-44ED-B68A-68B378C049EC}"
+EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HANA", "HANA\HANA.vcxproj", "{6F591E35-DC94-45C0-AC3F-89A7C4D3EED5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
-		Debug|x86 = Debug|x86
 		Release|x64 = Release|x64
-		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{6F591E35-DC94-45C0-AC3F-89A7C4D3EED5}.Debug|x64.ActiveCfg = Debug|x64
 		{6F591E35-DC94-45C0-AC3F-89A7C4D3EED5}.Debug|x64.Build.0 = Debug|x64
-		{6F591E35-DC94-45C0-AC3F-89A7C4D3EED5}.Debug|x86.ActiveCfg = Debug|Win32
-		{6F591E35-DC94-45C0-AC3F-89A7C4D3EED5}.Debug|x86.Build.0 = Debug|Win32
 		{6F591E35-DC94-45C0-AC3F-89A7C4D3EED5}.Release|x64.ActiveCfg = Release|x64
 		{6F591E35-DC94-45C0-AC3F-89A7C4D3EED5}.Release|x64.Build.0 = Release|x64
-		{6F591E35-DC94-45C0-AC3F-89A7C4D3EED5}.Release|x86.ActiveCfg = Release|Win32
-		{6F591E35-DC94-45C0-AC3F-89A7C4D3EED5}.Release|x86.Build.0 = Release|Win32
+		{8CD8510D-A9C7-44ED-B68A-68B378C049EC}.Debug|x64.ActiveCfg = Debug|x64
+		{8CD8510D-A9C7-44ED-B68A-68B378C049EC}.Debug|x64.Build.0 = Debug|x64
+		{8CD8510D-A9C7-44ED-B68A-68B378C049EC}.Release|x64.ActiveCfg = Release|x64
+		{8CD8510D-A9C7-44ED-B68A-68B378C049EC}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
