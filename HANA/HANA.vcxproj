@@ -170,6 +170,7 @@
   <ItemGroup>
     <None Include="res\shaders\default.frag" />
     <None Include="res\shaders\default.vert" />
+    <None Include="res\shaders\grid.frag" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\textures\Logo.png" />

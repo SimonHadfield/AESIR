@@ -19,11 +19,11 @@ void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
 void processInput(GLFWwindow* window);
 
 // set up camera
-glm::vec3 cameraPos = glm::vec3(0.0f, 0.0f, 3.0f);
+glm::vec3 cameraPos =	glm::vec3(0.0f, 0.0f, 3.0f);
 glm::vec3 cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);
-glm::vec3 cameraUp = glm::vec3(0.0f, 1.0f, 0.0f);
+glm::vec3 cameraUp =	glm::vec3(0.0f, 1.0f, 0.0f);
 bool firstMouse = true;
-float yaw = -90.0f;	// yaw is initialized to -90.0 degrees since a yaw of 0.0 results in a direction vector pointing to the right so we initially rotate a bit to the left.
+float yaw = -50.0f;	
 float pitch = 0.0f;
 float lastX = 800.0f / 2.0;
 float lastY = 600.0 / 2.0;
@@ -145,12 +145,110 @@ int main()
 	tex0.Bind();
 	tex0.texUnit(shaderProgram, "tex0", 0);
 
+
+	// grid 
+
+	GLfloat grid_vertices[] =
+	{
+	//   x     y	 z
+
+	//	LEFT-RIGHT
+		-5.0f, 0.0f, -2.0f,
+		 5.0f, 0.0f, -2.0f,
+
+		-5.0f, 0.0f, -1.6f,
+		 5.0f, 0.0f, -1.6f,
+
+		-5.0f, 0.0f, -1.2f,
+		 5.0f, 0.0f, -1.2f,
+
+		-5.0f, 0.0f, -0.8f,
+		 5.0f, 0.0f, -0.8f,
+
+		-5.0f, 0.0f, -0.4f,
+		 5.0f, 0.0f, -0.4f,
+
+		-5.0f, 0.0f, 0.0f,
+		 5.0f, 0.0f, 0.0f,
+
+		-5.0f, 0.0f, 0.4f,
+		 5.0f, 0.0f, 0.4f,
+
+		-5.0f, 0.0f, 0.8f,
+		 5.0f, 0.0f, 0.8f,
+
+		-5.0f, 0.0f, 1.2f,
+		 5.0f, 0.0f, 1.2f,
+
+		-5.0f, 0.0f, 1.6f,
+		 5.0f, 0.0f, 1.6f,
+
+		-5.0f, 0.0f, 2.0f,
+		 5.0f, 0.0f, 2.0f,
+
+	//	FRONT-BACK
+		-2.0f, 0.0f,  5.0f,
+		-2.0f, 0.0f, -5.0f,
+
+		-1.6f, 0.0f,  5.0f,
+		-1.6f, 0.0f, -5.0f,
+
+		-1.2f, 0.0f,  5.0f,
+		-1.2f, 0.0f, -5.0f,
+
+		-0.8f, 0.0f, -5.0f,
+		-0.8f, 0.0f,  5.0f,
+
+		-0.4f, 0.0f, -5.0f,
+		-0.4f, 0.0f,  5.0f,
+
+		 0.0f, 0.0f, -5.0f,
+		 0.0f, 0.0f,  5.0f,
+
+		 0.4f, 0.0f, -5.0f,
+		 0.4f, 0.0f,  5.0f,
+
+		 0.8f, 0.0f, -5.0f,
+		 0.8f, 0.0f,  5.0f,
+
+		 1.2f, 0.0f, -5.0f,
+		 1.2f, 0.0f,  5.0f,
+
+		 1.6f, 0.0f, -5.0f,
+		 1.6f, 0.0f,  5.0f,
+
+		 2.0f, 0.0f, -5.0f,
+		 2.0f, 0.0f,  5.0f,
+	};
+
+	GLint grid_indices[] =
+	{
+		0, 1
+	};
+
+	//		-- SHADERS
+	VAO VAO2;										// create vertex array
+	VAO2.Bind();									// bind vertexy array
+
+	VBO VBO2(grid_vertices, sizeof(grid_vertices));			// create vertex buffer
+	//EBO EBO2(indices, sizeof(indices));			// indices not currently needed
+
+	//	link VBO to VAO
+	//	1 VBO, 2 GLuint layout, 3 GLuint numComponents, 4 GLenum type, 5 GLsizeiptr stride, 6 void* offset
+	VAO2.LinkAttrib(VBO2, 0, 3, GL_FLOAT, 3 * sizeof(GLfloat), (void*)0);					// link position vertices
+
+	// Unbind to prevent modifying
+	VAO2.Unbind();
+	VBO2.Unbind();
+	//EBO1.Unbind();								// indices not currently needed
+
+
+
 	
 	// main while loop
 	while (!glfwWindowShouldClose(window))
 	{
 		processInput(window);
-
 		glClearColor(0.09f, 0.13f, 0.19f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		shaderProgram.Activate();
@@ -181,6 +279,20 @@ int main()
 		VAO1.Bind();
 
 		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		tex0.Unbind();
+		VAO1.Unbind();
+		
+
+		// grid
+		model = glm::mat4(1.0f);	// grid is in world view
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+
+		VAO2.Bind();
+
+		glDrawArrays(GL_LINES, 0, 44);
+
+		VAO2.Unbind();
 		// glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 
 		glfwSwapBuffers(window); // show new rendered frame
