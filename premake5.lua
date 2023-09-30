@@ -40,7 +40,8 @@ project "Hana"
 
 	links
 	{
-		"glfw3.lib"
+		"glfw3",
+        "opengl32"
 	}
 
 	filter "system:windows"

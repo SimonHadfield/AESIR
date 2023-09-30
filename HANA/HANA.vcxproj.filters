@@ -113,7 +113,4 @@
     </ClCompile>
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
-  <ItemGroup>
-    <Library Include="vendor\lib\glfw3.lib" />
-  </ItemGroup>
 </Project>
