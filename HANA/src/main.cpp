@@ -2,6 +2,7 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <stb/stb_image.h>
+#include <vector>
 
 #include "shaderClass.h"
 #include "VAO.h"
@@ -87,6 +88,9 @@ GLfloat vertices[] =
 GLuint indices[] = {};
 */
 
+
+
+
 int main()
 {
 	glfwInit(); //initialize glfw
@@ -123,6 +127,8 @@ int main()
 
 
 	//		-- SHADERS
+	
+	// Cube
 	Shader shaderProgram("res/shaders/default.vert", "res/shaders/default.frag"); // create shader with vertexShader and fragmentShader
 	VAO VAO1;										// create vertex array
 	VAO1.Bind();									// bind vertexy array
