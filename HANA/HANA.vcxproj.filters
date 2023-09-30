@@ -1,91 +1,119 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    <Filter Include="Hana">
+      <UniqueIdentifier>{FD35867C-E96C-870D-9259-6D107E6F030F}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    <Filter Include="Renderer">
+      <UniqueIdentifier>{7CCE658F-689B-C09A-91B4-AE427DE0F528}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    <Filter Include="Renderer\Header Files">
+      <UniqueIdentifier>{475D51D7-B3C9-0CD2-7CBD-A42FE8E82E3A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Renderer\Header Files\glm">
+      <UniqueIdentifier>{1633D8AF-82F5-0B3A-CBA5-9AC637A7E417}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Renderer\Header Files\glm\detail">
+      <UniqueIdentifier>{181683EA-0467-6E2C-2DCB-5CEE197B0196}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Renderer\Header Files\glm\simd">
+      <UniqueIdentifier>{32EDD484-1E13-9FEB-0759-24B7F31DC4B7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\glad.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Renderer\EBO.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Renderer\VAO.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Renderer\VBO.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Renderer\stb.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Renderer\shaderClass.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Renderer\Texture.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Hana\Application.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Hana\Log.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Header Files\EBO.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Header Files\VAO.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Header Files\VBO.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Header Files\shaderClass.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Header Files\Texture.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="src\Hana.h" />
+    <ClInclude Include="src\Hana\Application.h">
+      <Filter>Hana</Filter>
     </ClInclude>
     <ClInclude Include="src\Hana\Core.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Hana\Application.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Hana.h">
-      <Filter>Header Files</Filter>
+      <Filter>Hana</Filter>
     </ClInclude>
     <ClInclude Include="src\Hana\EntryPoint.h">
-      <Filter>Header Files</Filter>
+      <Filter>Hana</Filter>
     </ClInclude>
     <ClInclude Include="src\Hana\Log.h">
-      <Filter>Header Files</Filter>
+      <Filter>Hana</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Renderer\Header Files\EBO.h">
+      <Filter>Renderer\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Renderer\Header Files\Texture.h">
+      <Filter>Renderer\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Renderer\Header Files\VAO.h">
+      <Filter>Renderer\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Renderer\Header Files\VBO.h">
+      <Filter>Renderer\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Renderer\Header Files\glm\simd\common.h">
+      <Filter>Renderer\Header Files\glm\simd</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Renderer\Header Files\glm\simd\exponential.h">
+      <Filter>Renderer\Header Files\glm\simd</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Renderer\Header Files\glm\simd\geometric.h">
+      <Filter>Renderer\Header Files\glm\simd</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Renderer\Header Files\glm\simd\integer.h">
+      <Filter>Renderer\Header Files\glm\simd</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Renderer\Header Files\glm\simd\matrix.h">
+      <Filter>Renderer\Header Files\glm\simd</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Renderer\Header Files\glm\simd\neon.h">
+      <Filter>Renderer\Header Files\glm\simd</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Renderer\Header Files\glm\simd\packing.h">
+      <Filter>Renderer\Header Files\glm\simd</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Renderer\Header Files\glm\simd\platform.h">
+      <Filter>Renderer\Header Files\glm\simd</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Renderer\Header Files\glm\simd\trigonometric.h">
+      <Filter>Renderer\Header Files\glm\simd</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Renderer\Header Files\glm\simd\vector_relational.h">
+      <Filter>Renderer\Header Files\glm\simd</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Renderer\Header Files\shaderClass.h">
+      <Filter>Renderer\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="res\shaders\default.frag" />
-    <None Include="res\shaders\default.vert" />
-    <None Include="res\shaders\grid.frag" />
+    <ClCompile Include="src\Hana\Application.cpp">
+      <Filter>Hana</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Hana\Log.cpp">
+      <Filter>Hana</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Renderer\EBO.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Renderer\Header Files\glm\detail\glm.cpp">
+      <Filter>Renderer\Header Files\glm\detail</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Renderer\Texture.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Renderer\VAO.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Renderer\VBO.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Renderer\glad.c">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Renderer\shaderClass.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Renderer\stb.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="res\textures\Logo.png">
-      <Filter>Resource Files</Filter>
-    </Image>
+    <Library Include="vendor\lib\glfw3.lib" />
   </ItemGroup>
 </Project>

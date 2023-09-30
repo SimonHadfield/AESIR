@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|x64">
@@ -9,32 +9,39 @@
       <Configuration>Release</Configuration>
       <Platform>x64</Platform>
     </ProjectConfiguration>
+    <ProjectConfiguration Include="Dist|x64">
+      <Configuration>Dist</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <VCProjectVersion>16.0</VCProjectVersion>
+    <ProjectGuid>{FD35867C-E96C-870D-9259-6D107E6F030F}</ProjectGuid>
+    <IgnoreWarnCompileDuplicatedFilename>true</IgnoreWarnCompileDuplicatedFilename>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{6f591e35-dc94-45c0-ac3f-89a7c4d3eed5}</ProjectGuid>
-    <RootNamespace>HANA</RootNamespace>
+    <RootNamespace>Hana</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.22000.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
-  </ImportGroup>
-  <ImportGroup Label="Shared">
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
@@ -42,82 +49,141 @@
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(SolutionDir)Libraries\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Libraries\lib;$(LibraryPath)</LibraryPath>
-    <OutDir>$(SolutionDir)bin\$(Configuration)-$(Platform)\$(ProjectName)\</OutDir>
-    <IntDir>$(SolutionDir)bin-int\$(Configuration)-$(Platform)\$(ProjectName)\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>..\bin\Debug.windows.x86_64\{prj.name}\</OutDir>
+    <IntDir>..\bin-int\Debug.windows.x86_64\{prj.name}\Debug\Hana\</IntDir>
+    <TargetName>Hana</TargetName>
+    <TargetExt>.dll</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(SolutionDir)Libraries\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Libraries\lib;$(LibraryPath)</LibraryPath>
-    <OutDir>$(SolutionDir)bin\$(Configuration)-$(Platform)\$(ProjectName)\</OutDir>
-    <IntDir>$(SolutionDir)bin-int\$(Configuration)-$(Platform)\$(ProjectName)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>..\bin\Release.windows.x86_64\{prj.name}\</OutDir>
+    <IntDir>..\bin-int\Release.windows.x86_64\{prj.name}\Release\Hana\</IntDir>
+    <TargetName>Hana</TargetName>
+    <TargetExt>.dll</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>..\bin\Dist.windows.x86_64\{prj.name}\</OutDir>
+    <IntDir>..\bin-int\Dist.windows.x86_64\{prj.name}\Dist\Hana\</IntDir>
+    <TargetName>Hana</TargetName>
+    <TargetExt>.dll</TargetExt>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>HA_PLATFORM_WINDOWS;HA_BUILD_DLL;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)HANA\Header Files;$(SolutionDir)HANA\vendor\spdlog\include</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>HA_PLATFORM_WINDOWS;HA_BUILD_DLL;HA_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir)vendor\spdlog\include;$(ProjectDir)vendor\include;$(ProjectDir)src\Renderer\Header Files;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>vendor\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ImportLibrary>..\bin\Debug.windows.x86_64\{prj.name}\Hana.lib</ImportLibrary>
     </Link>
+    <PostBuildEvent>
+      <Command>IF EXIST ..\bin\Debug.windows.x86_64\{prj.name}\Hana.dll\ (xcopy /Q /E /Y /I ..\bin\Debug.windows.x86_64\{prj.name}\Hana.dll ..\bin\Debug.windows.x86_64\Sandbox &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Debug.windows.x86_64\{prj.name}\Hana.dll ..\bin\Debug.windows.x86_64\Sandbox &gt; nul)</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>HA_PLATFORM_WINDOWS;HA_BUILD_DLL;HA_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir)vendor\spdlog\include;$(ProjectDir)vendor\include;$(ProjectDir)src\Renderer\Header Files;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>HA_PLATFORM_WINDOWS;HA_BUILD_DLL;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)HANA\Header Files;$(SolutionDir)HANA\vendor\spdlog\include</AdditionalIncludeDirectories>
+      <MinimalRebuild>false</MinimalRebuild>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>vendor\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ImportLibrary>..\bin\Release.windows.x86_64\{prj.name}\Hana.lib</ImportLibrary>
     </Link>
+    <PostBuildEvent>
+      <Command>IF EXIST ..\bin\Release.windows.x86_64\{prj.name}\Hana.dll\ (xcopy /Q /E /Y /I ..\bin\Release.windows.x86_64\{prj.name}\Hana.dll ..\bin\Release.windows.x86_64\Sandbox &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Release.windows.x86_64\{prj.name}\Hana.dll ..\bin\Release.windows.x86_64\Sandbox &gt; nul)</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>HA_PLATFORM_WINDOWS;HA_BUILD_DLL;HA_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir)vendor\spdlog\include;$(ProjectDir)vendor\include;$(ProjectDir)src\Renderer\Header Files;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <ExternalWarningLevel>Level3</ExternalWarningLevel>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>vendor\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ImportLibrary>..\bin\Dist.windows.x86_64\{prj.name}\Hana.lib</ImportLibrary>
+    </Link>
+    <PostBuildEvent>
+      <Command>IF EXIST ..\bin\Dist.windows.x86_64\{prj.name}\Hana.dll\ (xcopy /Q /E /Y /I ..\bin\Dist.windows.x86_64\{prj.name}\Hana.dll ..\bin\Dist.windows.x86_64\Sandbox &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Dist.windows.x86_64\{prj.name}\Hana.dll ..\bin\Dist.windows.x86_64\Sandbox &gt; nul)</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\glad.c" />
-    <ClCompile Include="src\Hana\Log.cpp" />
-    <ClCompile Include="src\Hana\Application.cpp" />
-    <ClCompile Include="src\Renderer\EBO.cpp" />
-    <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\Renderer\shaderClass.cpp" />
-    <ClCompile Include="src\Renderer\stb.cpp" />
-    <ClCompile Include="src\Renderer\Texture.cpp" />
-    <ClCompile Include="src\Renderer\VAO.cpp" />
-    <ClCompile Include="src\Renderer\VBO.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="src\Hana\Log.h" />
     <ClInclude Include="src\Hana.h" />
     <ClInclude Include="src\Hana\Application.h" />
     <ClInclude Include="src\Hana\Core.h" />
-    <ClInclude Include="Header Files\EBO.h" />
-    <ClInclude Include="Header Files\shaderClass.h" />
-    <ClInclude Include="Header Files\Texture.h" />
-    <ClInclude Include="Header Files\VAO.h" />
-    <ClInclude Include="Header Files\VBO.h" />
     <ClInclude Include="src\Hana\EntryPoint.h" />
+    <ClInclude Include="src\Hana\Log.h" />
+    <ClInclude Include="src\Renderer\Header Files\EBO.h" />
+    <ClInclude Include="src\Renderer\Header Files\Texture.h" />
+    <ClInclude Include="src\Renderer\Header Files\VAO.h" />
+    <ClInclude Include="src\Renderer\Header Files\VBO.h" />
+    <ClInclude Include="src\Renderer\Header Files\glm\simd\common.h" />
+    <ClInclude Include="src\Renderer\Header Files\glm\simd\exponential.h" />
+    <ClInclude Include="src\Renderer\Header Files\glm\simd\geometric.h" />
+    <ClInclude Include="src\Renderer\Header Files\glm\simd\integer.h" />
+    <ClInclude Include="src\Renderer\Header Files\glm\simd\matrix.h" />
+    <ClInclude Include="src\Renderer\Header Files\glm\simd\neon.h" />
+    <ClInclude Include="src\Renderer\Header Files\glm\simd\packing.h" />
+    <ClInclude Include="src\Renderer\Header Files\glm\simd\platform.h" />
+    <ClInclude Include="src\Renderer\Header Files\glm\simd\trigonometric.h" />
+    <ClInclude Include="src\Renderer\Header Files\glm\simd\vector_relational.h" />
+    <ClInclude Include="src\Renderer\Header Files\shaderClass.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="res\shaders\default.frag" />
-    <None Include="res\shaders\default.vert" />
-    <None Include="res\shaders\grid.frag" />
+    <ClCompile Include="src\Hana\Application.cpp" />
+    <ClCompile Include="src\Hana\Log.cpp" />
+    <ClCompile Include="src\Renderer\EBO.cpp" />
+    <ClCompile Include="src\Renderer\Header Files\glm\detail\glm.cpp" />
+    <ClCompile Include="src\Renderer\Texture.cpp" />
+    <ClCompile Include="src\Renderer\VAO.cpp" />
+    <ClCompile Include="src\Renderer\VBO.cpp" />
+    <ClCompile Include="src\Renderer\glad.c" />
+    <ClCompile Include="src\Renderer\shaderClass.cpp" />
+    <ClCompile Include="src\Renderer\stb.cpp" />
+    <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="res\textures\Logo.png" />
+    <Library Include="vendor\lib\glfw3.lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -332,6 +332,8 @@ void processInput(GLFWwindow* window)
 		glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 
 	const float cameraSpeed = 2.5f * deltaTime; // adjust accordingly
+
+	/*
 	if (glfwGetKey(window, GLFW_KEY_W) or glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)				// move camera forward -	W / ARROW-UP
 		cameraPos += cameraSpeed * cameraFront;
 	if (glfwGetKey(window, GLFW_KEY_S) or glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)				// move camera backwards -	S / ARROW-DOWN
@@ -344,7 +346,7 @@ void processInput(GLFWwindow* window)
 		cameraPos += cameraUp * cameraSpeed;
 	if (glfwGetKey(window, GLFW_KEY_Q) or glfwGetKey(window, GLFW_KEY_LEFT_CONTROL) == GLFW_PRESS)		// move camera down -		Q / LEFT-CTRL 
 		cameraPos -= cameraUp * cameraSpeed;
-
+		*/
 }
 
 // mouse movement callback
