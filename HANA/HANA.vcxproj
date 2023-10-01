@@ -15,11 +15,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{FD35867C-E96C-870D-9259-6D107E6F030F}</ProjectGuid>
+    <ProjectGuid>{9DA9857C-89E0-860D-32CD-6C101EE3020F}</ProjectGuid>
     <IgnoreWarnCompileDuplicatedFilename>true</IgnoreWarnCompileDuplicatedFilename>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>Hana</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.22000.0</WindowsTargetPlatformVersion>
+    <RootNamespace>HANA</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
@@ -55,23 +55,23 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>..\bin\Debug.windows.x86_64\{prj.name}\</OutDir>
-    <IntDir>..\bin-int\Debug.windows.x86_64\{prj.name}\Debug\Hana\</IntDir>
-    <TargetName>Hana</TargetName>
+    <OutDir>..\bin\Debug.windows.x86_64\HANA\</OutDir>
+    <IntDir>..\bin-int\Debug.windows.x86_64\HANA\</IntDir>
+    <TargetName>HANA</TargetName>
     <TargetExt>.dll</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>..\bin\Release.windows.x86_64\{prj.name}\</OutDir>
-    <IntDir>..\bin-int\Release.windows.x86_64\{prj.name}\Release\Hana\</IntDir>
-    <TargetName>Hana</TargetName>
+    <OutDir>..\bin\Release.windows.x86_64\HANA\</OutDir>
+    <IntDir>..\bin-int\Release.windows.x86_64\HANA\</IntDir>
+    <TargetName>HANA</TargetName>
     <TargetExt>.dll</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>..\bin\Dist.windows.x86_64\{prj.name}\</OutDir>
-    <IntDir>..\bin-int\Dist.windows.x86_64\{prj.name}\Dist\Hana\</IntDir>
-    <TargetName>Hana</TargetName>
+    <OutDir>..\bin\Dist.windows.x86_64\HANA\</OutDir>
+    <IntDir>..\bin-int\Dist.windows.x86_64\HANA\</IntDir>
+    <TargetName>HANA</TargetName>
     <TargetExt>.dll</TargetExt>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -82,7 +82,7 @@
       <AdditionalIncludeDirectories>vendor\spdlog\include;vendor\include;src\Renderer\Header Files;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
@@ -91,10 +91,10 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>vendor\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ImportLibrary>..\bin\Debug.windows.x86_64\{prj.name}\Hana.lib</ImportLibrary>
+      <ImportLibrary>..\bin\Debug.windows.x86_64\HANA\HANA.lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
-      <Command>IF EXIST ..\bin\Debug.windows.x86_64\{prj.name}\Hana.dll\ (xcopy /Q /E /Y /I ..\bin\Debug.windows.x86_64\{prj.name}\Hana.dll ..\bin\Debug.windows.x86_64\Sandbox &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Debug.windows.x86_64\{prj.name}\Hana.dll ..\bin\Debug.windows.x86_64\Sandbox &gt; nul)</Command>
+      <Command>IF EXIST ..\bin\Debug.windows.x86_64\HANA\HANA.dll\ (xcopy /Q /E /Y /I ..\bin\Debug.windows.x86_64\HANA\HANA.dll ..\bin\Debug.windows.x86_64\Sandbox &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Debug.windows.x86_64\HANA\HANA.dll ..\bin\Debug.windows.x86_64\Sandbox &gt; nul)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -108,7 +108,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <MinimalRebuild>false</MinimalRebuild>
       <StringPooling>true</StringPooling>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
@@ -118,10 +118,10 @@
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalDependencies>glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>vendor\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ImportLibrary>..\bin\Release.windows.x86_64\{prj.name}\Hana.lib</ImportLibrary>
+      <ImportLibrary>..\bin\Release.windows.x86_64\HANA\HANA.lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
-      <Command>IF EXIST ..\bin\Release.windows.x86_64\{prj.name}\Hana.dll\ (xcopy /Q /E /Y /I ..\bin\Release.windows.x86_64\{prj.name}\Hana.dll ..\bin\Release.windows.x86_64\Sandbox &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Release.windows.x86_64\{prj.name}\Hana.dll ..\bin\Release.windows.x86_64\Sandbox &gt; nul)</Command>
+      <Command>IF EXIST ..\bin\Release.windows.x86_64\HANA\HANA.dll\ (xcopy /Q /E /Y /I ..\bin\Release.windows.x86_64\HANA\HANA.dll ..\bin\Release.windows.x86_64\Sandbox &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Release.windows.x86_64\HANA\HANA.dll ..\bin\Release.windows.x86_64\Sandbox &gt; nul)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
@@ -132,7 +132,7 @@
       <AdditionalIncludeDirectories>vendor\spdlog\include;vendor\include;src\Renderer\Header Files;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
@@ -141,10 +141,10 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>vendor\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ImportLibrary>..\bin\Dist.windows.x86_64\{prj.name}\Hana.lib</ImportLibrary>
+      <ImportLibrary>..\bin\Dist.windows.x86_64\HANA\HANA.lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
-      <Command>IF EXIST ..\bin\Dist.windows.x86_64\{prj.name}\Hana.dll\ (xcopy /Q /E /Y /I ..\bin\Dist.windows.x86_64\{prj.name}\Hana.dll ..\bin\Dist.windows.x86_64\Sandbox &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Dist.windows.x86_64\{prj.name}\Hana.dll ..\bin\Dist.windows.x86_64\Sandbox &gt; nul)</Command>
+      <Command>IF EXIST ..\bin\Dist.windows.x86_64\HANA\HANA.dll\ (xcopy /Q /E /Y /I ..\bin\Dist.windows.x86_64\HANA\HANA.dll ..\bin\Dist.windows.x86_64\Sandbox &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Dist.windows.x86_64\HANA\HANA.dll ..\bin\Dist.windows.x86_64\Sandbox &gt; nul)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>

@@ -11,13 +11,13 @@ workspace "Hana"
 
 outputdir = "%{cfg.buildcfg}.%{cfg.system}.%{cfg.architecture}"
 
-project "Hana"
-	location "Hana"
+project "HANA"
+	location "HANA"
 	kind "SharedLib" -- dynamic lib
 	language "C++"
 
-	targetdir ("bin/" .. outputdir .. "/{prj.name}")
-	objdir ("bin-int/" .. outputdir .. "/{prj.name}")
+	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
+	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
 	files
 	{
@@ -46,8 +46,8 @@ project "Hana"
 
 	filter "system:windows"
 		cppdialect "C++17"
-		staticruntime "On"
-		systemversion "10.0.22000.0"
+		staticruntime "off"
+		systemversion "latest"--"10.0.22000.0"
 
 		defines
 		{
@@ -77,8 +77,8 @@ project "Sandbox"
 	kind "ConsoleApp" -- executable
 	language "C++"
 
-	targetdir ("bin/" .. outputdir .. "/{prj.name}")
-	objdir ("bin-int/" .. outputdir .. "/{prj.name}")
+	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
+	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
 	files
 	{
@@ -89,11 +89,11 @@ project "Sandbox"
 
 	includedirs
 	{
-		"Hana/vendor/spdlog/include",
-		"Hana/vendor/include",
-		"Hana/vendor/lib",
-		"Hana/src/Renderer/Header Files",
-		"Hana/src"
+		"HANA/vendor/spdlog/include",
+		--"HANA/vendor/include",
+		--"HANA/vendor/lib",
+		--"HANA/src/Renderer/Header Files",
+		"HANA/src"
 	}
 
 	links

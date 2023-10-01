@@ -55,22 +55,22 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>..\bin\Debug.windows.x86_64\{prj.name}\</OutDir>
-    <IntDir>..\bin-int\Debug.windows.x86_64\{prj.name}\Debug\Sandbox\</IntDir>
+    <OutDir>..\bin\Debug.windows.x86_64\Sandbox\</OutDir>
+    <IntDir>..\bin-int\Debug.windows.x86_64\Sandbox\</IntDir>
     <TargetName>Sandbox</TargetName>
     <TargetExt>.exe</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>..\bin\Release.windows.x86_64\{prj.name}\</OutDir>
-    <IntDir>..\bin-int\Release.windows.x86_64\{prj.name}\Release\Sandbox\</IntDir>
+    <OutDir>..\bin\Release.windows.x86_64\Sandbox\</OutDir>
+    <IntDir>..\bin-int\Release.windows.x86_64\Sandbox\</IntDir>
     <TargetName>Sandbox</TargetName>
     <TargetExt>.exe</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>..\bin\Dist.windows.x86_64\{prj.name}\</OutDir>
-    <IntDir>..\bin-int\Dist.windows.x86_64\{prj.name}\Dist\Sandbox\</IntDir>
+    <OutDir>..\bin\Dist.windows.x86_64\Sandbox\</OutDir>
+    <IntDir>..\bin-int\Dist.windows.x86_64\Sandbox\</IntDir>
     <TargetName>Sandbox</TargetName>
     <TargetExt>.exe</TargetExt>
   </PropertyGroup>
@@ -79,7 +79,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>HA_PLATFORM_WINDOWS;HA_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\Hana\vendor\spdlog\include;..\Hana\vendor\include;..\Hana\vendor\lib;..\Hana\src\Renderer\Header Files;..\Hana\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\HANA\vendor\spdlog\include;..\HANA\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -96,7 +96,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>HA_PLATFORM_WINDOWS;HA_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\Hana\vendor\spdlog\include;..\Hana\vendor\include;..\Hana\vendor\lib;..\Hana\src\Renderer\Header Files;..\Hana\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\HANA\vendor\spdlog\include;..\HANA\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -117,7 +117,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>HA_PLATFORM_WINDOWS;HA_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\Hana\vendor\spdlog\include;..\Hana\vendor\include;..\Hana\vendor\lib;..\Hana\src\Renderer\Header Files;..\Hana\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\HANA\vendor\spdlog\include;..\HANA\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -133,8 +133,8 @@
     <ClCompile Include="src\SandboxApp.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Hana\Hana.vcxproj">
-      <Project>{FD35867C-E96C-870D-9259-6D107E6F030F}</Project>
+    <ProjectReference Include="..\HANA\HANA.vcxproj">
+      <Project>{9DA9857C-89E0-860D-32CD-6C101EE3020F}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
