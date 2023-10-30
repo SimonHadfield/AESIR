@@ -91,8 +91,8 @@ project "Sandbox"
 	includedirs
 	{
 		"HANA/vendor/spdlog/include",
-		--"HANA/vendor/include",
-		--"HANA/vendor/lib",
+		"HANA/vendor/include",
+		"HANA/vendor/lib",
 		--"HANA/src/Renderer/Header Files",
 		"HANA/src"
 	}

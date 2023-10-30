@@ -164,19 +164,20 @@
     <ClInclude Include="src\Hana\Events\MouseEvent.h" />
     <ClInclude Include="src\Hana\Log.h" />
     <ClInclude Include="src\Renderer\EBO.h" />
+    <ClInclude Include="src\Renderer\HanaCube.h" />
     <ClInclude Include="src\Renderer\Texture.h" />
     <ClInclude Include="src\Renderer\VAO.h" />
     <ClInclude Include="src\Renderer\VBO.h" />
-    <ClInclude Include="src\Renderer\glm\simd\common.h" />
-    <ClInclude Include="src\Renderer\glm\simd\exponential.h" />
-    <ClInclude Include="src\Renderer\glm\simd\geometric.h" />
-    <ClInclude Include="src\Renderer\glm\simd\integer.h" />
-    <ClInclude Include="src\Renderer\glm\simd\matrix.h" />
-    <ClInclude Include="src\Renderer\glm\simd\neon.h" />
-    <ClInclude Include="src\Renderer\glm\simd\packing.h" />
-    <ClInclude Include="src\Renderer\glm\simd\platform.h" />
-    <ClInclude Include="src\Renderer\glm\simd\trigonometric.h" />
-    <ClInclude Include="src\Renderer\glm\simd\vector_relational.h" />
+    <ClInclude Include="vendor\include\glm\simd\common.h" />
+    <ClInclude Include="vendor\include\glm\simd\exponential.h" />
+    <ClInclude Include="vendor\include\glm\simd\geometric.h" />
+    <ClInclude Include="vendor\include\glm\simd\integer.h" />
+    <ClInclude Include="vendor\include\glm\simd\matrix.h" />
+    <ClInclude Include="vendor\include\glm\simd\neon.h" />
+    <ClInclude Include="vendor\include\glm\simd\packing.h" />
+    <ClInclude Include="vendor\include\glm\simd\platform.h" />
+    <ClInclude Include="vendor\include\glm\simd\trigonometric.h" />
+    <ClInclude Include="vendor\include\glm\simd\vector_relational.h" />
     <ClInclude Include="src\Renderer\shaderClass.h" />
     <ClInclude Include="src\Renderer\Renderer.h" />
     <ClInclude Include="src\Hana\Window.h" />
@@ -185,7 +186,7 @@
     <ClCompile Include="src\Hana\Application.cpp" />
     <ClCompile Include="src\Hana\Log.cpp" />
     <ClCompile Include="src\Renderer\EBO.cpp" />
-    <ClCompile Include="src\Renderer\glm\detail\glm.cpp" />
+    <ClCompile Include="vendor\include\glm\detail\glm.cpp" />
     <ClCompile Include="src\Renderer\Renderer.cpp" />
     <ClCompile Include="src\Renderer\Texture.cpp" />
     <ClCompile Include="src\Renderer\VAO.cpp" />
@@ -193,8 +194,14 @@
     <ClCompile Include="src\Renderer\glad.c" />
     <ClCompile Include="src\Renderer\shaderClass.cpp" />
     <ClCompile Include="src\Renderer\stb.cpp" />
-    <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Hana\Window.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="src\Renderer\res\textures\Logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\Renderer\res\shaders\default.frag" />
+    <None Include="src\Renderer\res\shaders\default.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
