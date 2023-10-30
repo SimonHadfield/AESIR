@@ -26,6 +26,27 @@ namespace Hana {
 	{
 	}
 
+	// set up camera
+	glm::vec3 cameraPos = glm::vec3(0.0f, 0.0f, 3.0f);
+	glm::vec3 cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);
+	glm::vec3 cameraUp = glm::vec3(0.0f, 1.0f, 0.0f);
+	bool firstMouse = true;
+	float yaw = -50.0f;
+	float pitch = 0.0f;
+	float lastX = 800.0f / 2.0;
+	float lastY = 600.0 / 2.0;
+	float fov = 45.0f;
+
+	// delta time
+	GLfloat deltaTime = 0.0f;
+	GLfloat currentTime = 0.0f;
+	GLfloat prevTime = 0.0f;
+
+	// Callback declarations
+	void mouse_callback(GLFWwindow* m_Window, double xpos, double ypos);
+	void scroll_callback(GLFWwindow* m_Window, double xoffset, double yoffset);
+	void processInput(GLFWwindow* m_Window);
+
 	
 
 
@@ -45,6 +66,11 @@ namespace Hana {
 		}
 
 		// ABSTRACTION THIS
+
+		//glfwSetFramebufferSizeCallback(m_Window, framebuffer_size_callback);							// callback for resizing window
+		glfwSetCursorPosCallback(m_Window, mouse_callback);											// callback - mouseInputs
+		glfwSetScrollCallback(m_Window, scroll_callback);												// callback - scrollInput
+		glfwSetInputMode(m_Window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);								// capture mouse
 
 		// 3D vertices for cube (no colour)
 		GLfloat vertices[] =
@@ -104,21 +130,7 @@ namespace Hana {
 		}
 		*/
 
-		// set up camera
-		glm::vec3 cameraPos = glm::vec3(0.0f, 0.0f, 3.0f);
-		glm::vec3 cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);
-		glm::vec3 cameraUp = glm::vec3(0.0f, 1.0f, 0.0f);
-		bool firstMouse = true;
-		float yaw = -50.0f;
-		float pitch = 0.0f;
-		float lastX = 800.0f / 2.0;
-		float lastY = 600.0 / 2.0;
-		float fov = 45.0f;
-
-		// delta time
-		GLfloat deltaTime = 0.0f;
-		GLfloat currentTime = 0.0f;
-		GLfloat prevTime = 0.0f;
+		
 
 		//		-- SHADERS
 
@@ -126,7 +138,6 @@ namespace Hana {
 		HA_WARN("ABSTRACT RENDERING FROM APPLICATION.CPP");
 		HA_WARN("CHANGE SHADER TO RELATIVE PATH");
 		Shader shaderProgram("A:/dev/Hana/HANA/HANA/src/Renderer/res/shaders/default.vert", "A:/dev/Hana/HANA/HANA/src/Renderer/res/shaders/default.frag"); // create shader with vertexShader and fragmentShader
-		//Shader shaderProgram("res/shaders/default.vert", "res/shaders/default.frag"); // create shader with vertexShader and fragmentShader
 		VAO VAO1;										// create vertex array
 		VAO1.Bind();									// bind vertexy array
 
@@ -250,7 +261,7 @@ namespace Hana {
 		while (!glfwWindowShouldClose(m_Window))
 		{
 			// Abstract below
-			// processInput(m_Window);
+			processInput(m_Window);
 			glClearColor(0.09f, 0.13f, 0.19f, 1.0f);
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 			shaderProgram.Activate();
@@ -308,5 +319,80 @@ namespace Hana {
 
 		glfwDestroyWindow(m_Window);
 		glfwTerminate();
+
+	}
+
+
+	// CALLBACKS
+
+	void processInput(GLFWwindow* m_Window)
+	{
+		if ((glfwGetKey(m_Window, GLFW_KEY_ESCAPE) == GLFW_PRESS) && (GLFW_CURSOR_DISABLED))
+			glfwSetInputMode(m_Window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+
+		const float cameraSpeed = 2.5f * deltaTime; // adjust accordingly
+
+		
+		if (glfwGetKey(m_Window, GLFW_KEY_W) || glfwGetKey(m_Window, GLFW_KEY_UP) == GLFW_PRESS)				// move camera forward -	W / ARROW-UP
+			cameraPos += cameraSpeed * cameraFront;
+		if (glfwGetKey(m_Window, GLFW_KEY_S) || glfwGetKey(m_Window, GLFW_KEY_DOWN) == GLFW_PRESS)				// move camera backwards -	S / ARROW-DOWN
+			cameraPos -= cameraSpeed * cameraFront;
+		if (glfwGetKey(m_Window, GLFW_KEY_A) || glfwGetKey(m_Window, GLFW_KEY_LEFT) == GLFW_PRESS)				// move camera left -		A / ARROW-LEFT
+			cameraPos -= glm::normalize(glm::cross(cameraFront, cameraUp)) * cameraSpeed;
+		if (glfwGetKey(m_Window, GLFW_KEY_D) || glfwGetKey(m_Window, GLFW_KEY_RIGHT) == GLFW_PRESS)				// move camera right -		D / ARROW-RIGHT
+			cameraPos += glm::normalize(glm::cross(cameraFront, cameraUp)) * cameraSpeed;
+		if (glfwGetKey(m_Window, GLFW_KEY_E) || glfwGetKey(m_Window, GLFW_KEY_SPACE) == GLFW_PRESS)				// move camera up -			E / SPACEBAR
+			cameraPos += cameraUp * cameraSpeed;
+		if (glfwGetKey(m_Window, GLFW_KEY_Q) || glfwGetKey(m_Window, GLFW_KEY_LEFT_CONTROL) == GLFW_PRESS)		// move camera down -		Q / LEFT-CTRL
+			cameraPos -= cameraUp * cameraSpeed;
+		
+	}
+
+	// mouse movement callback
+	void mouse_callback(GLFWwindow* m_Window, double xposIn, double yposIn)
+	{
+		float xpos = static_cast<float>(xposIn);
+		float ypos = static_cast<float>(yposIn);
+
+		if (firstMouse) // center mouse position
+		{
+			lastX = xpos;
+			lastY = ypos;
+			firstMouse = false;
+		}
+
+		float xoffset = xpos - lastX;
+		float yoffset = lastY - ypos; // reversed since y-coordinates go from bottom to top
+		lastX = xpos;
+		lastY = ypos;
+
+		float sensitivity = 0.1f; // change this value to your liking
+		xoffset *= sensitivity;
+		yoffset *= sensitivity;
+
+		yaw += xoffset;
+		pitch += yoffset;
+
+		// make sure that when pitch is out of bounds, screen doesn't get flipped
+		if (pitch > 89.0f)
+			pitch = 89.0f;
+		if (pitch < -89.0f)
+			pitch = -89.0f;
+
+		glm::vec3 front;
+		front.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
+		front.y = sin(glm::radians(pitch));
+		front.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
+		cameraFront = glm::normalize(front);
+	}
+
+	// mouse scroll wheel scroll callback 
+	void scroll_callback(GLFWwindow* m_Window, double xoffset, double yoffset)
+	{
+		fov -= (float)yoffset;
+		if (fov < 1.0f)
+			fov = 1.0f;
+		if (fov > 45.0f)
+			fov = 45.0f;
 	}
 }
