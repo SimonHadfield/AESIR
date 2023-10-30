@@ -28,6 +28,7 @@ project "HANA"
 
 	includedirs
 	{
+		"%{prj.name}/src",
 		"%{prj.name}/vendor/spdlog/include",
 		"%{prj.name}/vendor/include",
 		"%{prj.name}/src/Renderer/Header Files"

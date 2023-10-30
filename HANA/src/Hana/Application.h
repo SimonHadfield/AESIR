@@ -1,6 +1,10 @@
 #pragma once
 
 #include "Core.h"
+#include "Events/Event.h"
+
+// init window and renderer
+#include "Window.h"
 
 namespace Hana {
 

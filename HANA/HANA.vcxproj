@@ -59,6 +59,8 @@
     <IntDir>..\bin-int\Debug.windows.x86_64\HANA\</IntDir>
     <TargetName>HANA</TargetName>
     <TargetExt>.dll</TargetExt>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)HANA\vendor\include</IncludePath>
+    <LibraryPath>$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(SolutionDir)HANA\vendor\lib</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -66,6 +68,8 @@
     <IntDir>..\bin-int\Release.windows.x86_64\HANA\</IntDir>
     <TargetName>HANA</TargetName>
     <TargetExt>.dll</TargetExt>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)HANA\vendor\include</IncludePath>
+    <LibraryPath>$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(SolutionDir)HANA\vendor\lib</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -73,13 +77,15 @@
     <IntDir>..\bin-int\Dist.windows.x86_64\HANA\</IntDir>
     <TargetName>HANA</TargetName>
     <TargetExt>.dll</TargetExt>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)HANA\vendor\include</IncludePath>
+    <LibraryPath>$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(SolutionDir)HANA\vendor\lib</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>HA_PLATFORM_WINDOWS;HA_BUILD_DLL;HA_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>vendor\spdlog\include;vendor\include;src\Renderer\Header Files;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)src;$(ProjectDir)vendor\spdlog\include;$(ProjectDir)src\Renderer;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -90,7 +96,7 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>vendor\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImportLibrary>..\bin\Debug.windows.x86_64\HANA\HANA.lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
@@ -102,7 +108,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>HA_PLATFORM_WINDOWS;HA_BUILD_DLL;HA_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>vendor\spdlog\include;vendor\include;src\Renderer\Header Files;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)src;$(ProjectDir)vendor\spdlog\include;$(ProjectDir)src\Renderer;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -117,7 +123,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalDependencies>glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>vendor\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImportLibrary>..\bin\Release.windows.x86_64\HANA\HANA.lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
@@ -129,7 +135,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>HA_PLATFORM_WINDOWS;HA_BUILD_DLL;HA_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>vendor\spdlog\include;vendor\include;src\Renderer\Header Files;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)src;$(ProjectDir)vendor\spdlog\include;$(ProjectDir)src\Renderer;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -140,7 +146,7 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>vendor\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImportLibrary>..\bin\Dist.windows.x86_64\HANA\HANA.lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
@@ -152,28 +158,35 @@
     <ClInclude Include="src\Hana\Application.h" />
     <ClInclude Include="src\Hana\Core.h" />
     <ClInclude Include="src\Hana\EntryPoint.h" />
+    <ClInclude Include="src\Hana\Events\ApplicationEvent.h" />
+    <ClInclude Include="src\Hana\Events\Event.h" />
+    <ClInclude Include="src\Hana\Events\KeyEvent.h" />
+    <ClInclude Include="src\Hana\Events\MouseEvent.h" />
     <ClInclude Include="src\Hana\Log.h" />
-    <ClInclude Include="src\Renderer\Header Files\EBO.h" />
-    <ClInclude Include="src\Renderer\Header Files\Texture.h" />
-    <ClInclude Include="src\Renderer\Header Files\VAO.h" />
-    <ClInclude Include="src\Renderer\Header Files\VBO.h" />
-    <ClInclude Include="src\Renderer\Header Files\glm\simd\common.h" />
-    <ClInclude Include="src\Renderer\Header Files\glm\simd\exponential.h" />
-    <ClInclude Include="src\Renderer\Header Files\glm\simd\geometric.h" />
-    <ClInclude Include="src\Renderer\Header Files\glm\simd\integer.h" />
-    <ClInclude Include="src\Renderer\Header Files\glm\simd\matrix.h" />
-    <ClInclude Include="src\Renderer\Header Files\glm\simd\neon.h" />
-    <ClInclude Include="src\Renderer\Header Files\glm\simd\packing.h" />
-    <ClInclude Include="src\Renderer\Header Files\glm\simd\platform.h" />
-    <ClInclude Include="src\Renderer\Header Files\glm\simd\trigonometric.h" />
-    <ClInclude Include="src\Renderer\Header Files\glm\simd\vector_relational.h" />
-    <ClInclude Include="src\Renderer\Header Files\shaderClass.h" />
+    <ClInclude Include="src\Renderer\EBO.h" />
+    <ClInclude Include="src\Renderer\Texture.h" />
+    <ClInclude Include="src\Renderer\VAO.h" />
+    <ClInclude Include="src\Renderer\VBO.h" />
+    <ClInclude Include="src\Renderer\glm\simd\common.h" />
+    <ClInclude Include="src\Renderer\glm\simd\exponential.h" />
+    <ClInclude Include="src\Renderer\glm\simd\geometric.h" />
+    <ClInclude Include="src\Renderer\glm\simd\integer.h" />
+    <ClInclude Include="src\Renderer\glm\simd\matrix.h" />
+    <ClInclude Include="src\Renderer\glm\simd\neon.h" />
+    <ClInclude Include="src\Renderer\glm\simd\packing.h" />
+    <ClInclude Include="src\Renderer\glm\simd\platform.h" />
+    <ClInclude Include="src\Renderer\glm\simd\trigonometric.h" />
+    <ClInclude Include="src\Renderer\glm\simd\vector_relational.h" />
+    <ClInclude Include="src\Renderer\shaderClass.h" />
+    <ClInclude Include="src\Renderer\Renderer.h" />
+    <ClInclude Include="src\Hana\Window.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Hana\Application.cpp" />
     <ClCompile Include="src\Hana\Log.cpp" />
     <ClCompile Include="src\Renderer\EBO.cpp" />
-    <ClCompile Include="src\Renderer\Header Files\glm\detail\glm.cpp" />
+    <ClCompile Include="src\Renderer\glm\detail\glm.cpp" />
+    <ClCompile Include="src\Renderer\Renderer.cpp" />
     <ClCompile Include="src\Renderer\Texture.cpp" />
     <ClCompile Include="src\Renderer\VAO.cpp" />
     <ClCompile Include="src\Renderer\VBO.cpp" />
@@ -181,6 +194,7 @@
     <ClCompile Include="src\Renderer\shaderClass.cpp" />
     <ClCompile Include="src\Renderer\stb.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\Hana\Window.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

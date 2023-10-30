@@ -12,6 +12,7 @@ public:
 	}
 };
 
+
 Hana::Application* Hana::CreateApplication()
 {
 	return new Sandbox();

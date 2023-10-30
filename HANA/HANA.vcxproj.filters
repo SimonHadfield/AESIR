@@ -4,6 +4,9 @@
     <Filter Include="Hana">
       <UniqueIdentifier>{FD35867C-E96C-870D-9259-6D107E6F030F}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Hana\Events">
+      <UniqueIdentifier>{41A35D53-AD58-D648-364D-D01FA201CD4C}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Renderer">
       <UniqueIdentifier>{7CCE658F-689B-C09A-91B4-AE427DE0F528}</UniqueIdentifier>
     </Filter>
@@ -31,54 +34,70 @@
     <ClInclude Include="src\Hana\EntryPoint.h">
       <Filter>Hana</Filter>
     </ClInclude>
+    <ClInclude Include="src\Hana\Events\ApplicationEvent.h">
+      <Filter>Hana\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Hana\Events\Event.h">
+      <Filter>Hana\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Hana\Events\KeyEvent.h">
+      <Filter>Hana\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Hana\Events\MouseEvent.h">
+      <Filter>Hana\Events</Filter>
+    </ClInclude>
     <ClInclude Include="src\Hana\Log.h">
       <Filter>Hana</Filter>
     </ClInclude>
-    <ClInclude Include="src\Renderer\Header Files\EBO.h">
+    <ClInclude Include="src\Renderer\EBO.h">
       <Filter>Renderer\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Renderer\Header Files\Texture.h">
+    <ClInclude Include="src\Renderer\Texture.h">
       <Filter>Renderer\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Renderer\Header Files\VAO.h">
+    <ClInclude Include="src\Renderer\VAO.h">
       <Filter>Renderer\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Renderer\Header Files\VBO.h">
+    <ClInclude Include="src\Renderer\VBO.h">
       <Filter>Renderer\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Renderer\Header Files\glm\simd\common.h">
+    <ClInclude Include="src\Renderer\glm\simd\common.h">
       <Filter>Renderer\Header Files\glm\simd</Filter>
     </ClInclude>
-    <ClInclude Include="src\Renderer\Header Files\glm\simd\exponential.h">
+    <ClInclude Include="src\Renderer\glm\simd\exponential.h">
       <Filter>Renderer\Header Files\glm\simd</Filter>
     </ClInclude>
-    <ClInclude Include="src\Renderer\Header Files\glm\simd\geometric.h">
+    <ClInclude Include="src\Renderer\glm\simd\geometric.h">
       <Filter>Renderer\Header Files\glm\simd</Filter>
     </ClInclude>
-    <ClInclude Include="src\Renderer\Header Files\glm\simd\integer.h">
+    <ClInclude Include="src\Renderer\glm\simd\integer.h">
       <Filter>Renderer\Header Files\glm\simd</Filter>
     </ClInclude>
-    <ClInclude Include="src\Renderer\Header Files\glm\simd\matrix.h">
+    <ClInclude Include="src\Renderer\glm\simd\matrix.h">
       <Filter>Renderer\Header Files\glm\simd</Filter>
     </ClInclude>
-    <ClInclude Include="src\Renderer\Header Files\glm\simd\neon.h">
+    <ClInclude Include="src\Renderer\glm\simd\neon.h">
       <Filter>Renderer\Header Files\glm\simd</Filter>
     </ClInclude>
-    <ClInclude Include="src\Renderer\Header Files\glm\simd\packing.h">
+    <ClInclude Include="src\Renderer\glm\simd\packing.h">
       <Filter>Renderer\Header Files\glm\simd</Filter>
     </ClInclude>
-    <ClInclude Include="src\Renderer\Header Files\glm\simd\platform.h">
+    <ClInclude Include="src\Renderer\glm\simd\platform.h">
       <Filter>Renderer\Header Files\glm\simd</Filter>
     </ClInclude>
-    <ClInclude Include="src\Renderer\Header Files\glm\simd\trigonometric.h">
+    <ClInclude Include="src\Renderer\glm\simd\trigonometric.h">
       <Filter>Renderer\Header Files\glm\simd</Filter>
     </ClInclude>
-    <ClInclude Include="src\Renderer\Header Files\glm\simd\vector_relational.h">
+    <ClInclude Include="src\Renderer\glm\simd\vector_relational.h">
       <Filter>Renderer\Header Files\glm\simd</Filter>
     </ClInclude>
-    <ClInclude Include="src\Renderer\Header Files\shaderClass.h">
+    <ClInclude Include="src\Renderer\shaderClass.h">
       <Filter>Renderer\Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Renderer\Renderer.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Hana\Window.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Hana\Application.cpp">
@@ -90,8 +109,11 @@
     <ClCompile Include="src\Renderer\EBO.cpp">
       <Filter>Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="src\Renderer\Header Files\glm\detail\glm.cpp">
+    <ClCompile Include="src\Renderer\glm\detail\glm.cpp">
       <Filter>Renderer\Header Files\glm\detail</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Renderer\Renderer.cpp">
+      <Filter>Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Renderer\Texture.cpp">
       <Filter>Renderer</Filter>
@@ -112,5 +134,6 @@
       <Filter>Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\Hana\Window.cpp" />
   </ItemGroup>
 </Project>
