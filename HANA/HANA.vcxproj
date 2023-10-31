@@ -165,6 +165,7 @@
     <ClInclude Include="src\Hana\Log.h" />
     <ClInclude Include="src\Renderer\EBO.h" />
     <ClInclude Include="src\Renderer\HanaCube.h" />
+    <ClInclude Include="src\Renderer\HanaGrid.h" />
     <ClInclude Include="src\Renderer\Texture.h" />
     <ClInclude Include="src\Renderer\VAO.h" />
     <ClInclude Include="src\Renderer\VBO.h" />

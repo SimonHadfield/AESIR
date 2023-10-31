@@ -99,6 +99,7 @@
     </ClInclude>
     <ClInclude Include="src\Hana\Window.h" />
     <ClInclude Include="src\Renderer\HanaCube.h" />
+    <ClInclude Include="src\Renderer\HanaGrid.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Hana\Application.cpp">
