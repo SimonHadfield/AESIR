@@ -20,7 +20,6 @@
 // include renderer
 //#include "Renderer/Renderer.h"
 //#include "Renderer/HanaCube.h"
-//#include "Renderer/HanaGrid.h"
 
 // logger
 #include "Log.h"

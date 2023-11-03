@@ -99,7 +99,8 @@
     </ClInclude>
     <ClInclude Include="src\Hana\Window.h" />
     <ClInclude Include="src\Renderer\HanaCube.h" />
-    <ClInclude Include="src\Renderer\HanaGrid.h" />
+    <ClInclude Include="src\Hana\Layers\Layer.h" />
+    <ClInclude Include="src\Hana\Layers\LayerStack.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Hana\Application.cpp">
@@ -136,6 +137,8 @@
       <Filter>Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Hana\Window.cpp" />
+    <ClCompile Include="src\Hana\Layers\Layer.cpp" />
+    <ClCompile Include="src\Hana\Layers\LayerStack.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="src\Renderer\res\textures\Logo.png" />

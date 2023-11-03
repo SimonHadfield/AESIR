@@ -154,6 +154,8 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Hana\Layers\LayerStack.h" />
+    <ClInclude Include="src\Hana\Layers\Layer.h" />
     <ClInclude Include="src\Hana.h" />
     <ClInclude Include="src\Hana\Application.h" />
     <ClInclude Include="src\Hana\Core.h" />
@@ -165,7 +167,6 @@
     <ClInclude Include="src\Hana\Log.h" />
     <ClInclude Include="src\Renderer\EBO.h" />
     <ClInclude Include="src\Renderer\HanaCube.h" />
-    <ClInclude Include="src\Renderer\HanaGrid.h" />
     <ClInclude Include="src\Renderer\Texture.h" />
     <ClInclude Include="src\Renderer\VAO.h" />
     <ClInclude Include="src\Renderer\VBO.h" />
@@ -184,6 +185,8 @@
     <ClInclude Include="src\Hana\Window.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Hana\Layers\LayerStack.cpp" />
+    <ClCompile Include="src\Hana\Layers\Layer.cpp" />
     <ClCompile Include="src\Hana\Application.cpp" />
     <ClCompile Include="src\Hana\Log.cpp" />
     <ClCompile Include="src\Renderer\EBO.cpp" />
