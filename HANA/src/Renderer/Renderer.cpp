@@ -1,24 +1,77 @@
 #include "Renderer/Renderer.h"
 
+
 namespace Hana {
-	
-	Renderer::Renderer() {
-	// Init GLFW/GLAD global settings
+
+	//Renderer::~Renderer() {
+	//glfwTerminate();
+	//};
+    void framebuffer_size_callback(GLFWwindow* m_Window, int width, int height);
+    // void mouse_callback(GLFWwindow* m_Window, double xpos, double ypos);
+    // void scroll_callback(GLFWwindow* m_Window, double xoffset, double yoffset);
+    // void processInput(GLFWwindow* m_Window);
+
+
+	void* Renderer::Init() {
+        glfwInit();
+
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);					// assign opengl version
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);					// assign "
+        glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);	// using core profile
+
+        // window size
+        const unsigned int window_width = 1280;
+        const unsigned int window_height = 720;
+
+        
+        // Initialize GLFW and create a window.
+        if (glfwInit()) {
+            m_Window = glfwCreateWindow(window_width, window_height, "My Window", nullptr, nullptr);
+        }
+
+        if (m_Window == NULL)																			// Check GLFW window opens
+        {
+            HA_CRITICAL("Failed to create GLFW window");
+            glfwTerminate();
+            return nullptr;
+        }
+
+
+        glfwMakeContextCurrent(m_Window);					// introduce window into current context
+        gladLoadGL();									    // load glad
+
+        //		-- GLOBAL SETTINGS
+        glEnable(GL_DEPTH_TEST);						    // Depth test for rendering order
+        //glEnable(GL_CULL_FACE);
+        glViewport(0, 0, window_width, window_height);	    // specify the viewport in given window
+
+        glfwSetFramebufferSizeCallback(m_Window, framebuffer_size_callback);						// callback for resizing window
+
+        
+
+		return static_cast<void*>(m_Window);
 	};
 
-	Renderer::~Renderer() {
-		glfwTerminate();
-	};
+    bool Renderer::ShouldClose() {
+        return glfwWindowShouldClose(m_Window);
+    };
 
 	void Renderer::StartFrame() {
-		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+		glClearColor(0.4f, 0.0f, 0.4f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);	
 	};
 
-	// void Renderer::InsertRenderable() {};
-	
+	// void Renderer::SubmitRenderable(const Renderable* renderable) {};
+
 	void Renderer::EndFrame() {
-		// glfwSwapBuffers(window);
+		glfwSwapBuffers(m_Window);
 		glfwPollEvents();
 	};
+
+    
+	
+    void Renderer::Shutdown() { glfwSetWindowShouldClose(m_Window, TRUE); };
+
+    
+
 }

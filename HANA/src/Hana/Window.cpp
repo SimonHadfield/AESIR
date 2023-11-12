@@ -1,4 +1,5 @@
 #include "Window.h"
+#include "HanaCube.h"
 
 
 namespace Hana {
@@ -64,59 +65,17 @@ namespace Hana {
 	void scroll_callback(GLFWwindow* m_Window, double xoffset, double yoffset);
 	void processInput(GLFWwindow* m_Window);
 
-    void Window::RenderContext(GLFWwindow* m_Window)
-    {
+	void Window::RenderInit()
+	{
 		glfwSetFramebufferSizeCallback(m_Window, framebuffer_size_callback);						// callback for resizing window
 		glfwSetCursorPosCallback(m_Window, mouse_callback);											// callback - mouseInputs
 		glfwSetScrollCallback(m_Window, scroll_callback);											// callback - scrollInput
 		glfwSetInputMode(m_Window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);								// capture mouse
+	};
 
-		GLfloat Cube_vertices[] =
-		{
-			//  COORDINATES				// TEXTURE COORDINATES
-			-0.5f, -0.5f, -0.5f,		0.0f, 0.0f,
-			 0.5f, -0.5f, -0.5f,		1.0f, 0.0f,
-			 0.5f,  0.5f, -0.5f,		1.0f, 1.0f,
-			 0.5f,  0.5f, -0.5f,		1.0f, 1.0f,
-			-0.5f,  0.5f, -0.5f,		0.0f, 1.0f,
-			-0.5f, -0.5f, -0.5f,		0.0f, 0.0f,
-
-			-0.5f, -0.5f,  0.5f,		0.0f, 0.0f,
-			 0.5f, -0.5f,  0.5f,		1.0f, 0.0f,
-			 0.5f,  0.5f,  0.5f,		1.0f, 1.0f,
-			 0.5f,  0.5f,  0.5f,		1.0f, 1.0f,
-			-0.5f,  0.5f,  0.5f,		0.0f, 1.0f,
-			-0.5f, -0.5f,  0.5f,		0.0f, 0.0f,
-
-			-0.5f,  0.5f,  0.5f,		1.0f, 0.0f,
-			-0.5f,  0.5f, -0.5f,		1.0f, 1.0f,
-			-0.5f, -0.5f, -0.5f,		0.0f, 1.0f,
-			-0.5f, -0.5f, -0.5f,		0.0f, 1.0f,
-			-0.5f, -0.5f,  0.5f,		0.0f, 0.0f,
-			-0.5f,  0.5f,  0.5f,		1.0f, 0.0f,
-
-			 0.5f,  0.5f,  0.5f,		1.0f, 0.0f,
-			 0.5f,  0.5f, -0.5f,		1.0f, 1.0f,
-			 0.5f, -0.5f, -0.5f,		0.0f, 1.0f,
-			 0.5f, -0.5f, -0.5f,		0.0f, 1.0f,
-			 0.5f, -0.5f,  0.5f,		0.0f, 0.0f,
-			 0.5f,  0.5f,  0.5f,		1.0f, 0.0f,
-
-			-0.5f, -0.5f, -0.5f,		0.0f, 1.0f,
-			 0.5f, -0.5f, -0.5f,		1.0f, 1.0f,
-			 0.5f, -0.5f,  0.5f,		1.0f, 0.0f,
-			 0.5f, -0.5f,  0.5f,		1.0f, 0.0f,
-			-0.5f, -0.5f,  0.5f,		0.0f, 0.0f,
-			-0.5f, -0.5f, -0.5f,		0.0f, 1.0f,
-
-			-0.5f,  0.5f, -0.5f,		0.0f, 1.0f,
-			 0.5f,  0.5f, -0.5f,		1.0f, 1.0f,
-			 0.5f,  0.5f,  0.5f,		1.0f, 0.0f,
-			 0.5f,  0.5f,  0.5f,		1.0f, 0.0f,
-			-0.5f,  0.5f,  0.5f,		0.0f, 0.0f,
-			-0.5f,  0.5f, -0.5f,		0.0f, 1.0f
-
-		};
+    void Window::RenderContext(GLFWwindow* m_Window)
+    {
+		//Renderable::DrawQuad2D(0.0f, 0.0f, 10.0f, 10.0f);
 
 		GLfloat vertices[sizeof(Cube_vertices) / sizeof(Cube_vertices[0])];
 		if (sizeof(Cube_vertices) > 0)
@@ -130,9 +89,8 @@ namespace Hana {
 		//		-- SHADERS
 
 		// Cube
-		HA_WARN("ABSTRACT RENDERING FROM APPLICATION.CPP");
 		HA_WARN("CHANGE SHADER TO RELATIVE PATH");
-		Shader shaderProgram("A:/dev/Hana/HANA/HANA/src/Renderer/res/shaders/default.vert", "A:/dev/Hana/HANA/HANA/src/Renderer/res/shaders/default.frag"); // create shader with vertexShader and fragmentShader
+		Shader shaderProgram("A:/dev/Hana/HANA/HANA/src/Renderer/res/shaders/texture.vert", "A:/dev/Hana/HANA/HANA/src/Renderer/res/shaders/texture.frag"); // create shader with vertexShader and fragmentShader
 		VAO VAO1;										// create vertex array
 		VAO1.Bind();									// bind vertexy array
 
@@ -263,6 +221,13 @@ namespace Hana {
 		glfwTerminate();
 
     }
+
+	void Window::Shutdown()
+	{
+		glfwDestroyWindow(m_Window);
+		glfwTerminate();
+	}
+
 
 	// CALLBACKS
 

@@ -13,8 +13,9 @@ outputdir = "%{cfg.buildcfg}.%{cfg.system}.%{cfg.architecture}"
 
 project "HANA"
 	location "HANA"
-	kind "SharedLib" -- dynamic lib
+	kind "StaticLib" -- Static lib
 	language "C++"
+	staticruntime "on"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -56,27 +57,28 @@ project "HANA"
 		"HA_BUILD_DLL"
 		}
 
-		postbuildcommands
-		{
-			{"{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox"}
-		}
+		--postbuildcommands
+		--{
+		--	{"{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox"}
+		--}
 
 	filter "configurations:Debug"
 		defines "HA_DEBUG"
-		symbols "On"
+		symbols "on"
 
 	filter "configurations:Release"
 		defines "HA_RELEASE"
-		optimize "On"
+		optimize "on"
 
 	filter "configurations:Dist"
 		defines "HA_DIST"
-		symbols "On"
+		symbols "on"
 
 project "Sandbox"
 	location "Sandbox"
 	kind "ConsoleApp" -- executable
 	language "C++"
+	staticruntime "on"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -97,6 +99,7 @@ project "Sandbox"
 		"HANA/src"
 	}
 
+
 	links
 	{
 		"Hana"
@@ -114,12 +117,12 @@ project "Sandbox"
 
 	filter "configurations:Debug"
 		defines "HA_DEBUG"
-		symbols "On"
+		symbols "on"
 
 	filter "configurations:Release"
 		defines "HA_RELEASE"
-		optimize "On"
+		optimize "on"
 
 	filter "configurations:Dist"
 		defines "HA_DIST"
-		symbols "On"
+		symbols "on"

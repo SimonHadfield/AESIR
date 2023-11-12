@@ -3,14 +3,15 @@
 #include "Hana/Events/ApplicationEvent.h"
 #include "Hana/Log.h"
 
-
-
 namespace Hana {
-	Application::Application()
-	{
-	}
+	
 	Application::~Application()
 	{
+	}
+
+	void Application::PushLayer(Layer* layer) 
+	{
+		m_LayerStack.PushLayer(layer);
 	}
 
 	void Application::Run()
@@ -25,9 +26,20 @@ namespace Hana {
 			HA_TRACE(e);
 		}
 
-		Window window;
-		GLFWwindow* m_Window = static_cast<GLFWwindow*> (window.InitWindow());
-		window.RenderContext(m_Window);
+		RenderContext.Init();
+
+		while (!RenderContext.ShouldClose())
+		{
+			RenderContext.StartFrame();
+
+			for (Layer* layer : m_LayerStack) {
+						layer->OnRender();
+						layer->OnUpdate();
+			}
+		
+			RenderContext.EndFrame();
+		}
+
 
 	}
 

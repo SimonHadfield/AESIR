@@ -1,10 +1,19 @@
 #include "Hana.h" 
+#include "Hana/EntryPoint.h"
+
+#include "Example_game/GameLayer.h"
 
 class Sandbox : public Hana::Application
 {
 public:
+
 	Sandbox()
 	{
+
+
+		PushLayer(new GameLayer());
+
+
 	}
 
 	~Sandbox()
@@ -13,14 +22,8 @@ public:
 };
 
 
+
 Hana::Application* Hana::CreateApplication()
 {
 	return new Sandbox();
 }
-
-// Example usage for renderer, layer, layerstack:
-	// Renderer* renderer = Renderer::Create();
-	// renderer->Init();
-	// LayerStack layerStack;
-	// layerStack.PushLayer(new MyCustomLayer("CustomLayer"));
-	// ...

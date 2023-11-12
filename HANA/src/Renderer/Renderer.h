@@ -1,24 +1,47 @@
 #pragma once
 
+// include glad and glfw
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
-// default rendering vertices
-#include "Renderer/HanaCube.h"
+// include window
+// #include "Hana/Window.h"
+#include "Hana/Log.h"
+
+// GLM
+#include "glm/glm.hpp"
+#include "glm/gtc/matrix_transform.hpp"
+#include "glm/gtc/type_ptr.hpp"
+
+// STB
+#include <stb/stb_image.h>
+
+// Render classes
+#include "Renderer/shaderClass.h"
+#include "Renderer/VAO.h"
+#include "Renderer/VBO.h"
+#include "Renderer/EBO.h"
+#include "Renderer/Texture.h"
+#include "Renderer/Renderable.h"
+
 
 namespace Hana {
 
 	class Renderer
 	{
 	public:
-		Renderer();
-		virtual ~Renderer();
 
-		virtual void StartFrame();
-		virtual void EndFrame();
+		void* Init();
+		void StartFrame();
+		bool ShouldClose();
 
-		// virtual void RenderLayerStack(LayerStack& layerstack);
-		// virtual void InsertRenderable(const Renderable* renderable);
+		void EndFrame();
+		void Shutdown();
+		
+		static GLFWwindow* GetWindowPtr() { return m_Window; };
+
+	private:
+		static inline GLFWwindow* m_Window;
 	};
 
 }

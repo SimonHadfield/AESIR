@@ -101,6 +101,11 @@
     <ClInclude Include="src\Renderer\HanaCube.h" />
     <ClInclude Include="src\Hana\Layers\Layer.h" />
     <ClInclude Include="src\Hana\Layers\LayerStack.h" />
+    <ClInclude Include="src\Renderer\Renderable.h" />
+    <ClInclude Include="src\Hana\Time.h" />
+    <ClInclude Include="src\Hana\Input.h" />
+    <ClInclude Include="src\Hana\KeyCodes.h" />
+    <ClInclude Include="src\Hana\MouseButtonCodes.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Hana\Application.cpp">
@@ -139,6 +144,8 @@
     <ClCompile Include="src\Hana\Window.cpp" />
     <ClCompile Include="src\Hana\Layers\Layer.cpp" />
     <ClCompile Include="src\Hana\Layers\LayerStack.cpp" />
+    <ClCompile Include="src\Renderer\Renderable.cpp" />
+    <ClCompile Include="src\Hana\Input.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="src\Renderer\res\textures\Logo.png" />
@@ -146,5 +153,9 @@
   <ItemGroup>
     <None Include="src\Renderer\res\shaders\default.frag" />
     <None Include="src\Renderer\res\shaders\default.vert" />
+    <None Include="src\Renderer\res\shaders\texture.frag" />
+    <None Include="src\Renderer\res\shaders\texture.vert" />
+    <None Include="src\Renderer\res\shaders\background.frag" />
+    <None Include="src\Renderer\res\shaders\background.vert" />
   </ItemGroup>
 </Project>
