@@ -28,23 +28,23 @@ namespace Hana {
 		return false;
 	}
 
-	//std::pair<double, double> Input::GetMousePos() {
-	//	GLFWwindow* window = Hana::Application::GetWindow();
-	//	double xpos, ypos;
-	//	auto MousePos = glfwGetCursorPos(window, xpos, ypos);
-	//	return { xpos, ypos };
-	//}
-	//
-	//float Input::GetMousePosX()
-	//{
-	//	std::pair<double, double> MousePos = GetMousePos();
-	//	return (float)MousePos.first;
-	//}
-	//
-	//float Input::GetMousePosY()
-	//{
-	//	std::pair<double, double> MousePos = GetMousePos();
-	//	return (float)MousePos.second;
-	//}
+	std::pair<double, double> Input::GetMousePos() {
+		GLFWwindow* window = Renderer::GetWindowPtr();
+		double xpos, ypos;
+		glfwGetCursorPos(window, &xpos, &ypos);
+		return { xpos, ypos };
+	}
+	
+	double Input::GetMousePosX()
+	{
+		std::pair<double, double> MousePos = GetMousePos();
+		return MousePos.first;
+	}
+	
+	double Input::GetMousePosY()
+	{
+		std::pair<double, double> MousePos = GetMousePos();
+		return MousePos.second;
+	}
 
 }

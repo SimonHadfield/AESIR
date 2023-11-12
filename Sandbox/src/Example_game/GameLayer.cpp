@@ -56,9 +56,6 @@ void GameLayer::OnUpdate()
 		HA_TRACE("S pressed");
 		paddle2.MoveDown(dt);
 	}
-
-	
-
 }
 
 void GameLayer::OnRender()
