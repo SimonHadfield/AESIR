@@ -1,3 +1,6 @@
 [submodule "HANA/vendor/spdlog"]
 	path = HANA/vendor/spdlog
 	url = https://github.com/gabime/spdlog
+[submodule "HANA/vendor/imgui"]
+	path = HANA/vendor/imgui
+	url = https://github.com/SimonHadfield/imgui.git
