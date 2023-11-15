@@ -106,6 +106,7 @@
     <ClInclude Include="src\Hana\Input.h" />
     <ClInclude Include="src\Hana\KeyCodes.h" />
     <ClInclude Include="src\Hana\MouseButtonCodes.h" />
+    <ClInclude Include="src\Hana\Layers\ImguiLayer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Hana\Application.cpp">
@@ -146,6 +147,7 @@
     <ClCompile Include="src\Hana\Layers\LayerStack.cpp" />
     <ClCompile Include="src\Renderer\Renderable.cpp" />
     <ClCompile Include="src\Hana\Input.cpp" />
+    <ClCompile Include="src\Hana\Layers\ImguiLayer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="src\Renderer\res\textures\Logo.png" />

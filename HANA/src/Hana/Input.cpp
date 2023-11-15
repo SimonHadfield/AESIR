@@ -3,9 +3,6 @@
 
 namespace Hana {
 
-	GLFWwindow* Input::m_Window = nullptr;
-
-
 	bool Input::IsKeyPressed(int keycode) {
 
 		GLFWwindow* window = Renderer::GetWindowPtr();

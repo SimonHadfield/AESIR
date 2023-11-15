@@ -9,17 +9,13 @@ namespace Hana {
 	{
 	public:
 
-		// Layer(const std::string& name = "Layer");
 		virtual ~Layer() = default;
 
 		virtual void OnAttach() = 0;
 		virtual void OnDetach() = 0;
 		virtual void OnRender() = 0;
 		virtual void OnUpdate() = 0;
-
-		// virtual void InsertRenderable();
-		// virtual void RemoveRenderable();
-		// virtual void ImGuiRender(); // render imgui elements
+		virtual void OnImGuiRender() = 0; // render imgui elements
 		
 		// const std::string& GetName() const;
 	private:

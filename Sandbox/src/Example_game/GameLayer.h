@@ -20,6 +20,8 @@ public:
 	virtual void OnRender() override;
 	virtual void OnUpdate() override;
 
+	virtual void OnImGuiRender() override;
+
 private:
 	Paddle paddle1;
 	Paddle paddle2;
@@ -27,6 +29,9 @@ private:
 	Ball ball;
 
 	Level m_Level;
+
+	bool playerNumberSelect = false;
+	int playerNumber = 1; // 1 includes ai, 2 enables second player
 	
 	enum class State
 	{
@@ -36,6 +41,7 @@ private:
 	State m_State = State::StartState;
 
 private:
+	bool StartGame = false;
 	double cur_t = 0.0;
 	double prev_t = 0.0;
 	double dt = 0.0;

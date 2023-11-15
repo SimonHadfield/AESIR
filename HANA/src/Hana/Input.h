@@ -19,12 +19,6 @@ namespace Hana {
 		static std::pair<double, double> GetMousePos();
 		static double GetMousePosX();
 		static double GetMousePosY();
-
-		static void SetWindow(GLFWwindow* window) { m_Window = window; };
-
-	private:
-
-		static GLFWwindow* m_Window;
 	};
 
 

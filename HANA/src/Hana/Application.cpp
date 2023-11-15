@@ -2,6 +2,7 @@
 
 #include "Hana/Events/ApplicationEvent.h"
 #include "Hana/Log.h"
+#include "Layers/ImguiLayer.h"
 
 namespace Hana {
 	
@@ -12,6 +13,7 @@ namespace Hana {
 	void Application::PushLayer(Layer* layer) 
 	{
 		m_LayerStack.PushLayer(layer);
+		layer->OnAttach();
 	}
 
 	void Application::Run()
@@ -35,8 +37,11 @@ namespace Hana {
 			for (Layer* layer : m_LayerStack) {
 						layer->OnRender();
 						layer->OnUpdate();
+						layer->OnImGuiRender();
+						//imguilayer->OnRender();
+						//imguilayer->Init();
 			}
-		
+
 			RenderContext.EndFrame();
 		}
 

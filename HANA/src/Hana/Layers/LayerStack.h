@@ -2,6 +2,7 @@
 
 #include <vector>
 #include <Hana/Layers/Layer.h>
+#include "Hana/Layers/ImguiLayer.h"
 
 namespace Hana {
 	class LayerStack
