@@ -89,3 +89,42 @@ void Renderable::DrawQuad2D(float x, float y, float width, float height) {
 
     
 };
+
+void Renderable::DrawImGui(int player1Score, int player2Score) {
+	ImGui_ImplOpenGL3_NewFrame();
+	ImGui_ImplGlfw_NewFrame();
+	ImGui::NewFrame();
+
+	ImGui::GetIO().FontGlobalScale = 2.0f;
+	ImGui::GetStyle().AntiAliasedLines = true;
+	ImGui::GetStyle().AntiAliasedFill = true;
+
+	// Display scores in the middle
+	ImVec2 middlePos = ImVec2(ImGui::GetIO().DisplaySize.x * 0.5f, ImGui::GetIO().DisplaySize.y * 0.05f);
+	ImGui::SetNextWindowPos(middlePos, ImGuiCond_Always, ImVec2(0.5f, 0.5f));
+
+	// Set the width of the window to be the window width
+	ImGui::SetNextWindowSize(ImVec2(ImGui::GetIO().DisplaySize.x, 100), ImGuiCond_Always);
+
+
+	// Create a window to display scores
+	ImGui::Begin("Scores", nullptr, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize |
+		ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoBackground);
+
+	// Display Player 1's score on the left
+	std::string player1Text = "Player 1: " + std::to_string(player1Score);
+	ImVec2 player1TextSize = ImGui::CalcTextSize(player1Text.c_str());
+	ImGui::SetCursorPos(ImVec2(middlePos.x - player1TextSize.x - ImGui::GetWindowSize().x * 0.35f, 70));
+	ImGui::Text("Player 1: %d", player1Score);
+
+	// Display Player 2's score on the right
+	ImGui::SetCursorPos(ImVec2(middlePos.x + ImGui::GetWindowSize().x * 0.35f, 70));
+	ImGui::Text("Player 2: %d", player2Score);
+
+	ImGui::End();
+
+	// Render ImGui
+	ImGui::Render();
+	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+
+}

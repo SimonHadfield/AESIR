@@ -24,6 +24,9 @@
 #include "Renderer/Texture.h"
 #include "Renderer/Renderable.h"
 
+#include "imgui.h"
+#include "backends/imgui_impl_glfw.h"
+#include "backends/imgui_impl_opengl3.h"
 
 namespace Hana {
 
@@ -32,6 +35,7 @@ namespace Hana {
 	public:
 
 		void* Init();
+		void ImGuiInit();
 		void StartFrame();
 		bool ShouldClose();
 

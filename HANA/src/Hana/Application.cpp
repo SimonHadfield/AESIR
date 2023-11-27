@@ -29,6 +29,7 @@ namespace Hana {
 		}
 
 		RenderContext.Init();
+		RenderContext.ImGuiInit();
 
 		while (!RenderContext.ShouldClose())
 		{

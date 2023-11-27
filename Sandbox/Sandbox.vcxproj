@@ -142,8 +142,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\Example_game\Level.cpp" />
-    <ClCompile Include="src\Example_game\GameLayer.cpp" />
+    <ClCompile Include="src\Pong\Level.cpp" />
+    <ClCompile Include="src\Pong\GameLayer.cpp" />
     <ClCompile Include="src\SandboxApp.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -152,8 +152,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Example_game\Level.h" />
-    <ClInclude Include="src\Example_game\GameLayer.h" />
+    <ClInclude Include="src\Pong\Level.h" />
+    <ClInclude Include="src\Pong\GameLayer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

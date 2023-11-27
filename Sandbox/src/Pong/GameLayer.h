@@ -6,7 +6,7 @@
 #include "Hana/KeyCodes.h"
 #include "Hana/MouseButtonCodes.h"
 
-// #include <imgui/imgui.h>
+//#include <imgui/imgui.h>
 
 class GameLayer : public Hana::Layer
 {
@@ -45,6 +45,9 @@ private:
 	double cur_t = 0.0;
 	double prev_t = 0.0;
 	double dt = 0.0;
+	float fps;
+	float fixed_timestep = 0.5;
+	float timer = 0;
 
 	Hana::Application appInstance;
 };

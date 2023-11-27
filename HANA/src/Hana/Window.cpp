@@ -71,7 +71,8 @@ namespace Hana {
 		glfwSetCursorPosCallback(m_Window, mouse_callback);											// callback - mouseInputs
 		glfwSetScrollCallback(m_Window, scroll_callback);											// callback - scrollInput
 		glfwSetInputMode(m_Window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);								// capture mouse
-	};
+	}
+
 
     void Window::RenderContext(GLFWwindow* m_Window)
     {

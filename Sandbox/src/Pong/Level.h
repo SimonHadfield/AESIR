@@ -2,7 +2,6 @@
 
 #include "Hana.h"
 #include <random>
-//#include "Renderer/Renderable.h"
 
 enum Player {
 	Player1,
@@ -27,6 +26,7 @@ public:
 	void MoveUp(double dt);
 	void MoveDown(double dt);
 	void CollisionBoundary();
+	void PaddleReset(float start_x, float start_y);
 
 	void Draw();
 
@@ -38,11 +38,12 @@ public:
 	Player GetPlayer() { return player; }
 	std::pair<float, float> GetPos() { return { x, y }; }
 	std::pair<float, float> GetDimensions() { return { width, height }; }
-	float GetSpeed() { return paddle_speed; }
+	std::pair<int, float> GetSpeed() { return { Direction, paddle_speed }; }
 
 private:
 	Player player;
 	float paddle_speed = 0.8;
+	unsigned int Direction = 3; // 3 up, 1 down
 	float x = 1.0f;
 	float y = 1.0f;
 	float width, height = 1.0f;

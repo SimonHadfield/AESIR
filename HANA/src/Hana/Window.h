@@ -16,6 +16,7 @@ namespace Hana {
 		virtual void* InitWindow();
 		void RenderInit();
 		void RenderContext(GLFWwindow* m_Window);
+		void ImGuiInit();
 		void Shutdown();
 	private:
 		GLFWwindow* m_Window;

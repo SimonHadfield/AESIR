@@ -52,6 +52,18 @@ namespace Hana {
 		return static_cast<void*>(m_Window);
 	};
 
+	void Renderer::ImGuiInit()
+	{
+		IMGUI_CHECKVERSION();
+		ImGui::CreateContext();
+		ImGuiIO& io = ImGui::GetIO();
+		(void)io;
+        
+		ImGui_ImplGlfw_InitForOpenGL(m_Window, true);
+		ImGui_ImplOpenGL3_Init("#version 330");
+		ImGui::StyleColorsDark();
+	}
+
     bool Renderer::ShouldClose() {
         return glfwWindowShouldClose(m_Window);
     };
@@ -61,7 +73,6 @@ namespace Hana {
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);	
 	};
 
-	// void Renderer::SubmitRenderable(const Renderable* renderable) {};
 
 	void Renderer::EndFrame() {
 		glfwSwapBuffers(m_Window);

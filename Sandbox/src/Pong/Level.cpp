@@ -11,10 +11,17 @@ void Paddle::Draw() {
 
 void Paddle::MoveUp(double dt) {
 	y += paddle_speed * dt;
+	Direction = 3;
 }
 
 void Paddle::MoveDown(double dt) {
 	y -= paddle_speed * dt;
+	Direction = 1;
+}
+
+void Paddle::PaddleReset(float start_x, float start_y) {
+	x = start_x;
+	y = start_y;
 }
 
 void Paddle::CollisionBoundary() {
@@ -63,9 +70,13 @@ void Ball::BoundaryCollision(Paddle& paddle1, Paddle& paddle2) {
 	if (y <= Wall::wall_bottom)
 	{
 		Ball_speed_y = -Ball_speed_y;
+		y = Wall::wall_bottom; // prevent clipping into wall
 	}
 	if (y + height > Wall::wall_top)
+	{
 		Ball_speed_y = -Ball_speed_y;
+		y = Wall::wall_top - height; // prevent clipping into wall
+	}
 }
 
 void Ball::PaddleCollision(Paddle& paddle) {
@@ -73,14 +84,16 @@ void Ball::PaddleCollision(Paddle& paddle) {
 	Player paddlePlayer = paddle.GetPlayer();
 	std::pair<float, float> PaddlePos = paddle.GetPos();
 	std::pair<float, float> PaddleDimensions = paddle.GetDimensions();
+	std::pair<int, float> paddleVelocity = paddle.GetSpeed();
+
 
 	if (paddlePlayer == Player::Player1) {
 		if ( ( (x + width > PaddlePos.first) && (x < PaddlePos.first + PaddleDimensions.first) )
 			&& ( (y + height >= PaddlePos.second) && (y <= PaddlePos.second + PaddleDimensions.second) ) )
 		{
-			x = PaddlePos.first + PaddleDimensions.first + 0.001;
+			x = PaddlePos.first + PaddleDimensions.first;
 			Ball_speed_x = -Ball_speed_x;
-			Ball_speed_y = Ball_speed_y; // add fraction of paddle speed
+			Ball_speed_y = Ball_speed_y + (paddleVelocity.first - 2) * paddleVelocity.second ; // add fraction of paddle speed
 		}
 	}
 	else if (paddlePlayer == Player::Player2)
