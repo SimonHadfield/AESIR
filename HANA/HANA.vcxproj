@@ -154,10 +154,12 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Audio\Audio.h" />
     <ClInclude Include="src\Hana\Input.h" />
     <ClInclude Include="src\Hana\KeyCodes.h" />
     <ClInclude Include="src\Hana\Layers\ImguiLayer.h" />
     <ClInclude Include="src\Hana\MouseButtonCodes.h" />
+    <ClInclude Include="src\Hana\StateMachine.h" />
     <ClInclude Include="src\Hana\Time.h" />
     <ClInclude Include="src\Renderer\Renderable.h" />
     <ClInclude Include="src\Hana\Layers\LayerStack.h" />
@@ -199,8 +201,10 @@
     <ClInclude Include="src\Hana\Window.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Audio\Audio.cpp" />
     <ClCompile Include="src\Hana\Input.cpp" />
     <ClCompile Include="src\Hana\Layers\ImguiLayer.cpp" />
+    <ClCompile Include="src\Hana\StateMachine.cpp" />
     <ClCompile Include="src\Renderer\Renderable.cpp" />
     <ClCompile Include="src\Hana\Layers\LayerStack.cpp" />
     <ClCompile Include="src\Hana\Layers\Layer.cpp" />

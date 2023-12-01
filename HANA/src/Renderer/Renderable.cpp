@@ -91,13 +91,15 @@ void Renderable::DrawQuad2D(float x, float y, float width, float height) {
 };
 
 void Renderable::DrawImGui(int player1Score, int player2Score) {
+	
+	ImGui::GetIO().FontGlobalScale = 2.0f;
+	ImGui::GetStyle().AntiAliasedLines = true;
+	ImGui::GetStyle().AntiAliasedFill = true;
+	
 	ImGui_ImplOpenGL3_NewFrame();
 	ImGui_ImplGlfw_NewFrame();
 	ImGui::NewFrame();
 
-	ImGui::GetIO().FontGlobalScale = 2.0f;
-	ImGui::GetStyle().AntiAliasedLines = true;
-	ImGui::GetStyle().AntiAliasedFill = true;
 
 	// Display scores in the middle
 	ImVec2 middlePos = ImVec2(ImGui::GetIO().DisplaySize.x * 0.5f, ImGui::GetIO().DisplaySize.y * 0.05f);
@@ -127,4 +129,51 @@ void Renderable::DrawImGui(int player1Score, int player2Score) {
 	ImGui::Render();
 	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
+}
+
+void Renderable::DrawImGuiText(const std::string& Text, unsigned int x, unsigned int y, float fontSize, unsigned int Alignment) {
+
+	ImGui::GetIO().FontGlobalScale = fontSize;
+	ImGui::GetStyle().AntiAliasedLines = true;
+	ImGui::GetStyle().AntiAliasedFill = true;
+	
+	ImGui_ImplOpenGL3_NewFrame();
+	ImGui_ImplGlfw_NewFrame();
+	ImGui::NewFrame();
+	//
+	
+	// Display scores in the middle
+	//ImVec2 Pos = ImVec2(x, y);
+	//ImGui::SetNextWindowPos(Pos, ImGuiCond_Always, ImVec2(0.5f, 0.5f));
+
+	ImVec2 Pos = ImVec2(ImGui::GetIO().DisplaySize.x * 0.5f, ImGui::GetIO().DisplaySize.y * 0.05f);
+	
+	// RelativePos - 0 (x, y values), 1 (Left aligned, y), 2 (center aligned, y), 3 (Right aligned, y), 4 (Full Centered)
+	if (Alignment == 0) {
+		Pos = ImVec2(x, y);
+	}
+	if (Alignment == 4) {
+		Pos = ImVec2(ImGui::GetIO().DisplaySize.x * 0.5f, ImGui::GetIO().DisplaySize.y * 0.5f);
+	}
+
+	ImGui::SetNextWindowPos(Pos, ImGuiCond_Always, ImVec2(0.5f, 0.5f));
+	
+	// Set the width of the window to be the window width
+	ImGui::SetNextWindowSize(ImVec2(ImGui::GetIO().DisplaySize.x, 100), ImGuiCond_Always);
+	
+	
+	// Create a window to display scores
+	ImGui::Begin("Text", nullptr, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize |
+		ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoBackground);
+	
+	// Display Player 1's score on the left
+	ImVec2 player1TextSize = ImGui::CalcTextSize(Text.c_str());
+	ImGui::SetCursorPos(ImVec2(Pos.x - player1TextSize.x/2, 70));
+	ImGui::Text(Text.c_str());
+
+	ImGui::End();
+
+	//// Render ImGui
+	ImGui::Render();
+	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 }

@@ -1,7 +1,35 @@
 #include "GameLayer.h"
-// #include "imgui/imgui.h"
+#include "imgui/imgui.h"
 
 #include <iostream>
+#include <string>
+
+// Implement GameStates
+
+// Game Start State
+void GameStartState::Enter() {
+	// set paddle and ball positions
+	// paddle1.PaddleReset(-0.8f, -0.1f);
+	// paddle2.PaddleReset(0.7f, -0.1f);
+	// ball.SetReset();
+
+};
+void GameStartState::Update(double dt) {
+	if (Hana::Input::IsKeyPressed(HA_KEY_ENTER)){}
+		//stateMachine.changeState();
+};
+void GameStartState::Exit() {};
+
+// Game Play State
+void GamePlayState::Enter() {};
+void GamePlayState::Update(double dt) {};
+void GamePlayState::Exit() {};
+
+// Game Over State
+void GameOverState::Enter() {};
+void GameOverState::Update(double dt) {};
+void GameOverState::Exit() {};
+
 
 GameLayer::GameLayer()
 {
@@ -11,6 +39,14 @@ GameLayer::GameLayer()
 
 	ball = Ball(0.0f, 0.0f);
 
+	StateMachine stateMachine; // instantiate StateMachine
+
+	// Game States
+	GameStartState gameStartState;
+	GamePlayState gamePlayState;
+	GameOverState gameOverState;
+
+	stateMachine.ChangeState(&gameStartState); // initial state
 
 }
 
@@ -36,12 +72,14 @@ void GameLayer::OnUpdate()
 	dt = cur_t - prev_t;
 	prev_t = cur_t;
 	fps = 1 / dt;
-	timer += dt;
+	//timer += dt;
+	//
+	//if (timer > fixed_timestep) {
+	//	HA_TRACE(fps);
+	//	timer = 0;
+	//}
 
-	if (timer > fixed_timestep) {
-		HA_TRACE(fps);
-		timer = 0;
-	}
+	stateMachine.Update(dt);
 
 	// Select players
 	if (Hana::Input::IsKeyPressed(HA_KEY_1) && !(playerNumberSelect)) {
@@ -56,6 +94,7 @@ void GameLayer::OnUpdate()
 	// Start game
 	if (Hana::Input::IsKeyPressed(HA_KEY_ENTER) && !(StartGame) && (playerNumberSelect)) {
 		StartGame = true;
+		stateMachine.ChangeState(&gamePlayState);
 		ball.StartMoving();
 	}
 
@@ -117,6 +156,19 @@ void GameLayer::OnUpdate()
 	//HA_TRACE(paddle2.GetScore());
 
 	ball.UpdatePos(dt);
+
+	Renderable::DrawImGuiText("PONG", 0, 100, 2.0f, 2); // "Test", 540, 360, 10.0f
+
+	// winning state
+	if (paddle1.GetScore() > 3)
+	{
+		Renderable::DrawImGuiText("Player 1 wins!");
+	}
+
+	if (paddle2.GetScore() > 3)
+	{
+		Renderable::DrawImGuiText("Player 2 wins!");
+	}
 }
 
 void GameLayer::OnRender()
@@ -135,4 +187,5 @@ void GameLayer::OnRender()
 void GameLayer::OnImGuiRender()
 {
 	Renderable::DrawImGui(paddle1.GetScore(), paddle2.GetScore());
+	Renderable::DrawImGuiText(std::to_string(paddle1.GetScore()));
 }

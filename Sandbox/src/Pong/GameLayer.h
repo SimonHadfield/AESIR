@@ -5,6 +5,27 @@
 #include "Hana/Input.h"
 #include "Hana/KeyCodes.h"
 #include "Hana/MouseButtonCodes.h"
+#include "Hana/StateMachine.h"
+
+class GameStartState : public State {
+public:
+	void Enter() override;
+	void Update(double dt) override;
+	void Exit() override;
+};
+
+class GamePlayState : public State {
+public:
+	void Enter() override;
+	void Update(double dt) override;
+	void Exit() override;
+};
+class GameOverState : public State {
+public:
+	void Enter() override;
+	void Update(double dt) override;
+	void Exit() override;
+};
 
 //#include <imgui/imgui.h>
 
@@ -23,6 +44,14 @@ public:
 	virtual void OnImGuiRender() override;
 
 private:
+	StateMachine stateMachine; // instantiate StateMachine
+
+	// Game States
+	GameStartState gameStartState;
+	GamePlayState gamePlayState;
+	GameOverState gameOverState;
+
+
 	Paddle paddle1;
 	Paddle paddle2;
 
@@ -46,7 +75,7 @@ private:
 	double prev_t = 0.0;
 	double dt = 0.0;
 	float fps;
-	float fixed_timestep = 0.5;
+	float fixed_timestep = 0.1;
 	float timer = 0;
 
 	Hana::Application appInstance;
