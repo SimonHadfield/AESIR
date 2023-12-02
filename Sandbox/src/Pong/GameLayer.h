@@ -7,35 +7,18 @@
 #include "Hana/MouseButtonCodes.h"
 #include "Hana/StateMachine.h"
 
-class GameStartState : public State {
-public:
-	void Enter() override;
-	void Update(double dt) override;
-	void Exit() override;
-};
-
-class GamePlayState : public State {
-public:
-	void Enter() override;
-	void Update(double dt) override;
-	void Exit() override;
-};
-class GameOverState : public State {
-public:
-	void Enter() override;
-	void Update(double dt) override;
-	void Exit() override;
-};
-
 //#include <imgui/imgui.h>
+
+class GameStartState;
+class GamePlayState;
+class GameOverState;
 
 class GameLayer : public Hana::Layer
 {
 public:
 	GameLayer();
-	virtual ~GameLayer() = default;
+	virtual ~GameLayer() override;
 
-	void Init();
 	virtual void OnAttach() override;
 	virtual void OnDetach() override;
 	virtual void OnRender() override;
@@ -43,31 +26,26 @@ public:
 
 	virtual void OnImGuiRender() override;
 
+	friend class GameStartState;
+	friend class GamePlayState;
+	friend class GameOverState;
+
 private:
-	StateMachine stateMachine; // instantiate StateMachine
+	StateMachine* stateMachine; // instantiate StateMachine
 
 	// Game States
-	GameStartState gameStartState;
-	GamePlayState gamePlayState;
-	GameOverState gameOverState;
-
+	GameStartState* gameStartState;
+	GamePlayState* gamePlayState;
+	GameOverState* gameOverState;
 
 	Paddle paddle1;
 	Paddle paddle2;
-
 	Ball ball;
 
 	Level m_Level;
 
 	bool playerNumberSelect = false;
 	int playerNumber = 1; // 1 includes ai, 2 enables second player
-	
-	enum class State
-	{
-		StartState = 0, PlayState = 1, GameOverState = 2
-	};
-
-	State m_State = State::StartState;
 
 private:
 	bool StartGame = false;
@@ -79,4 +57,42 @@ private:
 	float timer = 0;
 
 	Hana::Application appInstance;
+};
+
+class GameStartState : public State {
+public:
+	GameStartState(Paddle& p1, Paddle& p2, Ball& b);
+
+	void Enter() override;
+	void Update(double dt) override;
+	void Exit() override;
+private:
+	Paddle& paddle1;
+	Paddle& paddle2;
+	Ball& ball;
+};
+
+class GamePlayState : public State {
+public:
+	GamePlayState(Paddle& p1, Paddle& p2, Ball& b);
+
+	void Enter() override;
+	void Update(double dt) override;
+	void Exit() override;
+private:
+	Paddle& paddle1;
+	Paddle& paddle2;
+	Ball& ball;
+};
+class GameOverState : public State {
+public:
+	GameOverState(Paddle& p1, Paddle& p2, Ball& b);
+
+	void Enter() override;
+	void Update(double dt) override;
+	void Exit() override;
+private:
+	Paddle& paddle1;
+	Paddle& paddle2;
+	Ball& ball;
 };

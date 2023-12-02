@@ -5,23 +5,30 @@
 #include <string>
 
 // Implement GameStates
-
+// 
 // Game Start State
+//  : paddle1(p1), paddle2(p2) 
+GameStartState::GameStartState(Paddle& p1, Paddle& p2, Ball& b) : paddle1(p1), paddle2(p2), ball(b) {}
+
 void GameStartState::Enter() {
 	// set paddle and ball positions
-	// paddle1.PaddleReset(-0.8f, -0.1f);
-	// paddle2.PaddleReset(0.7f, -0.1f);
-	// ball.SetReset();
+	paddle1.PaddleReset(-0.8f, -0.1f);
+	paddle2.PaddleReset(0.7f, -0.1f);
+	ball.SetReset();
 
 };
 void GameStartState::Update(double dt) {
-	if (Hana::Input::IsKeyPressed(HA_KEY_ENTER)){}
-		//stateMachine.changeState();
+	if (Hana::Input::IsKeyPressed(HA_KEY_ENTER)) {}
+	//stateMachine.changeState();
 };
 void GameStartState::Exit() {};
 
 // Game Play State
-void GamePlayState::Enter() {};
+GamePlayState::GamePlayState(Paddle& p1, Paddle& p2, Ball& b) : paddle1(p1), paddle2(p2), ball(b) {}
+
+void GamePlayState::Enter() {
+	//ball.StartMoving();
+};
 void GamePlayState::Update(double dt) {};
 void GamePlayState::Exit() {};
 
@@ -31,38 +38,32 @@ void GameOverState::Update(double dt) {};
 void GameOverState::Exit() {};
 
 
-GameLayer::GameLayer()
-{
+//  : stateMachine(nullptr), gameStartState(nullptr), gamePlayState(nullptr), gameOverState(nullptr)
+GameLayer::GameLayer()  {
+
 	// prior to adding glm::transforms
-	paddle1 = Paddle(Player::Player1, -0.8f, -0.1f, 0.03f, 0.3f);
-	paddle2 = Paddle(Player::Player2, 0.7f, -0.1f, 0.03f, 0.3f);
+	paddle1 = Paddle(Player::Player1, -0.8f, -0.1f, 0.03f, 0.3f); // -0.1f y
+	paddle2 = Paddle(Player::Player2, 0.7f,  -0.1f, 0.03f, 0.3f); // -0.1f y
+	
+	stateMachine = new StateMachine();
+	gameStartState = new GameStartState(paddle1, paddle2, ball);
+	
 
 	ball = Ball(0.0f, 0.0f);
 
-	StateMachine stateMachine; // instantiate StateMachine
-
-	// Game States
-	GameStartState gameStartState;
-	GamePlayState gamePlayState;
-	GameOverState gameOverState;
-
-	stateMachine.ChangeState(&gameStartState); // initial state
-
+	stateMachine->ChangeState(gameStartState); // initial state
 }
 
-void GameLayer::Init()
-{
-
-}
+GameLayer::~GameLayer() { delete stateMachine; }
 
 void GameLayer::OnAttach()
 {
-	HA_TRACE("Attached");
+	// HA_TRACE("Attached");
 }
 
 void GameLayer::OnDetach()
 {
-	HA_TRACE("Detached");
+	// HA_TRACE("Detached");
 }
 
 void GameLayer::OnUpdate()
@@ -72,6 +73,8 @@ void GameLayer::OnUpdate()
 	dt = cur_t - prev_t;
 	prev_t = cur_t;
 	fps = 1 / dt;
+
+
 	//timer += dt;
 	//
 	//if (timer > fixed_timestep) {
@@ -79,7 +82,7 @@ void GameLayer::OnUpdate()
 	//	timer = 0;
 	//}
 
-	stateMachine.Update(dt);
+	// stateMachine->Update(dt);
 
 	// Select players
 	if (Hana::Input::IsKeyPressed(HA_KEY_1) && !(playerNumberSelect)) {
@@ -94,7 +97,7 @@ void GameLayer::OnUpdate()
 	// Start game
 	if (Hana::Input::IsKeyPressed(HA_KEY_ENTER) && !(StartGame) && (playerNumberSelect)) {
 		StartGame = true;
-		stateMachine.ChangeState(&gamePlayState);
+		//stateMachine->ChangeState(gamePlayState);
 		ball.StartMoving();
 	}
 
@@ -189,3 +192,4 @@ void GameLayer::OnImGuiRender()
 	Renderable::DrawImGui(paddle1.GetScore(), paddle2.GetScore());
 	Renderable::DrawImGuiText(std::to_string(paddle1.GetScore()));
 }
+

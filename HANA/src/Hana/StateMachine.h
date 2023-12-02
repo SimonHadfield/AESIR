@@ -12,6 +12,7 @@ class HANA_API State {
 
 class HANA_API StateMachine {
 public:
+	StateMachine::StateMachine() : currentState(nullptr) {};
 	virtual void ChangeState(State* newState);
 	virtual void Update(double dt);
 private:

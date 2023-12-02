@@ -2,6 +2,7 @@
 
 
 void StateMachine::ChangeState(State* newState) {
+	
 	if (currentState) {
 		currentState->Exit();
 	}
