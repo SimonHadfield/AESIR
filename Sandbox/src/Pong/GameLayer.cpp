@@ -89,7 +89,7 @@ void GamePlayState::Update(double dt) {
 	ball.UpdatePos(dt);
 
 	// winning/losing condition 
-	if (paddle1.GetScore() > 1 || paddle2.GetScore() > 1) {
+	if (paddle1.GetScore() > 2 || paddle2.GetScore() > 2) {
 		stateMachine.ChangeState(gameOverState); isRoundStarted = false;
 	}
 
@@ -102,10 +102,14 @@ void GameOverState::Enter() {};
 void GameOverState::Update(double dt) {
 
 	// winning state
-	if (paddle1.GetScore() > 0)
+	if (paddle1.GetScore() > 2) {
 		Renderable::DrawImGuiText("Player 1 wins!", 0, 100, 2.0f, 2);
-	if (paddle2.GetScore() > 0)
+		Renderable::DrawImGuiText("Press Enter to play again", 0, 150, 2.0f, 2);
+	}
+	if (paddle2.GetScore() > 2) {
 		Renderable::DrawImGuiText("Player 2 wins!", 0, 100, 2.0f, 2);
+		Renderable::DrawImGuiText("Press Enter to play again", 0, 150, 2.0f, 2);
+	}
 
 	// if enter pressed return to start state
 	if (Hana::Input::IsKeyPressed(HA_KEY_ENTER))
@@ -149,10 +153,6 @@ void GameLayer::OnUpdate()
 	stateMachine->Update(dt);
 
 	//displayFPS(dt);
-
-	//// winning state
-	//if (paddle1.GetScore() > 1 || paddle2.GetScore() > 1)
-	//	stateMachine->ChangeState(gameOverState);
 
 }
 void GameLayer::OnRender()
