@@ -148,13 +148,14 @@ void Renderable::DrawImGuiText(const std::string& Text, unsigned int x, unsigned
 
 	ImVec2 Pos = ImVec2(ImGui::GetIO().DisplaySize.x * 0.5f, ImGui::GetIO().DisplaySize.y * 0.05f);
 	
-	// RelativePos - 0 (x, y values), 1 (Left aligned, y), 2 (center aligned, y), 3 (Right aligned, y), 4 (Full Centered)
+	// Alignment - 0 (x, y values), 1 (Left aligned, y), 2 (center aligned, y), 3 (Right aligned, y), 4 (Full Centered)
 	if (Alignment == 0) {
 		Pos = ImVec2(x, y);
 	}
-	if (Alignment == 4) {
+	if (Alignment == 2)
+		Pos = ImVec2(ImGui::GetIO().DisplaySize.x * 0.5f, y);
+	if (Alignment == 4)
 		Pos = ImVec2(ImGui::GetIO().DisplaySize.x * 0.5f, ImGui::GetIO().DisplaySize.y * 0.5f);
-	}
 
 	ImGui::SetNextWindowPos(Pos, ImGuiCond_Always, ImVec2(0.5f, 0.5f));
 	

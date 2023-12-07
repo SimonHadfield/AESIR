@@ -26,6 +26,11 @@ public:
 
 	virtual void OnImGuiRender() override;
 
+	StateMachine* GetStateMachine() { return stateMachine; }
+	void displayFPS(double dt);
+	int GetPlayerNumber() { return playerNumber; }
+	void SetPlayerNumber(int num) { playerNumber = num; }
+
 	friend class GameStartState;
 	friend class GamePlayState;
 	friend class GameOverState;
@@ -61,12 +66,15 @@ private:
 
 class GameStartState : public State {
 public:
-	GameStartState(Paddle& p1, Paddle& p2, Ball& b);
+	GameStartState(GameLayer& gameLayer, StateMachine*& stateMachine, GamePlayState*& gamePlayState, Paddle& p1, Paddle& p2, Ball& b);
 
 	void Enter() override;
 	void Update(double dt) override;
 	void Exit() override;
 private:
+	GameLayer& gameLayer;
+	StateMachine& stateMachine;
+	GamePlayState*& gamePlayState;
 	Paddle& paddle1;
 	Paddle& paddle2;
 	Ball& ball;
@@ -74,24 +82,32 @@ private:
 
 class GamePlayState : public State {
 public:
-	GamePlayState(Paddle& p1, Paddle& p2, Ball& b);
+	GamePlayState(GameLayer& gameLayer, StateMachine*& stateMachine, GameOverState*& gameOverState, Paddle& p1, Paddle& p2, Ball& b);
 
 	void Enter() override;
 	void Update(double dt) override;
 	void Exit() override;
 private:
+	GameLayer& gameLayer;
+	StateMachine& stateMachine;
+	GameOverState*& gameOverState;
 	Paddle& paddle1;
 	Paddle& paddle2;
 	Ball& ball;
+	bool isRoundStarted = false;
 };
+
 class GameOverState : public State {
 public:
-	GameOverState(Paddle& p1, Paddle& p2, Ball& b);
+	GameOverState(GameLayer& gameLayer, StateMachine*& stateMachine, GameStartState*& gameStartState, Paddle& p1, Paddle& p2, Ball& b);
 
 	void Enter() override;
 	void Update(double dt) override;
 	void Exit() override;
 private:
+	GameLayer& gameLayer;
+	StateMachine& stateMachine;
+	GameStartState*& gameStartState;
 	Paddle& paddle1;
 	Paddle& paddle2;
 	Ball& ball;

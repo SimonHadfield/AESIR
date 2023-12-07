@@ -8,13 +8,9 @@ enum Player {
 	Player2
 };
 
-class Wall {
-public:
+struct Wall {
 	static inline int wall_left = -1.0, wall_right = 1.0, wall_top = 1.0, wall_bottom = -1.0;
 };
-
-//int Player1_score = 0;
-//int Player2_score = 0;
 
 class Paddle {
 public:
@@ -31,9 +27,8 @@ public:
 	void Draw();
 
 	int GetScore() const { return score; }
-
-
 	void incrementScore() { score++; }
+	void ScoreReset() { score = 0; }
 
 	Player GetPlayer() { return player; }
 	std::pair<float, float> GetPos() { return { x, y }; }
@@ -66,8 +61,8 @@ public:
 
 	void Draw();
 
-	bool ResetGame() { return resetGame; }
-	void SetReset() { resetGame = false; }
+	bool ResetRound() { return resetRound; }
+	void SetResetRound() { resetRound = false; }
 
 private:
 	static inline float width = 0.018f;
@@ -76,7 +71,7 @@ private:
 	float Ball_speed_y = 0.0f;
 	float x = 1.0f;
 	float y = 1.0f;
-	bool resetGame = false;
+	bool resetRound = false;
 };
 
 

@@ -60,11 +60,11 @@ void Ball::BoundaryCollision(Paddle& paddle1, Paddle& paddle2) {
 
 	if (x < Wall::wall_left) {
 		paddle2.incrementScore(); // Player 2 scores
-		x = 0.0f; y = 0.0f; Ball_speed_x = 0.0f; Ball_speed_y = 0.0f; resetGame = true;
+		x = 0.0f; y = 0.0f; Ball_speed_x = 0.0f; Ball_speed_y = 0.0f; resetRound = true;
 	}
 	if (x + width > Wall::wall_right) {
 		paddle1.incrementScore(); // Player 1 scores
-		x = 0.0f; y = 0.0f; Ball_speed_x = 0.0f; Ball_speed_y = 0.0f; resetGame = true; 
+		x = 0.0f; y = 0.0f; Ball_speed_x = 0.0f; Ball_speed_y = 0.0f; resetRound = true; 
 	}
 
 	if (y <= Wall::wall_bottom)
