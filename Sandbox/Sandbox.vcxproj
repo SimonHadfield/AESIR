@@ -142,9 +142,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\Pong\Level.cpp" />
-    <ClCompile Include="src\Pong\GameLayer.cpp" />
     <ClCompile Include="src\SandboxApp.cpp" />
+    <ClCompile Include="src\TrumpJump\GameLayer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HANA\HANA.vcxproj">
@@ -152,8 +151,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Pong\Level.h" />
-    <ClInclude Include="src\Pong\GameLayer.h" />
+    <ClInclude Include="src\TrumpJump\GameLayer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

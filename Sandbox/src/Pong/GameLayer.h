@@ -7,8 +7,6 @@
 #include "Hana/MouseButtonCodes.h"
 #include "Hana/StateMachine.h"
 
-//#include <imgui/imgui.h>
-
 class GameStartState;
 class GamePlayState;
 class GameOverState;
@@ -26,7 +24,6 @@ public:
 
 	virtual void OnImGuiRender() override;
 
-	StateMachine* GetStateMachine() { return stateMachine; }
 	void displayFPS(double dt);
 	int GetPlayerNumber() { return playerNumber; }
 	void SetPlayerNumber(int num) { playerNumber = num; }

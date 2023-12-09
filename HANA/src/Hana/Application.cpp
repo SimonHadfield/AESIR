@@ -6,9 +6,7 @@
 
 namespace Hana {
 	
-	Application::~Application()
-	{
-	}
+	Application::~Application() {}
 
 	void Application::PushLayer(Layer* layer) 
 	{

@@ -18,18 +18,12 @@
     <ClCompile Include="src\SandboxApp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Pong\GameLayer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Pong\Level.cpp">
+    <ClCompile Include="src\TrumpJump\GameLayer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Pong\GameLayer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Pong\Level.h">
+    <ClInclude Include="src\TrumpJump\GameLayer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

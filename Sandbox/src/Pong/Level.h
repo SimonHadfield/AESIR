@@ -37,7 +37,7 @@ public:
 
 private:
 	Player player;
-	float paddle_speed = 0.8;
+	float paddle_speed = 1.2;
 	unsigned int Direction = 3; // 3 up, 1 down
 	float x = 1.0f;
 	float y = 1.0f;

@@ -38,7 +38,7 @@ void Ball::StartMoving() {
 	std::random_device rd;
 	std::mt19937 gen(rd());
 
-	std::uniform_real_distribution<> distribution(0.4f, 0.8f);
+	std::uniform_real_distribution<> distribution(0.35f, 0.6f);
 	std::uniform_int_distribution<> distribution_int(0, 1);
 	bool negative_x = distribution_int(gen);
 	bool negative_y = distribution_int(gen);
@@ -93,7 +93,7 @@ void Ball::PaddleCollision(Paddle& paddle) {
 		{
 			x = PaddlePos.first + PaddleDimensions.first;
 			Ball_speed_x = -Ball_speed_x;
-			Ball_speed_y = Ball_speed_y + (paddleVelocity.first - 2) * paddleVelocity.second ; // add fraction of paddle speed
+			Ball_speed_y = Ball_speed_y + 0.5 * (paddleVelocity.first - 2) * paddleVelocity.second ; // add fraction of paddle speed
 		}
 	}
 	else if (paddlePlayer == Player::Player2)
@@ -103,7 +103,7 @@ void Ball::PaddleCollision(Paddle& paddle) {
 		{
 			x = PaddlePos.first - width;
 			Ball_speed_x = -Ball_speed_x;
-			Ball_speed_y = Ball_speed_y; // add fraction of paddle speed
+			Ball_speed_y = Ball_speed_y + 0.5 * (paddleVelocity.first - 2) * paddleVelocity.second;; // add fraction of paddle speed
 		}
 	}
 }
