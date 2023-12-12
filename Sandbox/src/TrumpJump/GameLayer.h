@@ -7,6 +7,8 @@
 #include "Hana/MouseButtonCodes.h"
 #include "Hana/StateMachine.h"
 
+
+
 class GameLayer : public Hana::Layer
 {
 public:
@@ -22,13 +24,65 @@ public:
 	void displayFPS(double dt);
 
 private:
+	StateMachine* stateMachine; // instantiate StateMachine
+
+	// Game States
+	// GameStartState* gameStartState;
+	// GamePlayState* gamePlayState;
+	// GameOverState* gameOverState;
+
+	float left = 1.0f;
+	float right = 1.0f;
+	float bottom = 1.0f;
+	float top = 1.0f;
+	float nearClip = 1.0f;
+	float farClip = 1.0f;
+	OrthographicCamera camera;
+
+	//temp variables
+	float multiplier = 1.0f;
+	float loopingPoint = 1176.697f * multiplier;
+
+	float cam_x = 0.0f;
+	float cam_y = -100.0f;
+
+	float cam2_x = 0.0f;
+	float cam3_x = 1700.0f + 1157;
+
+	float cam2_y = -100.0f;
+
 	const char* path = "A:/dev/Hana/HANA/HANA/src/Renderer/res/textures/Logo.png";
+	
+	struct Graphics {
+		static inline const char* background = "A:/dev/Hana/HANA/Sandbox/src/TrumpJump/graphics/background.png";
+		static inline const char* ground = "A:/dev/Hana/HANA/sandbox/src/TrumpJump/graphics/ground.png";
+		static inline const char* turdpipe = "A:/dev/Hana/HANA/sandbox/src/TrumpJump/graphics/turdpipe.png";
+	};
+
+	struct TurdPipe {
+		float x, y;
+	};
+
+
+
 	double cur_t = 0.0;
 	double fps = 0.0;
 	double prev_t = 0.0;
 	double fixed_timestep = 0.5;
 	double dt = 0.0;
 	double timer = 0.0;
+
+	float width = 100.0f;
+	float height = 100.0f;
+	float x = 1080.0f / 2.0f - width/2.0f;
+	float y = 0.0f;
+	float vy_cur = 0.0f;
+	float vy_prev = 0.0f;
+
+	float g = 25000.0f;
+	float force_y = 1500.0f;
+
+
 
 	Hana::Application appInstance;
 

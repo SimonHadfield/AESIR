@@ -14,6 +14,7 @@
 // Renderer
 #include "Renderer/Renderer.h"
 #include "Renderer/Renderable.h"
+#include "Renderer/OrthographicCamera.h"
 #include "Renderer/shaderClass.h"
 #include "Renderer/VAO.h"
 #include "Renderer/VBO.h"

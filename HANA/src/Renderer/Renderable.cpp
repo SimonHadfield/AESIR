@@ -17,19 +17,12 @@ void Renderable::DrawBackground() // glm::vec3 color
 			x + width, y,           0.0f     // 4
 	};
 
-
-	GLuint indices[] =
-	{
-		0, 2, 1,
-		0, 3, 2
-	};
-
 	Shader shaderProgram("A:/dev/Hana/HANA/HANA/src/Renderer/res/shaders/background.vert", "A:/dev/Hana/HANA/HANA/src/Renderer/res/shaders/background.frag"); //  create shader with vertexShader and fragmentShader
 	VAO VAO1;										// create vertex array
 	VAO1.Bind();									// bind vertex array 
 
 	VBO VBO1(vertices, sizeof(vertices));			// create vertex buffer
-	EBO EBO1(indices, sizeof(indices));			    // create index buffer
+	EBO EBO1(quad_indices, sizeof(quad_indices));			    // create index buffer
 
 	//VBO1.Bind();
 	//EBO1.Bind();
@@ -81,9 +74,9 @@ void Renderable::DrawQuad2D(float x, float y, float width, float height) {
 	shaderProgram.Activate();
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 	// Unbind to prevent modifying
-	VAO1.Unbind();
-	VBO1.Unbind();
-	EBO1.Unbind();
+	//VAO1.Unbind();
+	//VBO1.Unbind();
+	//EBO1.Unbind();
 	
 	shaderProgram.Delete();
 
@@ -97,26 +90,18 @@ void Renderable::DrawTextureQuad2D(float x, float y, float width, float height, 
 
 		//  COORDINATES						 // TEXTURE COORDINATES
 		//  X          Y            Z
-			x,         y,           0.0f,		0.0f, 0.0f,
-			x,         y + height,  0.0f,		0.0f, 1.0f,
-			x + width, y + height,  0.0f,		1.0f, 1.0f,
-			x + width, y,           0.0f,		1.0f, 0.0f
+			x,         y,           0.1f,	 0.0f, 0.0f,
+			x,         y + height,  0.1f,	 0.0f, 1.0f,
+			x + width, y + height,  0.1f,	 1.0f, 1.0f,
+			x + width, y,           0.1f,	 1.0f, 0.0f
 	};
-
-
-	GLuint indices[] =
-	{
-		0, 2, 1,
-		0, 3, 2
-	};
-
 
 	Shader shaderProgram("A:/dev/Hana/HANA/HANA/src/Renderer/res/shaders/texture.vert", "A:/dev/Hana/HANA/HANA/src/Renderer/res/shaders/texture.frag"); //  create shader with vertexShader and fragmentShader
 	VAO VAO1;										// create vertex array
 	VAO1.Bind();									// bind vertex array 
 
 	VBO VBO1(vertices, sizeof(vertices));			// create vertex buffer
-	EBO EBO1(indices, sizeof(indices));			    // create index buffer
+	EBO EBO1(quad_indices, sizeof(quad_indices));			    // create index buffer
 
 	//VBO1.Bind();
 	//EBO1.Bind();
@@ -125,26 +110,88 @@ void Renderable::DrawTextureQuad2D(float x, float y, float width, float height, 
 	VAO1.LinkAttrib(VBO1, 0, 3, GL_FLOAT, 5 * sizeof(float), (void*)0);							// link position vertices
 	VAO1.LinkAttrib(VBO1, 1, 2, GL_FLOAT, 5 * sizeof(float), (void*)(3 * sizeof(GL_FLOAT)));							// link texture vertices
 
-	//const char* path1 = "A:/dev/Hana/HANA/HANA/src/Renderer/res/textures/Logo.png";
-	Texture tex0(ImgPath, GL_TEXTURE_2D, 0, GL_RGB, GL_UNSIGNED_BYTE);
+	Texture tex0(ImgPath, GL_TEXTURE_2D, 0, GL_RGBA, GL_UNSIGNED_BYTE);
 	tex0.Bind();
 	tex0.texUnit(shaderProgram, "tex0", 0);
 	
+	// model, view, projection
+	//glm::mat4 model = glm::mat4(1.0f);			// init identity matrices
+	//glm::mat4 view = glm::mat4(1.0f);			// ''
+	orthographic = glm::ortho(0.0f, screenWidth, 0.0f, screenHeight, -1.0f, 1.0f);
+
+	// get uniform locations 
+	orthoLoc = glGetUniformLocation(shaderProgram.ID, "orthographic");
+
+	// 1 - uni location, 2 - no. of matrices, 3 - transpose, 4 - ptr
+	glUniformMatrix4fv(orthoLoc, 1, GL_FALSE, glm::value_ptr(orthographic));	// assign uniform
+
 	shaderProgram.Activate();
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 
 	// Unbind to prevent modifying
-	VAO1.Unbind();
-	VBO1.Unbind();
-	EBO1.Unbind();
-	tex0.Unbind();
+	//VAO1.Unbind();
+	//VBO1.Unbind();
+	//EBO1.Unbind();
+	//tex0.Unbind();
 
 	shaderProgram.Delete();
 
-	GLenum error = glGetError();
-	if (error != GL_NO_ERROR) {
-		std::cerr << "OpenGL error: " << error << std::endl;
-	}
+
+}
+
+void Renderable::DrawTextureQuad2D(float x, float y, float width, float height, const char* ImgPath, float scale_x, float scale_y) {
+
+	GLfloat vertices[] =
+	{
+
+		//  COORDINATES								// TEXTURE COORDINATES
+		//  X          Y            Z
+			x,         y,           0.1f,			0.0f,				0.0f,
+			x,         y + height,  0.1f,			0.0f,				1.0f * scale_y,
+			x + width, y + height,  0.1f,			1.0f * scale_x,		1.0f * scale_y,
+			x + width, y,           0.1f,			1.0f * scale_x,		0.0f
+	};
+
+	Shader shaderProgram("A:/dev/Hana/HANA/HANA/src/Renderer/res/shaders/texture.vert", "A:/dev/Hana/HANA/HANA/src/Renderer/res/shaders/texture.frag"); //  create shader with vertexShader and fragmentShader
+	VAO VAO1;										// create vertex array
+	VAO1.Bind();									// bind vertex array 
+
+	VBO VBO1(vertices, sizeof(vertices));			// create vertex buffer
+	EBO EBO1(quad_indices, sizeof(quad_indices));			    // create index buffer
+
+	//VBO1.Bind();
+	//EBO1.Bind();
+	//	link VBO to VAO
+	//	1 VBO, 2 GLuint layout, 3 GLuint numComponents, 4 GLenum type, 5 GLsizeiptr stride, 6 void* offset
+	VAO1.LinkAttrib(VBO1, 0, 3, GL_FLOAT, 5 * sizeof(float), (void*)0);							// link position vertices
+	VAO1.LinkAttrib(VBO1, 1, 2, GL_FLOAT, 5 * sizeof(float), (void*)(3 * sizeof(GL_FLOAT)));							// link texture vertices
+
+	Texture tex0(ImgPath, GL_TEXTURE_2D, 0, GL_RGBA, GL_UNSIGNED_BYTE);
+	tex0.Bind();
+	tex0.texUnit(shaderProgram, "tex0", 0);
+
+	// model, view, projection
+	//glm::mat4 model = glm::mat4(1.0f);			// init identity matrices
+	//glm::mat4 view = glm::mat4(1.0f);			// ''
+	orthographic = glm::ortho(0.0f, screenWidth, 0.0f, screenHeight, -1.0f, 1.0f);
+
+	// get uniform locations 
+	orthoLoc = glGetUniformLocation(shaderProgram.ID, "orthographic");
+
+	// 1 - uni location, 2 - no. of matrices, 3 - transpose, 4 - ptr
+	glUniformMatrix4fv(orthoLoc, 1, GL_FALSE, glm::value_ptr(orthographic));	// assign uniform
+
+	shaderProgram.Activate();
+	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+
+	// Unbind to prevent modifying
+	//VAO1.Unbind();
+	//VBO1.Unbind();
+	//EBO1.Unbind();
+	//tex0.Unbind();
+
+	shaderProgram.Delete();
+
 
 }
 
@@ -235,4 +282,59 @@ void Renderable::DrawImGuiText(const std::string& Text, unsigned int x, unsigned
 	//// Render ImGui
 	ImGui::Render();
 	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+}
+
+void Renderable::DrawCuboid(glm::vec3 pos, glm::vec3 dimensions) {
+	GLfloat vertices[] =
+	{
+		//  COORDINATES	x,y,z													// TEXTURE COORDINATES
+
+		pos.x,					pos.y,					pos.z,						0.0f, 0.0f,
+		pos.x + dimensions.x,	pos.y,					pos.z,						1.0f, 0.0f,
+		pos.x + dimensions.x,	pos.y + dimensions.y,	pos.z,						1.0f, 1.0f,
+		pos.x + dimensions.x,	pos.y + dimensions.y,	pos.z,						1.0f, 1.0f,
+		pos.x,					pos.y + dimensions.y,	pos.z,						0.0f, 1.0f,
+		pos.x,					pos.y,					pos.z,						0.0f, 0.0f,
+
+		pos.x,					pos.y,					pos.z + dimensions.z,		0.0f, 0.0f,
+		pos.x + dimensions.x,	pos.y,					pos.z + dimensions.z,		1.0f, 0.0f,
+		pos.x + dimensions.x,	pos.y + dimensions.y,	pos.z + dimensions.z,		1.0f, 1.0f,
+		pos.x + dimensions.x,	pos.y + dimensions.y,	pos.z + dimensions.z,		1.0f, 1.0f,
+		pos.x,					pos.y + dimensions.y,	pos.z + dimensions.z,		0.0f, 1.0f,
+		pos.x,					pos.y,					pos.z + dimensions.z,		0.0f, 0.0f,
+
+		pos.x,					pos.y + dimensions.y,	pos.z + dimensions.z,		1.0f, 0.0f,
+		pos.x,					pos.y + dimensions.y,	pos.z,						1.0f, 1.0f,
+		pos.x,					pos.y,					pos.z,						0.0f, 1.0f,
+		pos.x,					pos.y,					pos.z,						0.0f, 1.0f,
+		pos.x,					pos.y,					pos.z + dimensions.z,		0.0f, 0.0f,
+		pos.x,					pos.y + dimensions.y,	pos.z + dimensions.z,		1.0f, 0.0f,
+
+		pos.x + dimensions.x,	pos.y + dimensions.y,	pos.z + dimensions.z,		1.0f, 0.0f,
+		pos.x + dimensions.x,	pos.y + dimensions.y,	pos.z,						1.0f, 1.0f,
+		pos.x + dimensions.x,	pos.y,					pos.z,						0.0f, 1.0f,
+		pos.x + dimensions.x,	pos.y,					pos.z,						0.0f, 1.0f,
+		pos.x + dimensions.x,	pos.y,					pos.z + dimensions.z,		0.0f, 0.0f,
+		pos.x + dimensions.x,	pos.y + dimensions.y,	pos.z + dimensions.z,		1.0f, 0.0f,
+
+		pos.x,					pos.y,					pos.z,						0.0f, 1.0f,
+		pos.x + dimensions.x,	pos.y,					pos.y,						1.0f, 1.0f,
+		pos.x + dimensions.x,	pos.y,					pos.z + dimensions.z,		1.0f, 0.0f,
+		pos.x + dimensions.x,	pos.y,					pos.z + dimensions.z,		1.0f, 0.0f,
+		pos.x,					pos.y,					pos.z + dimensions.z,		0.0f, 0.0f,
+		pos.x,					pos.y,					pos.z,						0.0f, 1.0f,
+
+		pos.x,					pos.y + dimensions.y,	pos.z,						0.0f, 1.0f,
+		pos.x + dimensions.x,	pos.y + dimensions.y,	pos.z,						1.0f, 1.0f,
+		pos.x + dimensions.x,	pos.y + dimensions.y,	pos.z + dimensions.z,		1.0f, 0.0f,
+		pos.x + dimensions.x,	pos.y + dimensions.y,	pos.z + dimensions.z,		1.0f, 0.0f,
+		pos.x,					pos.y + dimensions.y,	pos.z + dimensions.z,		0.0f, 0.0f,
+		pos.x,					pos.y + dimensions.y,	pos.z,						0.0f, 1.0f
+
+	};
+}
+
+void Renderable::Draw3DScene() {
+
+	
 }

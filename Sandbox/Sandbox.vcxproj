@@ -86,7 +86,7 @@
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>HA_PLATFORM_WINDOWS;HA_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\HANA\vendor\spdlog\include;..\HANA\vendor\imgui;..\HANA\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <LanguageStandard>stdcpp17</LanguageStandard>
@@ -113,6 +113,7 @@
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
+      <DebugInformationFormat>OldStyle</DebugInformationFormat>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -142,8 +143,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\3DTestScene\SceneLayer.cpp" />
     <ClCompile Include="src\SandboxApp.cpp" />
     <ClCompile Include="src\TrumpJump\GameLayer.cpp" />
+    <ClCompile Include="src\TrumpJump\States\GameOverState.cpp" />
+    <ClCompile Include="src\TrumpJump\States\GamePlayState.cpp" />
+    <ClCompile Include="src\TrumpJump\States\GameStartState.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HANA\HANA.vcxproj">
@@ -151,6 +156,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\3DTestScene\SceneLayer.h" />
     <ClInclude Include="src\TrumpJump\GameLayer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

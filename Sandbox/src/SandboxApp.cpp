@@ -3,6 +3,7 @@
 
 //#include "Pong/GameLayer.h"
 #include "TrumpJump/GameLayer.h"
+#include "3DTestScene/SceneLayer.h"
 
 class Sandbox : public Hana::Application
 {
@@ -13,6 +14,7 @@ public:
 
 
 		PushLayer(new GameLayer());
+		//PushLayer(new SceneLayer());
 
 	}
 

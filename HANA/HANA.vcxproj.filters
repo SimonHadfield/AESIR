@@ -117,6 +117,8 @@
     <ClInclude Include="vendor\imgui\backends\imgui_impl_opengl3.h" />
     <ClInclude Include="src\Audio\Audio.h" />
     <ClInclude Include="src\Hana\StateMachine.h" />
+    <ClInclude Include="src\Renderer\OrthographicCamera.h" />
+    <ClInclude Include="src\Renderer\ResourceManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Hana\Application.cpp">
@@ -167,6 +169,8 @@
     <ClCompile Include="vendor\imgui\backends\imgui_impl_opengl3.cpp" />
     <ClCompile Include="src\Audio\Audio.cpp" />
     <ClCompile Include="src\Hana\StateMachine.cpp" />
+    <ClCompile Include="src\Renderer\OrthographicCamera.cpp" />
+    <ClCompile Include="src\Renderer\ResourceManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="src\Renderer\res\textures\Logo.png" />

@@ -149,6 +149,7 @@ namespace Hana {
 		VAO VAO2;										// create vertex array
 		VAO2.Bind();									// bind vertexy array
 
+
 		VBO VBO2(grid_vertices, sizeof(grid_vertices));			// create vertex buffer
 		//EBO EBO2(indices, sizeof(indices));			// indices not currently needed
 
