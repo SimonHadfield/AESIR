@@ -47,7 +47,10 @@ namespace Hana {
 
         glfwSetFramebufferSizeCallback(m_Window, framebuffer_size_callback);						// callback for resizing window
 
-        
+        // Initialize GLAD
+        if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
+            std::cout << "Failed to initialize GLAD" << std::endl;
+        }
 
 		return static_cast<void*>(m_Window);
 	};
@@ -71,6 +74,12 @@ namespace Hana {
 	void Renderer::StartFrame() {
 		glClearColor(0.2f, 0.0f, 0.2f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);	
+
+        // test
+
+        
+
+        //renderable->DrawBackground();
 	};
 
 

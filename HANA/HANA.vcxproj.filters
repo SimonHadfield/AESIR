@@ -119,6 +119,7 @@
     <ClInclude Include="src\Hana\StateMachine.h" />
     <ClInclude Include="src\Renderer\OrthographicCamera.h" />
     <ClInclude Include="src\Renderer\ResourceManager.h" />
+    <ClInclude Include="src\Renderer\Texture2D.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Hana\Application.cpp">
@@ -171,6 +172,7 @@
     <ClCompile Include="src\Hana\StateMachine.cpp" />
     <ClCompile Include="src\Renderer\OrthographicCamera.cpp" />
     <ClCompile Include="src\Renderer\ResourceManager.cpp" />
+    <ClCompile Include="src\Renderer\Texture2D.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="src\Renderer\res\textures\Logo.png" />

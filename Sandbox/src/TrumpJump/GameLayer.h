@@ -7,13 +7,44 @@
 #include "Hana/MouseButtonCodes.h"
 #include "Hana/StateMachine.h"
 
+class GameObject {
+public:
+	virtual glm::vec2 GetPos() { return this->pos; }
+	virtual glm::vec2 GetSize() { return this->size; }
+	float GetGap() { return this->gap; }
+	virtual void SetPos(glm::vec2 Position) { this->pos = Position; }
+	virtual void SetSize(glm::vec2 Size) { this->size = Size; }
+	void SetGap(float Gap) { this->gap = Gap; }
+private:
+	glm::vec2 pos;
+	glm::vec2 size;
+	float gap;
+};
 
+class Character : public GameObject
+{
+public:
+	glm::vec2 GetPos() override { return PlayerPos; }
+	void SetPos(glm::vec2 playerPos) override { PlayerPos = playerPos; }
+	void UpdatePos(double dt);
+	void Jump(double dt);
+	void Gravity(double dt);
+private:
+	float Jump_force = 30000.0f;
+	float dy = 0.0f;
+	float g = 1000.0f;
+	glm::vec2 PlayerPos;
+	glm::vec2 size;
+};
 
 class GameLayer : public Hana::Layer
 {
 public:
+	std::vector<GameObject> PipePairs;
 	GameLayer();
 	virtual ~GameLayer() override;
+
+	virtual void LoadResources() override;
 
 	virtual void OnAttach() override;
 	virtual void OnDetach() override;
@@ -24,12 +55,18 @@ public:
 	void displayFPS(double dt);
 
 private:
+	Character Player;
+	GameObject PipePair;
 	StateMachine* stateMachine; // instantiate StateMachine
 
 	// Game States
 	// GameStartState* gameStartState;
 	// GamePlayState* gamePlayState;
 	// GameOverState* gameOverState;
+
+	Renderable *renderable;
+	float Width = 720;
+	float Height = 1080;
 
 	float left = 1.0f;
 	float right = 1.0f;
@@ -49,7 +86,7 @@ private:
 	float cam2_x = 0.0f;
 	float cam3_x = 1700.0f + 1157;
 
-	float cam2_y = -100.0f;
+	float cam2_y = 100.0f;
 
 	const char* path = "A:/dev/Hana/HANA/HANA/src/Renderer/res/textures/Logo.png";
 	
@@ -57,6 +94,7 @@ private:
 		static inline const char* background = "A:/dev/Hana/HANA/Sandbox/src/TrumpJump/graphics/background.png";
 		static inline const char* ground = "A:/dev/Hana/HANA/sandbox/src/TrumpJump/graphics/ground.png";
 		static inline const char* turdpipe = "A:/dev/Hana/HANA/sandbox/src/TrumpJump/graphics/turdpipe.png";
+		static inline const char* character = "A:/dev/Hana/HANA/sandbox/src/TrumpJump/graphics/TrumpJumpCharacterIdle.png";
 	};
 
 	struct TurdPipe {

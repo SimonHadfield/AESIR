@@ -1,12 +1,48 @@
 #include "ResourceManager.h"
 
-/*
-Shader ResourceManager::LoadShader(const char* vertexShaderFile, const char* fragmentShaderFile, const char* geometryShaderFile, std::string name) {
-	Shader[name] = loadShaderFromFile(vertexShaderFile, fragmentShaderFile, geometryShaderFile);
-	return Shader[name];
+#include <iostream>
+#include <sstream>
+#include <fstream>
+
+#include "stb/stb_image.h"
+
+
+// instantiate static variables
+std::map <std::string, Texture2D> ResourceManager::Textures;
+std::map <std::string, Shader_New> ResourceManager::Shaders;
+
+Shader_New ResourceManager::LoadShader(const char* vertexShaderFile, const char* fragmentShaderFile, const char* geometryShaderFile, std::string name) {
+	Shaders[name] = loadShaderFromFile(vertexShaderFile, fragmentShaderFile, geometryShaderFile);
+	return Shaders[name];
 }
 
-Shader ResourceManager::loadShaderFromFile(const char* vertexShaderFile, const char* fragmentShaderFile, const char* geometryShaderFile = nullptr) {
+Shader_New ResourceManager::GetShader(std::string name)
+{
+    return Shaders[name];
+}
+
+Texture2D ResourceManager::LoadTexture(const char* file, bool alpha, std::string name)
+{
+    Textures[name] = loadTextureFromFile(file, alpha);
+    return Textures[name];
+}
+
+Texture2D ResourceManager::GetTexture(std::string name)
+{
+    return Textures[name];
+}
+
+void ResourceManager::Clear()
+{
+    // (properly) delete all shaders	
+    for (auto iter : Shaders)
+        glDeleteProgram(iter.second.ID);
+    // (properly) delete all textures
+    for (auto iter : Textures)
+        glDeleteTextures(1, &iter.second.ID);
+}
+
+Shader_New ResourceManager::loadShaderFromFile(const char* vertexShaderFile, const char* fragmentShaderFile, const char* geometryShaderFile = nullptr) {
 	
 	std::string vertexCode;
 	std::string fragmentCode;
@@ -45,9 +81,31 @@ Shader ResourceManager::loadShaderFromFile(const char* vertexShaderFile, const c
     const char* fShaderCode = fragmentCode.c_str();
     const char* gShaderCode = geometryCode.c_str();
     // 2. now create shader object from source code
-    Shader shader;
-    //shader.Compile(vShaderCode, fShaderCode, geometryShaderFile != nullptr ? gShaderCode : nullptr);
+    Shader_New shader;
+    shader.Compile(vShaderCode, fShaderCode, geometryShaderFile != nullptr ? gShaderCode : nullptr);
 
     return shader;
 }
-*/
+
+Texture2D ResourceManager::loadTextureFromFile(const char* file, bool alpha)
+{
+    // create texture object
+    Texture2D texture;
+    if (alpha)
+    {
+        texture.Internal_Format = GL_RGBA;
+        texture.Image_Format = GL_RGBA;
+
+        // glEnable(GL_BLEND);
+        // glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        // glDisable(GL_DEPTH_TEST);
+    }
+    // load image
+    int width, height, nrChannels;
+    unsigned char* data = stbi_load(file, &width, &height, &nrChannels, 0);
+    // now generate texture
+    texture.Generate(width, height, data);
+    // and finally free image data
+    stbi_image_free(data);
+    return texture;
+}

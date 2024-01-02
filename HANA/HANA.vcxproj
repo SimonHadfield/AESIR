@@ -182,6 +182,7 @@
     <ClInclude Include="src\Renderer\HanaCube.h" />
     <ClInclude Include="src\Renderer\ResourceManager.h" />
     <ClInclude Include="src\Renderer\Texture.h" />
+    <ClInclude Include="src\Renderer\Texture2D.h" />
     <ClInclude Include="src\Renderer\VAO.h" />
     <ClInclude Include="src\Renderer\VBO.h" />
     <ClInclude Include="vendor\imgui\backends\imgui_impl_glfw.h" />
@@ -219,6 +220,7 @@
     <ClCompile Include="src\Hana\Log.cpp" />
     <ClCompile Include="src\Renderer\EBO.cpp" />
     <ClCompile Include="src\Renderer\ResourceManager.cpp" />
+    <ClCompile Include="src\Renderer\Texture2D.cpp" />
     <ClCompile Include="vendor\imgui\backends\imgui_impl_glfw.cpp" />
     <ClCompile Include="vendor\imgui\backends\imgui_impl_opengl3.cpp" />
     <ClCompile Include="vendor\imgui\imgui.cpp" />

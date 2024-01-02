@@ -18,16 +18,20 @@
 #include <stb/stb_image.h>
 
 // Render classes
-#include "Renderer/shaderClass.h"
+//#include "Renderer/shaderClass.h"
+#include "Renderer/ResourceManager.h"
 #include "Renderer/VAO.h"
 #include "Renderer/VBO.h"
 #include "Renderer/EBO.h"
 #include "Renderer/Texture.h"
 #include "Renderer/Renderable.h"
 
+
 #include "imgui.h"
 #include "backends/imgui_impl_glfw.h"
 #include "backends/imgui_impl_opengl3.h"
+
+class Renderable;
 
 namespace Hana {
 
@@ -47,6 +51,9 @@ namespace Hana {
 
 	private:
 		static inline GLFWwindow* m_Window;
+
+		// engine side test
+		//Renderable *renderable;
 	};
 
 }

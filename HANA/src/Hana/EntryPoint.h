@@ -1,5 +1,8 @@
 #pragma once
 
+
+
+
 #ifdef HA_PLATFORM_WINDOWS
 
 extern Hana::Application* Hana::CreateApplication();

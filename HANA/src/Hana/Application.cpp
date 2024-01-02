@@ -26,8 +26,14 @@ namespace Hana {
 			HA_TRACE(e);
 		}
 
+		
 		RenderContext.Init();
 		RenderContext.ImGuiInit();
+
+		// load resources
+		for (Layer* layer : m_LayerStack) {
+			layer->LoadResources();
+		}
 
 		while (!RenderContext.ShouldClose())
 		{

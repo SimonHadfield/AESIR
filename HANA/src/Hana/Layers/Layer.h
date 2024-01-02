@@ -11,6 +11,8 @@ namespace Hana {
 
 		virtual ~Layer() = default;
 
+		virtual void LoadResources() = 0;
+
 		virtual void OnAttach() = 0;
 		virtual void OnDetach() = 0;
 		virtual void OnRender() = 0;

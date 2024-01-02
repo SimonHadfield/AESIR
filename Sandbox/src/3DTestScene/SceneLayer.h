@@ -15,6 +15,8 @@ public:
 	SceneLayer();
 	virtual ~SceneLayer() override;
 
+	void init();
+
 	virtual void OnAttach() override;
 	virtual void OnDetach() override;
 	virtual void OnRender() override;
@@ -24,6 +26,10 @@ public:
 	void displayFPS(double dt);
 
 private:
+	// Renderable *renderable;
+	float Width = 1080.0f;
+	float Height = 720.0f;
+
 	const char* path = "A:/dev/Hana/HANA/HANA/src/Renderer/res/textures/Logo.png";
 	double cur_t = 0.0;
 	double fps = 0.0;
