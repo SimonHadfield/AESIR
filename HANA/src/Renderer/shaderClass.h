@@ -16,26 +16,26 @@
 
 std::string get_file_contents(const char* filename);
 
+//class HANA_API Shader
+//{
+//public:
+//	GLuint ID;
+//	Shader(const char* vertexFile, const char* fragmentFile);
+//
+//	void Activate();
+//	void Delete();
+//};
+
+
 class HANA_API Shader
-{
-public:
-	GLuint ID;
-	Shader(const char* vertexFile, const char* fragmentFile);
-
-	void Activate();
-	void Delete();
-};
-
-
-class HANA_API Shader_New
 {
 public:
     // state
     unsigned int ID;
     // constructor
-    Shader_New() { }
+    Shader() { }
     // sets the current shader as active
-    Shader_New& Use();
+    Shader& Use();
     // compiles the shader from given source code
     void    Compile(const char* vertexSource, const char* fragmentSource, const char* geometrySource = nullptr); // note: geometry source code is optional 
     

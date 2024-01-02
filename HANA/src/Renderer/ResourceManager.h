@@ -10,11 +10,11 @@
 class HANA_API ResourceManager
 {
 public:
-	static std::map<std::string, Shader_New> Shaders;
+	static std::map<std::string, Shader> Shaders;
 	static std::map<std::string, Texture2D> Textures;
 
-	static Shader_New LoadShader(const char* vertexShaderFile, const char* fragmentShaderFile, const char* geometryShaderFile, std::string name);
-	static Shader_New GetShader(std::string name);
+	static Shader LoadShader(const char* vertexShaderFile, const char* fragmentShaderFile, const char* geometryShaderFile, std::string name);
+	static Shader GetShader(std::string name);
 
 	static Texture2D LoadTexture(const char* file, bool alpha, std::string name);
 	static Texture2D GetTexture(std::string name);
@@ -23,6 +23,6 @@ public:
 
 private:
 	ResourceManager() { }
-	static Shader_New loadShaderFromFile(const char* vertexShaderFile, const char* fragmentShaderFile, const char* geometryShaderFile);
+	static Shader loadShaderFromFile(const char* vertexShaderFile, const char* fragmentShaderFile, const char* geometryShaderFile);
 	static Texture2D loadTextureFromFile(const char* file, bool alpha);
 };

@@ -9,14 +9,14 @@
 
 // instantiate static variables
 std::map <std::string, Texture2D> ResourceManager::Textures;
-std::map <std::string, Shader_New> ResourceManager::Shaders;
+std::map <std::string, Shader> ResourceManager::Shaders;
 
-Shader_New ResourceManager::LoadShader(const char* vertexShaderFile, const char* fragmentShaderFile, const char* geometryShaderFile, std::string name) {
+Shader ResourceManager::LoadShader(const char* vertexShaderFile, const char* fragmentShaderFile, const char* geometryShaderFile, std::string name) {
 	Shaders[name] = loadShaderFromFile(vertexShaderFile, fragmentShaderFile, geometryShaderFile);
 	return Shaders[name];
 }
 
-Shader_New ResourceManager::GetShader(std::string name)
+Shader ResourceManager::GetShader(std::string name)
 {
     return Shaders[name];
 }
@@ -42,7 +42,7 @@ void ResourceManager::Clear()
         glDeleteTextures(1, &iter.second.ID);
 }
 
-Shader_New ResourceManager::loadShaderFromFile(const char* vertexShaderFile, const char* fragmentShaderFile, const char* geometryShaderFile = nullptr) {
+Shader ResourceManager::loadShaderFromFile(const char* vertexShaderFile, const char* fragmentShaderFile, const char* geometryShaderFile = nullptr) {
 	
 	std::string vertexCode;
 	std::string fragmentCode;
@@ -81,7 +81,7 @@ Shader_New ResourceManager::loadShaderFromFile(const char* vertexShaderFile, con
     const char* fShaderCode = fragmentCode.c_str();
     const char* gShaderCode = geometryCode.c_str();
     // 2. now create shader object from source code
-    Shader_New shader;
+    Shader shader;
     shader.Compile(vShaderCode, fShaderCode, geometryShaderFile != nullptr ? gShaderCode : nullptr);
 
     return shader;

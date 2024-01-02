@@ -181,7 +181,6 @@
     <ClInclude Include="src\Renderer\EBO.h" />
     <ClInclude Include="src\Renderer\HanaCube.h" />
     <ClInclude Include="src\Renderer\ResourceManager.h" />
-    <ClInclude Include="src\Renderer\Texture.h" />
     <ClInclude Include="src\Renderer\Texture2D.h" />
     <ClInclude Include="src\Renderer\VAO.h" />
     <ClInclude Include="src\Renderer\VBO.h" />
@@ -230,7 +229,6 @@
     <ClCompile Include="vendor\imgui\imgui_widgets.cpp" />
     <ClCompile Include="vendor\include\glm\detail\glm.cpp" />
     <ClCompile Include="src\Renderer\Renderer.cpp" />
-    <ClCompile Include="src\Renderer\Texture.cpp" />
     <ClCompile Include="src\Renderer\VAO.cpp" />
     <ClCompile Include="src\Renderer\VBO.cpp" />
     <ClCompile Include="src\Renderer\glad.c" />

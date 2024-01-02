@@ -8,7 +8,7 @@ class HANA_API Renderable
 {
 public:
 	Renderable() {}
-	Renderable(Shader_New& shaderProgram_);
+	Renderable(Shader& shaderProgram_);
 
 	// 2D
 	static void DrawQuad2D(float x, float y, float width, float height);
@@ -36,7 +36,7 @@ private:
 		0, 3, 2
 	};
 
-	Shader_New shaderProgram_;
+	Shader shaderProgram_;
 	unsigned int quadVAO;
 	void initRenderData();
 

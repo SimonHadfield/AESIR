@@ -23,7 +23,6 @@
 #include "Renderer/VAO.h"
 #include "Renderer/VBO.h"
 #include "Renderer/EBO.h"
-#include "Renderer/Texture.h"
 #include "Renderer/Renderable.h"
 
 

@@ -1,8 +1,5 @@
 #pragma once
 
-#ifndef TEXTURE_H
-#define TEXTURE_H
-
 #include <glad/glad.h>
 
 // Texture2D is able to store and configure a texture in OpenGL.
@@ -29,5 +26,3 @@ public:
     // binds the texture as the current active GL_TEXTURE_2D texture object
     void Bind() const;
 };
-
-#endif

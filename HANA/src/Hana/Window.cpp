@@ -76,6 +76,7 @@ namespace Hana {
 
     void Window::RenderContext(GLFWwindow* m_Window)
     {
+		/*
 		//Renderable::DrawQuad2D(0.0f, 0.0f, 10.0f, 10.0f);
 
 		GLfloat vertices[sizeof(Cube_vertices) / sizeof(Cube_vertices[0])];
@@ -221,7 +222,7 @@ namespace Hana {
 
 		glfwDestroyWindow(m_Window);
 		glfwTerminate();
-
+		*/
     }
 
 	void Window::Shutdown()
