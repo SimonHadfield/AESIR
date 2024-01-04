@@ -36,7 +36,7 @@ private:
 		0, 3, 2
 	};
 
-	Shader shaderProgram_;
+	Shader shaderProgram;
 	unsigned int quadVAO;
 	void initRenderData();
 

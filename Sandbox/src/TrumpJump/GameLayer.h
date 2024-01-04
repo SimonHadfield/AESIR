@@ -89,12 +89,19 @@ private:
 	float cam2_y = 100.0f;
 
 	const char* path = "A:/dev/Hana/HANA/HANA/src/Renderer/res/textures/Logo.png";
+
 	
 	struct Graphics {
-		static inline const char* background = "A:/dev/Hana/HANA/Sandbox/src/TrumpJump/graphics/background.png";
-		static inline const char* ground = "A:/dev/Hana/HANA/sandbox/src/TrumpJump/graphics/ground.png";
-		static inline const char* turdpipe = "A:/dev/Hana/HANA/sandbox/src/TrumpJump/graphics/turdpipe.png";
-		static inline const char* character = "A:/dev/Hana/HANA/sandbox/src/TrumpJump/graphics/TrumpJumpCharacterIdle.png";
+
+		//static inline const char* background = "A:/dev/Hana/HANA/Sandbox/src/TrumpJump/graphics/background.png";
+		//static inline const char* ground = "A:/dev/Hana/HANA/sandbox/src/TrumpJump/graphics/ground.png";
+		//static inline const char* turdpipe = "A:/dev/Hana/HANA/sandbox/src/TrumpJump/graphics/turdpipe.png";
+		//static inline const char* character = "A:/dev/Hana/HANA/sandbox/src/TrumpJump/graphics/TrumpJumpCharacterIdle.png";
+
+		static inline const char* background =	(std::string(SOLUTION_DIR) + "Sandbox/src/TrumpJump/graphics/background.png").c_str();
+		static inline const char* ground =		"/TrumpJump/graphics/ground.png";
+		static inline const char* turdpipe =	"/TrumpJump/graphics/turdpipe.png";
+		static inline const char* character =	"/TrumpJump/graphics/TrumpJumpCharacterIdle.png";
 	};
 
 	struct TurdPipe {

@@ -2,9 +2,9 @@
 
 
 
-Renderable::Renderable(Shader& shaderProgram_)
+Renderable::Renderable(Shader& shaderProgram)
 {
-	this->shaderProgram_ = shaderProgram_;
+	this->shaderProgram = shaderProgram;
 	this->initRenderData();
 }
 
@@ -40,14 +40,14 @@ void Renderable::initRenderData()
 void Renderable::DrawTextureQuad2D(Texture2D& texture, glm::vec2 position, glm::vec2 size, float rotate, glm::vec3 color)
 {
 	// prepare transformations
-	this->shaderProgram_.Use();
+	this->shaderProgram.Use();
 	glm::mat4 model = glm::mat4(1.0f);
 	model = glm::translate(model, glm::vec3(position, 0.0f));
 	model = glm::rotate(model, glm::radians(rotate), glm::vec3(0.0f, 0.0f, 1.0f));
 	model = glm::scale(model, glm::vec3(size, 1.0f));
 
-	this->shaderProgram_.SetMatrix4("model", model);
-	this->shaderProgram_.SetVector3f("Color", color);
+	this->shaderProgram.SetMatrix4("model", model);
+	this->shaderProgram.SetVector3f("Color", color);
 	
 	glActiveTexture(GL_TEXTURE0);
 	texture.Bind();
@@ -70,7 +70,7 @@ void Renderable::DrawBackground() // glm::vec3 color
 	width = 1.0f;
 	height = 1.0f;
 
-	this->shaderProgram_.Use();
+	this->shaderProgram.Use();
 
 	glm::mat4 model = glm::mat4(1.0f);
 	model = glm::translate(model, glm::vec3(position, 0.0f));  // first translate (transformations are: scale happens first, then rotation, and then final //translation happens; reversed order)
@@ -81,7 +81,7 @@ void Renderable::DrawBackground() // glm::vec3 color
 	//
 	model = glm::scale(model, glm::vec3(size, 1.0f)); // last scale
 	//
-	this->shaderProgram_.SetMatrix4("model", model);
+	this->shaderProgram.SetMatrix4("model", model);
 
 	// render textured quad
 	//this->shader.SetVector3f("spriteColor", color);

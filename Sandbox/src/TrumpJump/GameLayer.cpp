@@ -1,6 +1,7 @@
 #include "GameLayer.h"
 #include "glad/glad.h"
 
+#include <filesystem>
 
 // character jump
 void Character::Jump(double dt) {
@@ -53,8 +54,13 @@ GameLayer::~GameLayer() {
 
 void GameLayer::LoadResources() {
 	// load shaders
-	//ResourceManager::LoadShader("A:/dev/Hana/HANA/HANA/src/Renderer/res/shaders/background.vert", "A:/dev/Hana/HANA/HANA/src/Renderer/res/shaders/background.frag", nullptr, "background");
-	ResourceManager::LoadShader("A:/dev/Hana/HANA/HANA/src/Renderer/res/shaders/default.vert", "A:/dev/Hana/HANA/HANA/src/Renderer/res/shaders/default.frag", nullptr, "default");
+	//ResourceManager::LoadShader("A:/dev/Hana/HANA/HANA/src/Renderer/res/shaders/default.vert", "A:/dev/Hana/HANA/HANA/src/Renderer/res/shaders/default.frag", nullptr, "default");
+	//ResourceManager::LoadShader("C:/dev/HANA/HANA/src/Renderer/res/shaders/default.vert", "C:/dev/HANA/HANA/src/Renderer/res/shaders/default.frag", nullptr, "default");
+	std::string solutionDir = SOLUTION_DIR;
+	const char* default_vert = (solutionDir + "/HANA/src/Renderer/res/shaders/default.vert").c_str();
+	const char* default_frag = (solutionDir + "/HANA/src/Renderer/res/shaders/default.frag").c_str();
+	ResourceManager::LoadShader( default_vert, default_frag, nullptr, "default");
+
 	// configure shaders
 	float window_width = 1080.0f;
 	float window_height = 720.0f;
@@ -62,7 +68,7 @@ void GameLayer::LoadResources() {
 		static_cast<float>(window_height), 0.0f, -1.0f, 1.0f);
 
 	// load textures
-	ResourceManager::LoadTexture(Graphics::background, true, "scene_background");
+	ResourceManager::LoadTexture(Graphics::background, false, "scene_background");
 	ResourceManager::LoadTexture(Graphics::ground, true, "ground");
 	ResourceManager::LoadTexture(Graphics::turdpipe, true, "turdpipe");
 	ResourceManager::LoadTexture(Graphics::character, true, "character");
@@ -73,10 +79,7 @@ void GameLayer::LoadResources() {
 
 
 	// set render-specific controls
-	//this->renderable = new Renderable(ResourceManager::GetShader("background"));
 	this->renderable = new Renderable(ResourceManager::GetShader("default"));
-	//this->renderable = new Renderable(ResourceManager::GetShader("turdpipe"));
-
 }
 
 void GameLayer::OnAttach() {}
@@ -92,6 +95,10 @@ void GameLayer::displayFPS(double dt) {
 void GameLayer::OnUpdate()
 {
 	
+	std::ifstream in(Graphics::background);
+	if (!in) {
+		std::cout << "Failed to open file.\n";
+	}
 
 	// update timer
 	cur_t = Hana::Time::GetTime();
@@ -134,7 +141,6 @@ void GameLayer::OnUpdate()
 		loopingPoint += 10.0f;
 		HA_TRACE(loopingPoint);
 	}
-
 
 	if (Hana::Input::IsKeyPressed(HA_KEY_0)) {
 		HA_TRACE("Key positions: ");
