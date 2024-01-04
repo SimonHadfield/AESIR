@@ -12,7 +12,7 @@ void Character::Jump(double dt) {
 }
 
 void Character::UpdatePos(double dt) {
-	if (PlayerPos.y < 720.0f - 300) {
+	if (PlayerPos.y < 300.0f) {
 		dy += g * dt;
 		PlayerPos.y += dy * dt;
 	}
@@ -39,13 +39,14 @@ HA_TRACE(height);
 // init pipe pairs
 for (int i = 0; i < 5; i++) {
 	PipePairs.push_back(PipePair);
-	PipePairs[i].SetPos(glm::vec2( 0.0f + i * 200.0f, 300.0f));
-	PipePairs[i].SetSize(glm::vec2( 70.0f * 2, 288.0f * 2));
+	// 1480 / 5
+	PipePairs[i].SetPos(glm::vec3( 0.0f + i * (width + 400) / 3 , 300.0f, 0.5f));
+	PipePairs[i].SetSize(glm::vec3( 70.0f * 2, 288.0f * 2, 0.0f));
 	PipePairs[i].SetGap(200.0f);
 
 }
 
-Player.SetPos(glm::vec2(300.0f, 0.0f));
+Player.SetPos(glm::vec3(300.0f, 0.0f, 0.1f));
 }
 
 GameLayer::~GameLayer() {
@@ -56,10 +57,10 @@ void GameLayer::LoadResources() {
 	// load shaders
 	//ResourceManager::LoadShader("A:/dev/Hana/HANA/HANA/src/Renderer/res/shaders/default.vert", "A:/dev/Hana/HANA/HANA/src/Renderer/res/shaders/default.frag", nullptr, "default");
 	//ResourceManager::LoadShader("C:/dev/HANA/HANA/src/Renderer/res/shaders/default.vert", "C:/dev/HANA/HANA/src/Renderer/res/shaders/default.frag", nullptr, "default");
-	std::string solutionDir = SOLUTION_DIR;
-	const char* default_vert = (solutionDir + "/HANA/src/Renderer/res/shaders/default.vert").c_str();
-	const char* default_frag = (solutionDir + "/HANA/src/Renderer/res/shaders/default.frag").c_str();
+	const char* default_vert = "../HANA/src/Renderer/res/shaders/default.vert";
+	const char* default_frag = "../HANA/src/Renderer/res/shaders/default.frag";
 	ResourceManager::LoadShader( default_vert, default_frag, nullptr, "default");
+	
 
 	// configure shaders
 	float window_width = 1080.0f;
@@ -68,7 +69,7 @@ void GameLayer::LoadResources() {
 		static_cast<float>(window_height), 0.0f, -1.0f, 1.0f);
 
 	// load textures
-	ResourceManager::LoadTexture(Graphics::background, false, "scene_background");
+	ResourceManager::LoadTexture(Graphics::background, true, "scene_background");
 	ResourceManager::LoadTexture(Graphics::ground, true, "ground");
 	ResourceManager::LoadTexture(Graphics::turdpipe, true, "turdpipe");
 	ResourceManager::LoadTexture(Graphics::character, true, "character");
@@ -95,10 +96,6 @@ void GameLayer::displayFPS(double dt) {
 void GameLayer::OnUpdate()
 {
 	
-	std::ifstream in(Graphics::background);
-	if (!in) {
-		std::cout << "Failed to open file.\n";
-	}
 
 	// update timer
 	cur_t = Hana::Time::GetTime();
@@ -108,10 +105,8 @@ void GameLayer::OnUpdate()
 
 	//displayFPS(dt);
 
-
-	//Player.SetPos(glm::vec2(Player.GetPos().x, Player.GetPos().y + 100.0f * dt));
-
-	HA_TRACE(Player.GetPos().y);
+	//HA_TRACE(Player.GetPos().y);
+	HA_TRACE(PipePairs[0].GetPos().x);
 
 
 	if (Hana::Input::IsKeyPressed(HA_KEY_SPACE)) {
@@ -120,6 +115,8 @@ void GameLayer::OnUpdate()
 		//Player.SetPos(glm::vec2(Player.GetPos().x, Player.GetPos().y - 550.0f * dt));
 	}
 
+	if (Player.GetPos().y > floor)
+		Player.SetPos(glm::vec3(Player.GetPos().x, floor, 0.1f));
 
 	else
 	{
@@ -175,12 +172,17 @@ void GameLayer::OnUpdate()
 
 	// move pillars
 	for (int i = 0; i < 5; i++) {
-		glm::vec2 pos = PipePairs[i].GetPos();
-		glm::vec2 size = PipePairs[i].GetSize();
-		float gap = PipePairs[i].GetGap();
-		if (pos.x < 0) {
-			PipePairs[i].SetPos( glm::vec2(PipePairs[i].GetPos().x + 1080, PipePairs[i].GetPos().y ) );
+		glm::vec3 pos = PipePairs[i].GetPos();
+		
+		// if pillar beyond scope of view (move right to side of screen)
+		if (pos.x < -200) {
+			PipePairs[i].SetPos(glm::vec3(pos.x + 1080 + 200, pos.y, pos.z));
 		}
+
+		else {
+			PipePairs[i].SetPos(glm::vec3(pos.x - ground_speed * dt, pos.y, pos.z));
+		}
+		float gap = PipePairs[i].GetGap();
 	}
 
 	Player.UpdatePos(dt);
@@ -188,15 +190,15 @@ void GameLayer::OnUpdate()
 
 void GameLayer::OnRender()
 {
+	//renderable->DrawTextureQuad2D(ResourceManager::GetTexture("scene_background"), glm::vec3(cam_x, cam_y, -0.5f), glm::vec2(1157 * 2.5 * multiplier, 228 * 3.5), 0.0f, glm::vec3(1.0f, 1.0f, 1.0f));
 
-	renderable->DrawTextureQuad2D(ResourceManager::GetTexture("scene_background"), glm::vec2(cam_x, cam_y), glm::vec2(1157 * 2.5 * multiplier, 228 * 3.5), 0.0f, glm::vec3(1.0f, 1.0f, 1.0f));
 	renderable->DrawTextureQuad2D(ResourceManager::GetTexture("character"), Player.GetPos(), glm::vec2(10.0f * 20, 10.0f * 20), 0.0f, glm::vec3(1.0f, 1.0f, 1.0f));
 
 	for (int i = 0; i < 5; i++) {
-		glm::vec2 pos = PipePairs[i].GetPos();
+		glm::vec3 pos = PipePairs[i].GetPos();
 		glm::vec2 size = PipePairs[i].GetSize();
 		float gap = PipePairs[i].GetGap();
-		renderable->DrawTextureQuad2D(ResourceManager::GetTexture("turdpipe"), pos + gap * glm::vec2(0.5f, 0.5f) + glm::vec2(cam_x, cam_y), size, 0.0f, glm::vec3(1.0f, 1.0f, 1.0f));
+		renderable->DrawTextureQuad2D(ResourceManager::GetTexture("turdpipe"), pos + gap * glm::vec3(0.5f, 0.5f, 0.0f), size, 0.0f, glm::vec3(1.0f, 1.0f, 1.0f));
 		//renderable->DrawTextureQuad2D(ResourceManager::GetTexture("turdpipe"), pos - gap * glm::vec2(0.5f, 0.5f) + glm::vec2(cam_x, cam_y), size, 180.0f, glm::vec3(1.0f, 1.0f, 1.0f));
 	}
 

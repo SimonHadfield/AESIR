@@ -13,7 +13,7 @@ public:
 	// 2D
 	static void DrawQuad2D(float x, float y, float width, float height);
 
-	void DrawTextureQuad2D(Texture2D& texture, glm::vec2 position, glm::vec2 size, float rotate, glm::vec3 color);
+	void DrawTextureQuad2D(Texture2D& texture, glm::vec3 position, glm::vec2 size, float rotate, glm::vec3 color);
 	void DrawTextureQuad2D(float x, float y, float width, float height, const char* ImgPath, float scale_x, float scale_y); // texture clipping
 
 	void DrawBackground(); // glm::vec3 color and or texture - enum or string

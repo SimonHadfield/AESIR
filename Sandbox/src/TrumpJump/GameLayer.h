@@ -9,14 +9,14 @@
 
 class GameObject {
 public:
-	virtual glm::vec2 GetPos() { return this->pos; }
+	virtual glm::vec3 GetPos() { return this->pos; }
 	virtual glm::vec2 GetSize() { return this->size; }
 	float GetGap() { return this->gap; }
-	virtual void SetPos(glm::vec2 Position) { this->pos = Position; }
+	virtual void SetPos(glm::vec3 Position) { this->pos = Position; }
 	virtual void SetSize(glm::vec2 Size) { this->size = Size; }
 	void SetGap(float Gap) { this->gap = Gap; }
 private:
-	glm::vec2 pos;
+	glm::vec3 pos;
 	glm::vec2 size;
 	float gap;
 };
@@ -24,16 +24,16 @@ private:
 class Character : public GameObject
 {
 public:
-	glm::vec2 GetPos() override { return PlayerPos; }
-	void SetPos(glm::vec2 playerPos) override { PlayerPos = playerPos; }
+	glm::vec3 GetPos() override { return PlayerPos; }
+	void SetPos(glm::vec3 playerPos) override { PlayerPos = playerPos; }
 	void UpdatePos(double dt);
 	void Jump(double dt);
 	void Gravity(double dt);
 private:
-	float Jump_force = 30000.0f;
+	float Jump_force = 60000.0f;
 	float dy = 0.0f;
 	float g = 1000.0f;
-	glm::vec2 PlayerPos;
+	glm::vec3 PlayerPos;
 	glm::vec2 size;
 };
 
@@ -88,20 +88,16 @@ private:
 
 	float cam2_y = 100.0f;
 
-	const char* path = "A:/dev/Hana/HANA/HANA/src/Renderer/res/textures/Logo.png";
+	float ground_speed = 1000.0f;
+
+	const char* path = "../HANA/src/Renderer/res/textures/Logo.png";
 
 	
 	struct Graphics {
-
-		//static inline const char* background = "A:/dev/Hana/HANA/Sandbox/src/TrumpJump/graphics/background.png";
-		//static inline const char* ground = "A:/dev/Hana/HANA/sandbox/src/TrumpJump/graphics/ground.png";
-		//static inline const char* turdpipe = "A:/dev/Hana/HANA/sandbox/src/TrumpJump/graphics/turdpipe.png";
-		//static inline const char* character = "A:/dev/Hana/HANA/sandbox/src/TrumpJump/graphics/TrumpJumpCharacterIdle.png";
-
-		static inline const char* background =	(std::string(SOLUTION_DIR) + "Sandbox/src/TrumpJump/graphics/background.png").c_str();
-		static inline const char* ground =		"/TrumpJump/graphics/ground.png";
-		static inline const char* turdpipe =	"/TrumpJump/graphics/turdpipe.png";
-		static inline const char* character =	"/TrumpJump/graphics/TrumpJumpCharacterIdle.png";
+		static inline const char* background =	"./src/TrumpJump/graphics/background.png";
+		static inline const char* ground =		"./src/TrumpJump/graphics/ground.png";
+		static inline const char* turdpipe =	"./src/TrumpJump/graphics/turdpipe.png";
+		static inline const char* character =	"./src/TrumpJump/graphics/TrumpJumpCharacterIdle.png";
 	};
 
 	struct TurdPipe {
@@ -125,7 +121,8 @@ private:
 	float vy_prev = 0.0f;
 
 	float g = 25000.0f;
-	float force_y = 1500.0f;
+	float force_y = 2500.0f;
+	float floor = 300.0f;
 
 
 
