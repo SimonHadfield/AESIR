@@ -15,10 +15,13 @@ public:
 	virtual void SetPos(glm::vec3 Position) { this->pos = Position; }
 	virtual void SetSize(glm::vec2 Size) { this->size = Size; }
 	void SetGap(float Gap) { this->gap = Gap; }
+	void SetOffset(float Offset) { offset = Offset; }
+	float GetOffset() { return offset; }
 private:
 	glm::vec3 pos;
 	glm::vec2 size;
 	float gap;
+	float offset;
 };
 
 class Character : public GameObject
@@ -29,12 +32,17 @@ public:
 	void UpdatePos(double dt);
 	void Jump(double dt);
 	void Gravity(double dt);
+	void SetFloor(float Floor) { floor = Floor;}
+	void IncrementScore() { score++; }
+	unsigned int GetScore() { return score;}
 private:
-	float Jump_force = 60000.0f;
+	float Jump_force = 2 * 100000.0f;
 	float dy = 0.0f;
-	float g = 1000.0f;
+	float g = 4.0f * 1000;
 	glm::vec3 PlayerPos;
 	glm::vec2 size;
+	float floor = 500.0f;
+	unsigned int score = 0;
 };
 
 class GameLayer : public Hana::Layer
@@ -81,14 +89,18 @@ private:
 	float loopingPoint = 1176.697f * multiplier;
 
 	float cam_x = 0.0f;
-	float cam_y = -100.0f;
-
+	float cam_y = 000.0f;
 	float cam2_x = 0.0f;
+	float cam2_y = 100.0f;
 	float cam3_x = 1700.0f + 1157;
 
-	float cam2_y = 100.0f;
+	float ground_speed = 500.0f;
+	float min_gap = 200.0f;
+	float max_gap = 300.0f;
 
-	float ground_speed = 1000.0f;
+	float jump_cooldown_timer = 0.15f;
+	bool jump_cooldown = false;
+	bool gameOver = false;
 
 	const char* path = "../HANA/src/Renderer/res/textures/Logo.png";
 
@@ -111,7 +123,7 @@ private:
 	double prev_t = 0.0;
 	double fixed_timestep = 0.5;
 	double dt = 0.0;
-	double timer = 0.0;
+	double fps_timer = 0.0;
 
 	float width = 100.0f;
 	float height = 100.0f;
@@ -120,9 +132,11 @@ private:
 	float vy_cur = 0.0f;
 	float vy_prev = 0.0f;
 
-	float g = 25000.0f;
-	float force_y = 2500.0f;
-	float floor = 300.0f;
+	float g = 5.0f * (100000000);
+	float force_y = 2.5f * (100000);
+	float floor = 1000.0f;
+
+	float gap_timer;
 
 
 

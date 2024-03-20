@@ -9,14 +9,19 @@
 #include "Hana/MouseButtonCodes.h"
 #include "Hana/StateMachine.h"
 
+// GLM
+#include "glm/glm.hpp"
+#include "glm/gtc/matrix_transform.hpp"
+#include "glm/gtc/type_ptr.hpp"
+
 class SceneLayer : public Hana::Layer
 {
 public:
 	SceneLayer();
-	virtual ~SceneLayer() override;
+	virtual ~SceneLayer() override ;
 
-	void init();
-
+	virtual void LoadResources() override;
+	
 	virtual void OnAttach() override;
 	virtual void OnDetach() override;
 	virtual void OnRender() override;
@@ -26,7 +31,7 @@ public:
 	void displayFPS(double dt);
 
 private:
-	// Renderable *renderable;
+	Renderable *renderable;
 	float Width = 1080.0f;
 	float Height = 720.0f;
 
@@ -37,6 +42,10 @@ private:
 	double fixed_timestep = 0.5;
 	double dt = 0.0;
 	double timer = 0.0;
+
+	glm::vec3 pos = glm::vec3(0.1f, 0.1f, 0.5f);
+	glm::vec3 dimen = glm::vec3(100.0f, 100.0f, 100.0f);
+
 
 	Hana::Application appInstance;
 

@@ -4,21 +4,39 @@
 
 SceneLayer::SceneLayer() {}
 SceneLayer::~SceneLayer() {}
+
+void SceneLayer::LoadResources() {
+	// load shaders
+	const char* default_vert = "../HANA/src/Renderer/res/shaders/default.vert";
+	const char* default_frag = "../HANA/src/Renderer/res/shaders/default.frag";
+	ResourceManager::LoadShader(default_vert, default_frag, nullptr, "default");
+
+	const char* background_vert = "../HANA/src/Renderer/res/shaders/background.vert";
+	const char* background_frag = "../HANA/src/Renderer/res/shaders/background.frag";
+	ResourceManager::LoadShader(background_vert, background_frag, nullptr, "default");
+
+	// configure shaders
+	float window_width = 1080.0f;
+	float window_height = 720.0f;
+	glm::mat4 projection = glm::ortho(0.0f, static_cast<float>(window_width),
+		static_cast<float>(window_height), 0.0f, -1.0f, 1.0f);
+
+	// load textures
+	// ResourceManager::LoadTexture(Graphics::background, true, "scene_background");
+	
+
+	ResourceManager::GetShader("default").Use().SetInteger("image", 0);
+	ResourceManager::GetShader("default").SetMatrix4("projection", projection);
+
+	ResourceManager::GetShader("background").Use().SetInteger("image", 0);
+	ResourceManager::GetShader("background").SetMatrix4("projection", projection);
+
+	// set render-specific controls
+	this->renderable = new Renderable(ResourceManager::GetShader("default"));
+}
+
 void SceneLayer::OnAttach() {}
 void SceneLayer::OnDetach() {}
-
-void SceneLayer::init() {
-	// load shaders
-	//A:/dev/Hana/HANA/HANA/src/Renderer/res/shaders/background.vert", "A:/dev/Hana/HANA/HANA/src/Renderer/res/shaders/background.frag
-	//ResourceManager::LoadShader("A:/dev/Hana/HANA/HANA/src/Renderer/res/shaders/background.vert", "A:/dev/Hana/HANA/HANA/src/Renderer/res/shaders//background.frag", /nullptr, "sprite");
-	//// configure shaders
-	//glm::mat4 projection = glm::ortho(0.0f, static_cast<float>(this->Width),
-	//	static_cast<float>(this->Height), 0.0f, -1.0f, 1.0f);
-	//ResourceManager::GetShader("sprite").Use().SetInteger("image", 0);
-	//ResourceManager::GetShader("sprite").SetMatrix4("projection", projection);
-	//// set render-specific controls
-	//renderable = new Renderable(ResourceManager::GetShader("sprite"));
-}
 
 void SceneLayer::displayFPS(double dt) {
 	timer += dt;
@@ -43,7 +61,8 @@ void SceneLayer::OnRender()
 	// render background - need to add mvp transforms
 	// Renderable::DrawTextureQuad2D(-0.5f, -0.5f, 1.0f, 1.0f, path);
 	// Renderable::DrawBackground();
-	//renderable->DrawBackground();
+	renderable->DrawCuboid(pos, dimen);
+	renderable->DrawBackground(glm::vec3(1.0f,1.0f,0.0f));
 
 }
 

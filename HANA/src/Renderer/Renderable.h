@@ -16,14 +16,14 @@ public:
 	void DrawTextureQuad2D(Texture2D& texture, glm::vec3 position, glm::vec2 size, float rotate, glm::vec3 color);
 	void DrawTextureQuad2D(float x, float y, float width, float height, const char* ImgPath, float scale_x, float scale_y); // texture clipping
 
-	void DrawBackground(); // glm::vec3 color and or texture - enum or string
+	void DrawBackground(glm::vec3 color); // glm::vec3 color and or texture - enum or string
 
 	static void DrawImGui(int player1Score, int player2Score); // to abstract ###############################################
 	static void DrawImGuiText(const std::string& Text, unsigned int x = 0, unsigned int y = 0, float fontSize = 2.0f, unsigned int Alignment = 0); //std::string Text, int x, int y, float size
 
 
 	// 3D 
-	static void DrawCuboid(glm::vec3 pos, glm::vec3 dimensions);
+	void DrawCuboid(glm::vec3 pos, glm::vec3 dimen);
 	static void Draw3DScene();
 
 private:

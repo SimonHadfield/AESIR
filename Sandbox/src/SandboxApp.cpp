@@ -13,8 +13,8 @@ public:
 	{
 
 
-		PushLayer(new GameLayer());
-		//PushLayer(new SceneLayer());
+		//PushLayer(new GameLayer());
+		PushLayer(new SceneLayer());
 
 	}
 

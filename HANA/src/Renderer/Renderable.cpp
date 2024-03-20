@@ -14,13 +14,13 @@ void Renderable::initRenderData()
 	unsigned int VBO;
 	float vertices[] = {
 		// pos          // tex
-		0.0f, 1.0f, 0.0f, 1.0f,
-		1.0f, 0.0f, 1.0f, 0.0f,
-		0.0f, 0.0f, 0.0f, 0.0f,
+		0.0f, 1.0f,		0.0f, 1.0f,
+		1.0f, 0.0f,		1.0f, 0.0f,
+		0.0f, 0.0f,		0.0f, 0.0f,
 
-		0.0f, 1.0f, 0.0f, 1.0f,
-		1.0f, 1.0f, 1.0f, 1.0f,
-		1.0f, 0.0f, 1.0f, 0.0f
+		0.0f, 1.0f,		0.0f, 1.0f,
+		1.0f, 1.0f,		1.0f, 1.0f,
+		1.0f, 0.0f,		1.0f, 0.0f
 	};
 
 	glGenVertexArrays(1, &this->quadVAO);
@@ -57,7 +57,7 @@ void Renderable::DrawTextureQuad2D(Texture2D& texture, glm::vec3 position, glm::
 	glBindVertexArray(0);
 }
 
-void Renderable::DrawBackground() // glm::vec3 color
+void Renderable::DrawBackground(glm::vec3 color) // glm::vec3 color
 {
 	glm::vec2 position;
 	glm::vec2 size;
@@ -74,28 +74,125 @@ void Renderable::DrawBackground() // glm::vec3 color
 
 	glm::mat4 model = glm::mat4(1.0f);
 	model = glm::translate(model, glm::vec3(position, 0.0f));  // first translate (transformations are: scale happens first, then rotation, and then final //translation happens; reversed order)
-	//
-	//model = glm::translate(model, glm::vec3(-0.0f, -0.0f, 0.0f)); // move origin of rotation to center of quad
-	//model = glm::rotate(model, glm::radians(rotate), glm::vec3(0.0f, 0.0f, 1.0f)); // then rotate
-	//model = glm::translate(model, glm::vec3(-0.5f * size.x, -0.5f * size.y, 0.0f)); // move origin back
-	//
+
 	model = glm::scale(model, glm::vec3(size, 1.0f)); // last scale
-	//
 	this->shaderProgram.SetMatrix4("model", model);
-
-	// render textured quad
-	//this->shader.SetVector3f("spriteColor", color);
-
-	//glActiveTexture(GL_TEXTURE0);
-	//texture.Bind();
+	this->shaderProgram.SetVector3f("Color", color);
 
 	glBindVertexArray(this->quadVAO);
 	glDrawArrays(GL_TRIANGLES, 0, 6);
 	glBindVertexArray(0);
 }
 
+void Renderable::DrawImGuiText(const std::string& Text, unsigned int x, unsigned int y, float fontSize, unsigned int Alignment) {
+
+	ImGui::GetIO().FontGlobalScale = fontSize;
+	ImGui::GetStyle().AntiAliasedLines = true;
+	ImGui::GetStyle().AntiAliasedFill = true;
+	
+	ImGui_ImplOpenGL3_NewFrame();
+	ImGui_ImplGlfw_NewFrame();
+	ImGui::NewFrame();
+	//
+	
+	// Display scores in the middle
+	//ImVec2 Pos = ImVec2(x, y);
+	//ImGui::SetNextWindowPos(Pos, ImGuiCond_Always, ImVec2(0.5f, 0.5f));
+
+	ImVec2 Pos = ImVec2(ImGui::GetIO().DisplaySize.x * 0.5f, ImGui::GetIO().DisplaySize.y * 0.05f);
+	
+	// Alignment - 0 (x, y values), 1 (Left aligned, y), 2 (center aligned, y), 3 (Right aligned, y), 4 (Full Centered)
+	if (Alignment == 0) {
+		Pos = ImVec2(x, y);
+	}
+	if (Alignment == 2)
+		Pos = ImVec2(ImGui::GetIO().DisplaySize.x * 0.5f, y);
+	if (Alignment == 4)
+		Pos = ImVec2(ImGui::GetIO().DisplaySize.x * 0.5f, ImGui::GetIO().DisplaySize.y * 0.5f);
+
+	ImGui::SetNextWindowPos(Pos, ImGuiCond_Always, ImVec2(0.5f, 0.5f));
+	
+	// Set the width of the window to be the window width
+	ImGui::SetNextWindowSize(ImVec2(ImGui::GetIO().DisplaySize.x, 100), ImGuiCond_Always);
+	
+	ImGui::GetColorU32(BACKGROUND_BLUE);
+	
+	// Create a window to display scores
+	ImGui::Begin("Text", nullptr, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize |
+		ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoBackground);
+	
+	// Display Player 1's score on the left
+	ImVec2 player1TextSize = ImGui::CalcTextSize(Text.c_str());
+	ImGui::SetCursorPos(ImVec2(Pos.x - player1TextSize.x/2, 70));
+	ImGui::Text(Text.c_str());
+
+	ImGui::End();
+
+	//// Render ImGui
+	ImGui::Render();
+	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+}
+
+void Renderable::DrawCuboid(glm::vec3 pos, glm::vec3 dimen) {
+
+	this->shaderProgram.Use();
+
+	glm::mat4 model = glm::mat4(1.0f);
+	model = glm::translate(model, pos);  // first translate (transformations are: scale happens first, then rotation, and then final //translation happens; reversed order)
+
+	glm::vec3 color = glm::vec3(0.5f, 0.5f, 0.5f);
+
+
+	model = glm::scale(model, dimen); // last scale
+	this->shaderProgram.SetMatrix4("model", model);
+	this->shaderProgram.SetVector3f("Color", color);
+
+	glBindVertexArray(this->quadVAO);
+	glDrawArrays(GL_TRIANGLES, 0, 6);
+	glBindVertexArray(0);
+}
 
 /*
+void Renderable::DrawImGui(int player1Score, int player2Score) {
+	
+	ImGui::GetIO().FontGlobalScale = 2.0f;
+	ImGui::GetStyle().AntiAliasedLines = true;
+	ImGui::GetStyle().AntiAliasedFill = true;
+	
+	ImGui_ImplOpenGL3_NewFrame();
+	ImGui_ImplGlfw_NewFrame();
+	ImGui::NewFrame();
+
+
+	// Display scores in the middle
+	ImVec2 middlePos = ImVec2(ImGui::GetIO().DisplaySize.x * 0.5f, ImGui::GetIO().DisplaySize.y * 0.05f);
+	ImGui::SetNextWindowPos(middlePos, ImGuiCond_Always, ImVec2(0.5f, 0.5f));
+
+	// Set the width of the window to be the window width
+	ImGui::SetNextWindowSize(ImVec2(ImGui::GetIO().DisplaySize.x, 100), ImGuiCond_Always);
+
+
+	// Create a window to display scores
+	ImGui::Begin("Scores", nullptr, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize |
+		ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoBackground);
+
+	// Display Player 1's score on the left
+	std::string player1Text = "Player 1: " + std::to_string(player1Score);
+	ImVec2 player1TextSize = ImGui::CalcTextSize(player1Text.c_str());
+	ImGui::SetCursorPos(ImVec2(middlePos.x - player1TextSize.x - ImGui::GetWindowSize().x * 0.35f, 70));
+	ImGui::Text("Player 1: %d", player1Score);
+
+	// Display Player 2's score on the right
+	ImGui::SetCursorPos(ImVec2(middlePos.x + ImGui::GetWindowSize().x * 0.35f, 70));
+	ImGui::Text("Player 2: %d", player2Score);
+
+	ImGui::End();
+
+	// Render ImGui
+	ImGui::Render();
+	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+
+}
 void Renderable::DrawQuad2D(float x, float y, float width, float height) {
 
 	GLfloat vertices[] =
@@ -251,94 +348,7 @@ void Renderable::DrawTextureQuad2D(float x, float y, float width, float height, 
 
 }
 
-void Renderable::DrawImGui(int player1Score, int player2Score) {
-	
-	ImGui::GetIO().FontGlobalScale = 2.0f;
-	ImGui::GetStyle().AntiAliasedLines = true;
-	ImGui::GetStyle().AntiAliasedFill = true;
-	
-	ImGui_ImplOpenGL3_NewFrame();
-	ImGui_ImplGlfw_NewFrame();
-	ImGui::NewFrame();
 
-
-	// Display scores in the middle
-	ImVec2 middlePos = ImVec2(ImGui::GetIO().DisplaySize.x * 0.5f, ImGui::GetIO().DisplaySize.y * 0.05f);
-	ImGui::SetNextWindowPos(middlePos, ImGuiCond_Always, ImVec2(0.5f, 0.5f));
-
-	// Set the width of the window to be the window width
-	ImGui::SetNextWindowSize(ImVec2(ImGui::GetIO().DisplaySize.x, 100), ImGuiCond_Always);
-
-
-	// Create a window to display scores
-	ImGui::Begin("Scores", nullptr, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize |
-		ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoBackground);
-
-	// Display Player 1's score on the left
-	std::string player1Text = "Player 1: " + std::to_string(player1Score);
-	ImVec2 player1TextSize = ImGui::CalcTextSize(player1Text.c_str());
-	ImGui::SetCursorPos(ImVec2(middlePos.x - player1TextSize.x - ImGui::GetWindowSize().x * 0.35f, 70));
-	ImGui::Text("Player 1: %d", player1Score);
-
-	// Display Player 2's score on the right
-	ImGui::SetCursorPos(ImVec2(middlePos.x + ImGui::GetWindowSize().x * 0.35f, 70));
-	ImGui::Text("Player 2: %d", player2Score);
-
-	ImGui::End();
-
-	// Render ImGui
-	ImGui::Render();
-	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-
-}
-
-void Renderable::DrawImGuiText(const std::string& Text, unsigned int x, unsigned int y, float fontSize, unsigned int Alignment) {
-
-	ImGui::GetIO().FontGlobalScale = fontSize;
-	ImGui::GetStyle().AntiAliasedLines = true;
-	ImGui::GetStyle().AntiAliasedFill = true;
-	
-	ImGui_ImplOpenGL3_NewFrame();
-	ImGui_ImplGlfw_NewFrame();
-	ImGui::NewFrame();
-	//
-	
-	// Display scores in the middle
-	//ImVec2 Pos = ImVec2(x, y);
-	//ImGui::SetNextWindowPos(Pos, ImGuiCond_Always, ImVec2(0.5f, 0.5f));
-
-	ImVec2 Pos = ImVec2(ImGui::GetIO().DisplaySize.x * 0.5f, ImGui::GetIO().DisplaySize.y * 0.05f);
-	
-	// Alignment - 0 (x, y values), 1 (Left aligned, y), 2 (center aligned, y), 3 (Right aligned, y), 4 (Full Centered)
-	if (Alignment == 0) {
-		Pos = ImVec2(x, y);
-	}
-	if (Alignment == 2)
-		Pos = ImVec2(ImGui::GetIO().DisplaySize.x * 0.5f, y);
-	if (Alignment == 4)
-		Pos = ImVec2(ImGui::GetIO().DisplaySize.x * 0.5f, ImGui::GetIO().DisplaySize.y * 0.5f);
-
-	ImGui::SetNextWindowPos(Pos, ImGuiCond_Always, ImVec2(0.5f, 0.5f));
-	
-	// Set the width of the window to be the window width
-	ImGui::SetNextWindowSize(ImVec2(ImGui::GetIO().DisplaySize.x, 100), ImGuiCond_Always);
-	
-	
-	// Create a window to display scores
-	ImGui::Begin("Text", nullptr, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize |
-		ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoBackground);
-	
-	// Display Player 1's score on the left
-	ImVec2 player1TextSize = ImGui::CalcTextSize(Text.c_str());
-	ImGui::SetCursorPos(ImVec2(Pos.x - player1TextSize.x/2, 70));
-	ImGui::Text(Text.c_str());
-
-	ImGui::End();
-
-	//// Render ImGui
-	ImGui::Render();
-	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-}
 
 void Renderable::DrawCuboid(glm::vec3 pos, glm::vec3 dimensions) {
 	GLfloat vertices[] =
