@@ -7,12 +7,12 @@ SceneLayer::~SceneLayer() {}
 
 void SceneLayer::LoadResources() {
 	// load shaders
-	const char* default_vert = "../HANA/src/Renderer/res/shaders/default.vert";
-	const char* default_frag = "../HANA/src/Renderer/res/shaders/default.frag";
+	const char* default_vert = "../Aesir/src/Renderer/res/shaders/default.vert";
+	const char* default_frag = "../Aesir/src/Renderer/res/shaders/default.frag";
 	ResourceManager::LoadShader(default_vert, default_frag, nullptr, "default");
 
-	const char* background_vert = "../HANA/src/Renderer/res/shaders/background.vert";
-	const char* background_frag = "../HANA/src/Renderer/res/shaders/background.frag";
+	const char* background_vert = "../Aesir/src/Renderer/res/shaders/background.vert";
+	const char* background_frag = "../Aesir/src/Renderer/res/shaders/background.frag";
 	ResourceManager::LoadShader(background_vert, background_frag, nullptr, "default");
 
 	// configure shaders
@@ -48,7 +48,7 @@ void SceneLayer::displayFPS(double dt) {
 void SceneLayer::OnUpdate()
 {
 	// update timer
-	cur_t = Hana::Time::GetTime();
+	cur_t = Aesir::Time::GetTime();
 	dt = cur_t - prev_t;
 	prev_t = cur_t;
 	fps = 1 / dt;

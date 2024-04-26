@@ -2,9 +2,9 @@
 
 #include "Renderer.h"
 #include <string>
-//#include "HanaCube.h"
+//#include "AesirCube.h"
 
-class HANA_API Renderable
+class Aesir_API Renderable
 {
 public:
 	Renderable() {}

@@ -1,11 +1,11 @@
-#include "Hana.h" 
-#include "Hana/EntryPoint.h"
+#include "Aesir.h" 
+#include "Aesir/EntryPoint.h"
 
 //#include "Pong/GameLayer.h"
 #include "TrumpJump/GameLayer.h"
 #include "3DTestScene/SceneLayer.h"
 
-class Sandbox : public Hana::Application
+class Sandbox : public Aesir::Application
 {
 public:
 
@@ -25,7 +25,7 @@ public:
 
 
 
-Hana::Application* Hana::CreateApplication()
+Aesir::Application* Aesir::CreateApplication()
 {
 	return new Sandbox();
 }

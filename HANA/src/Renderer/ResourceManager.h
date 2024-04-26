@@ -7,7 +7,7 @@
 #include "shaderClass.h"
 
 // Singleton class to host functions that load Shaders
-class HANA_API ResourceManager
+class Aesir_API ResourceManager
 {
 public:
 	static std::map<std::string, Shader> Shaders;

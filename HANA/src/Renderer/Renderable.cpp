@@ -211,7 +211,7 @@ void Renderable::DrawQuad2D(float x, float y, float width, float height) {
 		0, 3, 2
 	};
 
-	Shader shaderProgram("A:/dev/Hana/HANA/HANA/src/Renderer/res/shaders/default.vert", "A:/dev/Hana/HANA/HANA/src/Renderer/res/shaders/default.frag"); //  create shader with vertexShader and fragmentShader
+	Shader shaderProgram("A:/dev/Aesir/Aesir/Aesir/src/Renderer/res/shaders/default.vert", "A:/dev/Aesir/Aesir/Aesir/src/Renderer/res/shaders/default.frag"); //  create shader with vertexShader and fragmentShader
 	VAO VAO1;										// create vertex array
 	VAO1.Bind();									// bind vertex array 
 
@@ -249,7 +249,7 @@ void Renderable::DrawTextureQuad2D(float x, float y, float width, float height, 
 			x + width, y,           0.1f,	 1.0f, 0.0f
 	};
 
-	Shader shaderProgram("A:/dev/Hana/HANA/HANA/src/Renderer/res/shaders/texture.vert", "A:/dev/Hana/HANA/HANA/src/Renderer/res/shaders/texture.frag"); //  create shader with vertexShader and fragmentShader
+	Shader shaderProgram("A:/dev/Aesir/Aesir/Aesir/src/Renderer/res/shaders/texture.vert", "A:/dev/Aesir/Aesir/Aesir/src/Renderer/res/shaders/texture.frag"); //  create shader with vertexShader and fragmentShader
 	VAO VAO1;										// create vertex array
 	VAO1.Bind();									// bind vertex array 
 
@@ -305,7 +305,7 @@ void Renderable::DrawTextureQuad2D(float x, float y, float width, float height, 
 			x + width, y,           0.1f,			1.0f * scale_x,		0.0f
 	};
 
-	Shader shaderProgram("A:/dev/Hana/HANA/HANA/src/Renderer/res/shaders/texture.vert", "A:/dev/Hana/HANA/HANA/src/Renderer/res/shaders/texture.frag"); //  create shader with vertexShader and fragmentShader
+	Shader shaderProgram("A:/dev/Aesir/Aesir/Aesir/src/Renderer/res/shaders/texture.vert", "A:/dev/Aesir/Aesir/Aesir/src/Renderer/res/shaders/texture.frag"); //  create shader with vertexShader and fragmentShader
 	VAO VAO1;										// create vertex array
 	VAO1.Bind();									// bind vertex array 
 

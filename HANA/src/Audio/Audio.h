@@ -1,6 +1,6 @@
 #pragma once
 
-namespace Hana {
+namespace Aesir {
 
 	class Audio {
 	public:

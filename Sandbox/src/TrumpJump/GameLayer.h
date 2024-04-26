@@ -1,11 +1,11 @@
 #pragma once
 
-#include "Hana.h"
-#include "Hana/Time.h"
-#include "Hana/Input.h"
-#include "Hana/KeyCodes.h"
-#include "Hana/MouseButtonCodes.h"
-#include "Hana/StateMachine.h"
+#include "Aesir.h"
+#include "Aesir/Time.h"
+#include "Aesir/Input.h"
+#include "Aesir/KeyCodes.h"
+#include "Aesir/MouseButtonCodes.h"
+#include "Aesir/StateMachine.h"
 
 class GameObject {
 public:
@@ -45,7 +45,7 @@ private:
 	unsigned int score = 0;
 };
 
-class GameLayer : public Hana::Layer
+class GameLayer : public Aesir::Layer
 {
 public:
 	std::vector<GameObject> PipePairs;
@@ -102,7 +102,7 @@ private:
 	bool jump_cooldown = false;
 	bool gameOver = false;
 
-	const char* path = "../HANA/src/Renderer/res/textures/Logo.png";
+	const char* path = "../Aesir/src/Renderer/res/textures/Logo.png";
 
 	
 	struct Graphics {
@@ -140,6 +140,6 @@ private:
 
 
 
-	Hana::Application appInstance;
+	Aesir::Application appInstance;
 
 };

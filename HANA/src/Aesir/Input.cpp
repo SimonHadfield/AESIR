@@ -1,7 +1,7 @@
 #include "Input.h"
 
 
-namespace Hana {
+namespace Aesir {
 
 	bool Input::IsKeyPressed(int keycode) {
 

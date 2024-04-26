@@ -1,14 +1,14 @@
 #pragma once
 
 
-#include "../Hana/Core.h"
+#include "../Aesir/Core.h"
 
 // GLM
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
 #include "glm/gtc/type_ptr.hpp"
 
-class HANA_API OrthographicCamera {
+class Aesir_API OrthographicCamera {
 
 public:
 	OrthographicCamera(float left = 1.0f, float right = -1.0f, float bottom = -1.0f, float top = 1.0f, float nearClip = -1.0f, float farClip = 1.0f);

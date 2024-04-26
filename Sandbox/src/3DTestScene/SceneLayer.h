@@ -2,19 +2,19 @@
 
 #pragma once
 
-#include "Hana.h"
-#include "Hana/Time.h"
-#include "Hana/Input.h"
-#include "Hana/KeyCodes.h"
-#include "Hana/MouseButtonCodes.h"
-#include "Hana/StateMachine.h"
+#include "Aesir.h"
+#include "Aesir/Time.h"
+#include "Aesir/Input.h"
+#include "Aesir/KeyCodes.h"
+#include "Aesir/MouseButtonCodes.h"
+#include "Aesir/StateMachine.h"
 
 // GLM
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
 #include "glm/gtc/type_ptr.hpp"
 
-class SceneLayer : public Hana::Layer
+class SceneLayer : public Aesir::Layer
 {
 public:
 	SceneLayer();
@@ -35,7 +35,7 @@ private:
 	float Width = 1080.0f;
 	float Height = 720.0f;
 
-	const char* path = "A:/dev/Hana/HANA/HANA/src/Renderer/res/textures/Logo.png";
+	const char* path = "A:/dev/Aesir/Aesir/Aesir/src/Renderer/res/textures/Logo.png";
 	double cur_t = 0.0;
 	double fps = 0.0;
 	double prev_t = 0.0;
@@ -47,6 +47,6 @@ private:
 	glm::vec3 dimen = glm::vec3(100.0f, 100.0f, 100.0f);
 
 
-	Hana::Application appInstance;
+	Aesir::Application appInstance;
 
 };

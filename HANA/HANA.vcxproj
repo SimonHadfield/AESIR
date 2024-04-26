@@ -19,7 +19,8 @@
     <IgnoreWarnCompileDuplicatedFilename>true</IgnoreWarnCompileDuplicatedFilename>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>HANA</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.22621.0</WindowsTargetPlatformVersion>
+    <ProjectName>AESIR</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
@@ -55,9 +56,9 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>..\bin\Debug.windows.x86_64\HANA\</OutDir>
-    <IntDir>..\bin-int\Debug.windows.x86_64\HANA\</IntDir>
-    <TargetName>HANA</TargetName>
+    <OutDir>..\bin\Debug.windows.x86_64\AESIR\</OutDir>
+    <IntDir>..\bin-int\Debug.windows.x86_64\AESIR\</IntDir>
+    <TargetName>AESIR</TargetName>
     <TargetExt>.dll</TargetExt>
     <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)HANA\vendor\include;$(ProjectDir)vendor\imgui</IncludePath>
     <LibraryPath>$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(SolutionDir)HANA\vendor\lib</LibraryPath>
@@ -101,7 +102,7 @@
       <ImportLibrary>..\bin\Debug.windows.x86_64\HANA\HANA.lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
-      <Command>IF EXIST ..\bin\Debug.windows.x86_64\HANA\HANA.dll\ (xcopy /Q /E /Y /I ..\bin\Debug.windows.x86_64\HANA\HANA.dll ..\bin\Debug.windows.x86_64\Sandbox &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Debug.windows.x86_64\HANA\HANA.dll ..\bin\Debug.windows.x86_64\Sandbox &gt; nul)</Command>
+      <Command>IF EXIST ..\bin\Debug.windows.x86_64\AESIR\AESIR.dll\ (xcopy /Q /E /Y /I ..\bin\Debug.windows.x86_64\AESIR\AESIR.dll ..\bin\Debug.windows.x86_64\Sandbox &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Debug.windows.x86_64\AESIR\AESIR.dll ..\bin\Debug.windows.x86_64\Sandbox &gt; nul)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

@@ -1,7 +1,7 @@
 #include "Renderer/Renderer.h"
 
 
-namespace Hana {
+namespace Aesir {
 
 	//Renderer::~Renderer() {
 	//glfwTerminate();

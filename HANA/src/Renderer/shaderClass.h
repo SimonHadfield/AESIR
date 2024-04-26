@@ -11,12 +11,12 @@
 
 #include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>
-#include "../Hana/Core.h"
+#include "../Aesir/Core.h"
 
 
 std::string get_file_contents(const char* filename);
 
-//class HANA_API Shader
+//class Aesir_API Shader
 //{
 //public:
 //	GLuint ID;
@@ -27,7 +27,7 @@ std::string get_file_contents(const char* filename);
 //};
 
 
-class HANA_API Shader
+class Aesir_API Shader
 {
 public:
     // state

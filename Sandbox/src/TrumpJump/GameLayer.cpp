@@ -68,8 +68,8 @@ GameLayer::~GameLayer() {
 
 void GameLayer::LoadResources() {
 	// load shaders
-	const char* default_vert = "../HANA/src/Renderer/res/shaders/default.vert";
-	const char* default_frag = "../HANA/src/Renderer/res/shaders/default.frag";
+	const char* default_vert = "../Aesir/src/Renderer/res/shaders/default.vert";
+	const char* default_frag = "../Aesir/src/Renderer/res/shaders/default.frag";
 	ResourceManager::LoadShader( default_vert, default_frag, nullptr, "default");
 	
 	// configure shaders
@@ -108,7 +108,7 @@ void GameLayer::OnUpdate()
 	
 
 	// update timer
-	cur_t = Hana::Time::GetTime();
+	cur_t = Aesir::Time::GetTime();
 	dt = cur_t - prev_t;
 	prev_t = cur_t;
 	fps = 1 / dt;
@@ -117,7 +117,7 @@ void GameLayer::OnUpdate()
 
 	if (!jump_cooldown && !gameOver)
 	{
-		if (Hana::Input::IsKeyPressed(HA_KEY_SPACE) || Hana::Input::IsMouseButtonPressed(HA_MOUSE_BUTTON_1)) {
+		if (Aesir::Input::IsKeyPressed(HA_KEY_SPACE) || Aesir::Input::IsMouseButtonPressed(HA_MOUSE_BUTTON_1)) {
 			Player.Jump(dt);
 			jump_cooldown = true;
 		}
@@ -144,7 +144,7 @@ void GameLayer::OnUpdate()
 
 	cam_x -= (300.0f * dt);
 
-	if (Hana::Input::IsKeyPressed(HA_KEY_D)) {
+	if (Aesir::Input::IsKeyPressed(HA_KEY_D)) {
 		//cam_x += 300.0f * dt;
 		loopingPoint += 10.0f;
 		HA_TRACE(loopingPoint);

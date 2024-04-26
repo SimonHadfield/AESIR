@@ -5,8 +5,8 @@
 #include <GLFW/glfw3.h>
 
 // include window
-// #include "Hana/Window.h"
-#include "Hana/Log.h"
+// #include "Aesir/Window.h"
+#include "Aesir/Log.h"
 
 
 // GLM
@@ -32,7 +32,7 @@
 
 class Renderable;
 
-namespace Hana {
+namespace Aesir {
 
 	class Renderer
 	{

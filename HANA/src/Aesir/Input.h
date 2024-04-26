@@ -6,9 +6,9 @@
 #include "Application.h"
 
 
-namespace Hana {
+namespace Aesir {
 
-	class HANA_API Input
+	class AESIR_API Input
 	{
 	public:
 		// Keys / Buttons

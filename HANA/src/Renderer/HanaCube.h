@@ -1,6 +1,6 @@
 #pragma once
 
-namespace Hana {
+namespace Aesir {
 	// 3D vertices for cube (no colour)
 	GLfloat Cube_vertices[] =
 	{
