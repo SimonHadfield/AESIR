@@ -11,9 +11,9 @@
 
 #include "Time.h"
 
-namespace Hana {
+namespace Aesir {
 
-	class HANA_API Application
+	class AESIR_API Application
 	{
 	public:
 		// Application();

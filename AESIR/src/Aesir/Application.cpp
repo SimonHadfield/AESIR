@@ -1,10 +1,10 @@
 #include "Application.h"
 
-#include "Hana/Events/ApplicationEvent.h"
-#include "Hana/Log.h"
+#include "Aesir/Events/ApplicationEvent.h"
+#include "Aesir/Log.h"
 #include "Layers/ImguiLayer.h"
 
-namespace Hana {
+namespace Aesir {
 	
 	Application::~Application() {}
 
@@ -19,11 +19,11 @@ namespace Hana {
 		WindowResizeEvent e(1280, 720);
 		if (e.IsInCategory(EventCategoryApplication))
 		{
-			HA_TRACE(e);
+			AE_TRACE(e);
 		}
 		if (e.IsInCategory(EventCategoryInput))
 		{
-			HA_TRACE(e);
+			AE_TRACE(e);
 		}
 
 		

@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Aesir">
+      <UniqueIdentifier>{5992D00C-C5A6-F8BD-8E28-9C1DFAFBF4EE}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Aesir\Events">
+      <UniqueIdentifier>{1D0091FC-0963-20A1-B2E8-58579E2AEC23}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Aesir\Layers">
+      <UniqueIdentifier>{F8EA730B-E44D-03B0-8DD3-3B667915CF32}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Audio">
+      <UniqueIdentifier>{9718D90C-032D-01BE-CCAE-A41D3882FDEE}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Renderer">
+      <UniqueIdentifier>{7CCE658F-689B-C09A-91B4-AE427DE0F528}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\Aesir.h" />
+    <ClInclude Include="src\Aesir\Application.h">
+      <Filter>Aesir</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Aesir\Core.h">
+      <Filter>Aesir</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Aesir\EntryPoint.h">
+      <Filter>Aesir</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Aesir\Events\ApplicationEvent.h">
+      <Filter>Aesir\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Aesir\Events\Event.h">
+      <Filter>Aesir\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Aesir\Events\KeyEvent.h">
+      <Filter>Aesir\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Aesir\Events\MouseEvent.h">
+      <Filter>Aesir\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Aesir\Input.h">
+      <Filter>Aesir</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Aesir\KeyCodes.h">
+      <Filter>Aesir</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Aesir\Layers\ImguiLayer.h">
+      <Filter>Aesir\Layers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Aesir\Layers\Layer.h">
+      <Filter>Aesir\Layers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Aesir\Layers\LayerStack.h">
+      <Filter>Aesir\Layers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Aesir\Log.h">
+      <Filter>Aesir</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Aesir\MouseButtonCodes.h">
+      <Filter>Aesir</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Aesir\StateMachine.h">
+      <Filter>Aesir</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Aesir\Time.h">
+      <Filter>Aesir</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Aesir\Window.h">
+      <Filter>Aesir</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Audio\Audio.h">
+      <Filter>Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Renderer\EBO.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Renderer\HanaCube.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Renderer\OrthographicCamera.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Renderer\Renderable.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Renderer\Renderer.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Renderer\ResourceManager.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Renderer\Texture2D.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Renderer\VAO.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Renderer\VBO.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Renderer\shaderClass.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Aesir\Application.cpp">
+      <Filter>Aesir</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Aesir\Input.cpp">
+      <Filter>Aesir</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Aesir\Layers\ImguiLayer.cpp">
+      <Filter>Aesir\Layers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Aesir\Layers\Layer.cpp">
+      <Filter>Aesir\Layers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Aesir\Layers\LayerStack.cpp">
+      <Filter>Aesir\Layers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Aesir\Log.cpp">
+      <Filter>Aesir</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Aesir\StateMachine.cpp">
+      <Filter>Aesir</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Aesir\Window.cpp">
+      <Filter>Aesir</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Audio\Audio.cpp">
+      <Filter>Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Renderer\EBO.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Renderer\OrthographicCamera.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Renderer\Renderable.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Renderer\Renderer.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Renderer\ResourceManager.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Renderer\Texture2D.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Renderer\VAO.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Renderer\VBO.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Renderer\glad.c">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Renderer\shaderClass.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Renderer\stb.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

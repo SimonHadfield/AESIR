@@ -3,9 +3,9 @@
 #include <GLFW/glfw3.h>
 #include "Core.h"
 
-namespace Hana {
+namespace Aesir {
 
-	class HANA_API Time
+	class AESIR_API Time
 	{
 	public:
 		static double GetTime() { return glfwGetTime(); }

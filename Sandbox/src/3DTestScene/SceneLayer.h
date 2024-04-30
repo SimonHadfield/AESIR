@@ -1,7 +1,6 @@
 #pragma once
 
 #pragma once
-
 #include "Aesir.h"
 #include "Aesir/Time.h"
 #include "Aesir/Input.h"

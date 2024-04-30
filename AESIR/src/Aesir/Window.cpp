@@ -1,8 +1,8 @@
 #include "Window.h"
-#include "HanaCube.h"
+#include "AesirCube.h"
 
 
-namespace Hana {
+namespace Aesir {
 
     Window::Window() {}
     Window::~Window() {}
@@ -26,7 +26,7 @@ namespace Hana {
         
         if (m_Window == NULL)																			// Check GLFW window opens
         {
-            HA_CRITICAL("Failed to create GLFW window");
+            AE_CRITICAL("Failed to create GLFW window");
             glfwTerminate();
             return nullptr;
         }
@@ -88,11 +88,11 @@ namespace Hana {
 			}
 		}
 
-		//		-- SHADERS
+		//		-- SAEDERS
 
 		// Cube
-		HA_WARN("CHANGE SHADER TO RELATIVE PATH");
-		Shader shaderProgram("A:/dev/Hana/HANA/HANA/src/Renderer/res/shaders/texture.vert", "A:/dev/Hana/HANA/HANA/src/Renderer/res/shaders/texture.frag"); // create shader with vertexShader and fragmentShader
+		AE_WARN("CAENGE SAEDER TO RELATIVE PATH");
+		Shader shaderProgram("A:/dev/Aesir/AESIR/AESIR/src/Renderer/res/shaders/texture.vert", "A:/dev/Aesir/AESIR/AESIR/src/Renderer/res/shaders/texture.frag"); // create shader with vertexShader and fragmentShader
 		VAO VAO1;										// create vertex array
 		VAO1.Bind();									// bind vertexy array
 
@@ -110,8 +110,8 @@ namespace Hana {
 		//EBO1.Unbind();								// indices not currently needed
 
 		// texture (create texture, bind and assign to uniform)
-		HA_WARN("CHANGE TEXTURE TO RELATIVE PATH");
-		Texture tex0("A:/dev/Hana/HANA/HANA/src/Renderer/res/textures/Logo.png", GL_TEXTURE_2D, 0, GL_RGB, GL_UNSIGNED_BYTE);
+		AE_WARN("CAENGE TEXTURE TO RELATIVE PATH");
+		Texture tex0("A:/dev/Aesir/AESIR/AESIR/src/Renderer/res/textures/Logo.png", GL_TEXTURE_2D, 0, GL_RGB, GL_UNSIGNED_BYTE);
 		tex0.Bind();
 		tex0.texUnit(shaderProgram, "tex0", 0);
 
@@ -146,7 +146,7 @@ namespace Hana {
 			0, 1
 		};
 		
-		//		-- SHADERS
+		//		-- SAEDERS
 		VAO VAO2;										// create vertex array
 		VAO2.Bind();									// bind vertexy array
 

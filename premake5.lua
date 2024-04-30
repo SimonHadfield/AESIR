@@ -1,4 +1,4 @@
-workspace "Hana"
+workspace "Aesir"
 	architecture "x64"
 	startproject "Sandbox"
 
@@ -11,8 +11,8 @@ workspace "Hana"
 
 outputdir = "%{cfg.buildcfg}.%{cfg.system}.%{cfg.architecture}"
 
-project "HANA"
-	location "HANA"
+project "AESIR"
+	location "AESIR"
 	kind "StaticLib" -- Static lib
 	language "C++"
 	staticruntime "on"
@@ -53,8 +53,8 @@ project "HANA"
 
 		defines
 		{
-		"HA_PLATFORM_WINDOWS",
-		"HA_BUILD_DLL"
+		"AE_PLATFORM_WINDOWS",
+		"AE_BUILD_DLL"
 		}
 
 		--postbuildcommands
@@ -63,15 +63,15 @@ project "HANA"
 		--}
 
 	filter "configurations:Debug"
-		defines "HA_DEBUG"
+		defines "AE_DEBUG"
 		symbols "on"
 
 	filter "configurations:Release"
-		defines "HA_RELEASE"
+		defines "AE_RELEASE"
 		optimize "on"
 
 	filter "configurations:Dist"
-		defines "HA_DIST"
+		defines "AE_DIST"
 		symbols "on"
 
 project "Sandbox"
@@ -87,22 +87,22 @@ project "Sandbox"
 	{
 		"%{prj.name}/src/**.h", -- ** search child folders
 		"%{prj.name}/src/**.cpp"
-		--"Hana/src/Renderer/glad.c"
+		--"Aesir/src/Renderer/glad.c"
 	}
 
 	includedirs
 	{
-		"HANA/vendor/spdlog/include",
-		"HANA/vendor/include",
-		"HANA/vendor/lib",
-		--"HANA/src/Renderer/Header Files",
-		"HANA/src"
+		"AESIR/vendor/spdlog/include",
+		"AESIR/vendor/include",
+		"AESIR/vendor/lib",
+		--"AESIR/src/Renderer/Header Files",
+		"AESIR/src"
 	}
 
 
 	links
 	{
-		"Hana"
+		"Aesir"
 	}
 
 	filter "system:windows"
@@ -112,17 +112,17 @@ project "Sandbox"
 
 		defines
 		{
-		"HA_PLATFORM_WINDOWS"
+		"AE_PLATFORM_WINDOWS"
 		}
 
 	filter "configurations:Debug"
-		defines "HA_DEBUG"
+		defines "AE_DEBUG"
 		symbols "on"
 
 	filter "configurations:Release"
-		defines "HA_RELEASE"
+		defines "AE_RELEASE"
 		optimize "on"
 
 	filter "configurations:Dist"
-		defines "HA_DIST"
+		defines "AE_DIST"
 		symbols "on"

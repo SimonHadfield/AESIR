@@ -1,11 +1,11 @@
 #pragma once
 
-#include "Hana/Core.h"
+#include "Aesir/Core.h"
 
 #include <string>
 #include <functional>
 
-namespace Hana {
+namespace Aesir {
 
 	enum class EventType
 	{

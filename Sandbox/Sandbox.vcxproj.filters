@@ -1,45 +1,55 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    <Filter Include="3DTestScene">
+      <UniqueIdentifier>{EA2C94A7-56E2-0C9D-DFD6-06744B8B03A1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    <Filter Include="Pong">
+      <UniqueIdentifier>{99D48A7C-850B-8C0D-2EF8-71101A0E080F}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    <Filter Include="TrumpJump">
+      <UniqueIdentifier>{99C8F794-0533-AC0B-4E71-5DB1BA1A8A60}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TrumpJump\States">
+      <UniqueIdentifier>{3C9CB606-2895-D558-51C7-BADD3D1FB564}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\SandboxApp.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\TrumpJump\GameLayer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
+    <ClInclude Include="src\3DTestScene\SceneLayer.h">
+      <Filter>3DTestScene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Pong\GameLayer.h">
+      <Filter>Pong</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Pong\Level.h">
+      <Filter>Pong</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TrumpJump\GameLayer.h">
+      <Filter>TrumpJump</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
     <ClCompile Include="src\3DTestScene\SceneLayer.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>3DTestScene</Filter>
     </ClCompile>
-    <ClCompile Include="src\TrumpJump\States\GameStartState.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\Pong\GameLayer.cpp">
+      <Filter>Pong</Filter>
     </ClCompile>
-    <ClCompile Include="src\TrumpJump\States\GamePlayState.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\Pong\Level.cpp">
+      <Filter>Pong</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SandboxApp.cpp" />
+    <ClCompile Include="src\TrumpJump\GameLayer.cpp">
+      <Filter>TrumpJump</Filter>
     </ClCompile>
     <ClCompile Include="src\TrumpJump\States\GameOverState.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>TrumpJump\States</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="src\TrumpJump\GameLayer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\3DTestScene\SceneLayer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
+    <ClCompile Include="src\TrumpJump\States\GamePlayState.cpp">
+      <Filter>TrumpJump\States</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TrumpJump\States\GameStartState.cpp">
+      <Filter>TrumpJump\States</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

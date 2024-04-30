@@ -7,7 +7,7 @@
 // logger
 #include "Log.h"
 
-namespace Hana {
+namespace Aesir {
 	class Window
 	{
 	public:
