@@ -1,6 +1,6 @@
 #include "LayerStack.h"
 
-namespace Hana {
+namespace Aesir {
 
 	
 	LayerStack::~LayerStack() {

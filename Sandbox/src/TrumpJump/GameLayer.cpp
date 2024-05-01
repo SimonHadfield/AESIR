@@ -32,10 +32,10 @@ void Character::Gravity(double dt) {
 
 // GameLayer
 GameLayer::GameLayer() {
-HA_TRACE(x);
-HA_TRACE(y);
-HA_TRACE(width);
-HA_TRACE(height);
+AE_TRACE(x);
+AE_TRACE(y);
+AE_TRACE(width);
+AE_TRACE(height);
 
 
 // init pipe pairs
@@ -98,7 +98,7 @@ void GameLayer::OnDetach() {}
 void GameLayer::displayFPS(double dt) {
 	fps_timer += dt;
 	if (fps_timer > fixed_timestep) {
-		HA_TRACE(fps);
+		AE_TRACE(fps);
 		fps_timer = 0;
 	}
 }
@@ -117,7 +117,7 @@ void GameLayer::OnUpdate()
 
 	if (!jump_cooldown && !gameOver)
 	{
-		if (Aesir::Input::IsKeyPressed(HA_KEY_SPACE) || Aesir::Input::IsMouseButtonPressed(HA_MOUSE_BUTTON_1)) {
+		if (Aesir::Input::IsKeyPressed(AE_KEY_SPACE) || Aesir::Input::IsMouseButtonPressed(AE_MOUSE_BUTTON_1)) {
 			Player.Jump(dt);
 			jump_cooldown = true;
 		}
@@ -144,10 +144,10 @@ void GameLayer::OnUpdate()
 
 	cam_x -= (300.0f * dt);
 
-	if (Aesir::Input::IsKeyPressed(HA_KEY_D)) {
+	if (Aesir::Input::IsKeyPressed(AE_KEY_D)) {
 		//cam_x += 300.0f * dt;
 		loopingPoint += 10.0f;
-		HA_TRACE(loopingPoint);
+		AE_TRACE(loopingPoint);
 	}
 
 	if (cam_x < -loopingPoint) {

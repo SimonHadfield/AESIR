@@ -4,7 +4,7 @@
 #include <string>
 //#include "AesirCube.h"
 
-class Aesir_API Renderable
+class AESIR_API Renderable
 {
 public:
 	Renderable() {}

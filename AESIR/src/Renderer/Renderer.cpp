@@ -31,7 +31,7 @@ namespace Aesir {
 
         if (m_Window == NULL)																			// Check GLFW window opens
         {
-            HA_CRITICAL("Failed to create GLFW window");
+            AE_CRITICAL("Failed to create GLFW window");
             glfwTerminate();
             return nullptr;
         }

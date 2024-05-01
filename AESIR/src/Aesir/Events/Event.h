@@ -32,7 +32,7 @@ namespace Aesir {
 
 	#define EVENT_CLASS_CATEGORY(category) virtual int GetCategoryFlags() const override { return category; }
 
-	class HANA_API Event
+	class AESIR_API Event
 	{
 		friend class EventDispatcher;
 	public:

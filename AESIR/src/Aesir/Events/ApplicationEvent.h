@@ -4,9 +4,9 @@
 
 #include <sstream>
 
-namespace Hana {
+namespace Aesir {
 
-	class HANA_API WindowResizeEvent : public Event
+	class AESIR_API WindowResizeEvent : public Event
 	{
 	public:
 		WindowResizeEvent(unsigned int width, unsigned int height)
@@ -28,7 +28,7 @@ namespace Hana {
 		unsigned int m_Width, m_Height;
 	};
 
-	class HANA_API WindowCloseEvent : public Event
+	class AESIR_API WindowCloseEvent : public Event
 	{
 	public:
 		WindowCloseEvent() {}
@@ -37,7 +37,7 @@ namespace Hana {
 			EVENT_CLASS_CATEGORY(EventCategoryApplication)
 	};
 
-	class HANA_API AppTickEvent : public Event
+	class AESIR_API AppTickEvent : public Event
 	{
 	public:
 		AppTickEvent() {}
@@ -46,7 +46,7 @@ namespace Hana {
 			EVENT_CLASS_CATEGORY(EventCategoryApplication)
 	};
 
-	class HANA_API AppUpdateEvent : public Event
+	class AESIR_API AppUpdateEvent : public Event
 	{
 	public:
 		AppUpdateEvent() {}
@@ -55,7 +55,7 @@ namespace Hana {
 			EVENT_CLASS_CATEGORY(EventCategoryApplication)
 	};
 
-	class HANA_API AppRenderEvent : public Event
+	class AESIR_API AppRenderEvent : public Event
 	{
 	public:
 		AppRenderEvent() {}

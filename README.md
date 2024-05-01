@@ -1,10 +1,10 @@
-# HANA
+# Aesir
 3D Game Engine using OpenGL, C++
 
-![Hana](Logo.png)
-![Hana_animation](Hana_animation.gif)
+![Aesir](Logo.png)
+![Aesir_animation](Hana_animation.gif)
 
-![Hana_PongGame](HanaPong.gif)
+![Aesir_PongGame](HanaPong.gif)
 
 Credit:
 

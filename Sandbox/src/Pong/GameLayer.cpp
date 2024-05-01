@@ -1,5 +1,5 @@
 #include "GameLayer.h"
-#include "imgui/imgui.h"
+#include "imgui.h"
 
 #include <iostream>
 #include <string>
@@ -20,11 +20,11 @@ void GameStartState::Update(double dt) {
 	Renderable::DrawImGuiText("Press 1 for single player mode", 0, 200, 2.0f, 2);
 	Renderable::DrawImGuiText("Press 2 for dual player mode", 0, 240, 2.0f, 2);
 
-	if (Hana::Input::IsKeyPressed(HA_KEY_1)) {
+	if (Aesir::Input::IsKeyPressed(AE_KEY_1)) {
 		gameLayer.SetPlayerNumber(1);
 		stateMachine.ChangeState(gamePlayState);
 	}
-	if (Hana::Input::IsKeyPressed(HA_KEY_2)) {
+	if (Aesir::Input::IsKeyPressed(AE_KEY_2)) {
 		gameLayer.SetPlayerNumber(2);
 		stateMachine.ChangeState(gamePlayState);
 	}
@@ -36,16 +36,16 @@ GamePlayState::GamePlayState(GameLayer& gameLayer, StateMachine*& stateMachine, 
 void GamePlayState::Enter() {};
 void GamePlayState::Update(double dt) {
 	
-	if (Hana::Input::IsKeyPressed(HA_KEY_ENTER) && !isRoundStarted) {
+	if (Aesir::Input::IsKeyPressed(AE_KEY_ENTER) && !isRoundStarted) {
 		ball.StartMoving();
 		isRoundStarted = true;
 	}
 
 	// Player 1:
-	if (Hana::Input::IsKeyPressed(HA_KEY_W)) {
+	if (Aesir::Input::IsKeyPressed(AE_KEY_W)) {
 		paddle1.MoveUp(dt);
 	}
-	if (Hana::Input::IsKeyPressed(HA_KEY_S)) {
+	if (Aesir::Input::IsKeyPressed(AE_KEY_S)) {
 		paddle1.MoveDown(dt);
 	}
 
@@ -61,10 +61,10 @@ void GamePlayState::Update(double dt) {
 	}
 	else // User Player
 	{
-		if (Hana::Input::IsKeyPressed(HA_KEY_UP)) {
+		if (Aesir::Input::IsKeyPressed(AE_KEY_UP)) {
 			paddle2.MoveUp(dt);
 		}
-		if (Hana::Input::IsKeyPressed(HA_KEY_DOWN)) {
+		if (Aesir::Input::IsKeyPressed(AE_KEY_DOWN)) {
 			paddle2.MoveDown(dt);
 		}
 	}
@@ -112,7 +112,7 @@ void GameOverState::Update(double dt) {
 	}
 
 	// if enter pressed return to start state
-	if (Hana::Input::IsKeyPressed(HA_KEY_ENTER))
+	if (Aesir::Input::IsKeyPressed(AE_KEY_ENTER))
 		stateMachine.ChangeState(gameStartState);
 };
 void GameOverState::Exit() {};
@@ -137,14 +137,14 @@ void GameLayer::OnDetach() {}
 void GameLayer::displayFPS(double dt) {
 	timer += dt;
 	if (timer > fixed_timestep) {
-		HA_TRACE(fps);
+		AE_TRACE(fps);
 		timer = 0;
 	}
 }
 void GameLayer::OnUpdate()
 {
 	// update timer
-	cur_t = Hana::Time::GetTime();
+	cur_t = Aesir::Time::GetTime();
 	dt = cur_t - prev_t;
 	prev_t = cur_t;
 	fps = 1 / dt;
@@ -163,7 +163,7 @@ void GameLayer::OnRender()
 	ball.Draw();
 
 	// render background - need to add mvp transforms
-	Renderable::DrawBackground();
+	//Renderable::DrawBackground();
 }
 
 void GameLayer::OnImGuiRender()

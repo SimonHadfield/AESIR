@@ -1,10 +1,10 @@
 #pragma once
 
 #include <vector>
-#include <Hana/Layers/Layer.h>
-#include "Hana/Layers/ImguiLayer.h"
+#include <Aesir/Layers/Layer.h>
+#include "Aesir/Layers/ImguiLayer.h"
 
-namespace Hana {
+namespace Aesir {
 	class LayerStack
 	{
 	public:

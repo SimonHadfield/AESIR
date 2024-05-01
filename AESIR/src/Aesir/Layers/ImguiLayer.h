@@ -11,8 +11,8 @@
 #include "backends/imgui_impl_opengl3.h"
 
 
-namespace Hana {
-	class HANA_API ImGuiLayer : public Layer
+namespace Aesir {
+	class AESIR_API ImGuiLayer : public Layer
 	{
 	public:
 

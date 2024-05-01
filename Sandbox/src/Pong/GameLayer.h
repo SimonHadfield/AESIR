@@ -1,17 +1,17 @@
 #pragma once
 
 #include "Level.h"
-#include "Hana/Time.h"
-#include "Hana/Input.h"
-#include "Hana/KeyCodes.h"
-#include "Hana/MouseButtonCodes.h"
-#include "Hana/StateMachine.h"
+#include "Aesir/Time.h"
+#include "Aesir/Input.h"
+#include "Aesir/KeyCodes.h"
+#include "Aesir/MouseButtonCodes.h"
+#include "Aesir/StateMachine.h"
 
 class GameStartState;
 class GamePlayState;
 class GameOverState;
 
-class GameLayer : public Hana::Layer
+class GameLayer : public Aesir::Layer
 {
 public:
 	GameLayer();
@@ -58,7 +58,7 @@ private:
 	float fixed_timestep = 0.1;
 	float timer = 0;
 
-	Hana::Application appInstance;
+	Aesir::Application appInstance;
 };
 
 class GameStartState : public State {

@@ -41,7 +41,7 @@ void SceneLayer::OnDetach() {}
 void SceneLayer::displayFPS(double dt) {
 	timer += dt;
 	if (timer > fixed_timestep) {
-		HA_TRACE(fps);
+		AE_TRACE(fps);
 		timer = 0;
 	}
 }

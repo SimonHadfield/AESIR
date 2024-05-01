@@ -1,6 +1,6 @@
 #include "ImguiLayer.h"
 
-namespace Hana {
+namespace Aesir {
 
 	void ImGuiLayer::OnAttach() {
 
