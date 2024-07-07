@@ -11,6 +11,9 @@ workspace "Aesir"
 
 outputdir = "%{cfg.buildcfg}.%{cfg.system}.%{cfg.architecture}"
 
+include "AESIR/vendor/imgui/premake5.lua"
+include "AESIR/vendor/include/Glad/premake5.lua"
+
 project "AESIR"
 	location "AESIR"
 	kind "StaticLib" -- Static lib
@@ -32,18 +35,23 @@ project "AESIR"
 		"%{prj.name}/src",
 		"%{prj.name}/vendor/spdlog/include",
 		"%{prj.name}/vendor/include",
-		"%{prj.name}/src/Renderer/Header Files"
+		"%{prj.name}/vendor/imgui",
+		"%{prj.name}/vendor/include/Glad/include"
 	}
+
+	print("%{prj.name}")
 
 	libdirs
 	{
-		"%{prj.name}/vendor/lib"
+		"%{prj.name}/vendor/lib",
+
 	}
 
 	links
 	{
-		"glfw3",
-        "opengl32"
+		"ImGui",
+		"Glad",
+        "opengl32.lib"
 	}
 
 	filter "system:windows"
@@ -56,11 +64,6 @@ project "AESIR"
 		"AE_PLATFORM_WINDOWS",
 		"AE_BUILD_DLL"
 		}
-
-		--postbuildcommands
-		--{
-		--	{"{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox"}
-		--}
 
 	filter "configurations:Debug"
 		defines "AE_DEBUG"
@@ -87,7 +90,6 @@ project "Sandbox"
 	{
 		"%{prj.name}/src/**.h", -- ** search child folders
 		"%{prj.name}/src/**.cpp"
-		--"Aesir/src/Renderer/glad.c"
 	}
 
 	includedirs
@@ -95,14 +97,19 @@ project "Sandbox"
 		"AESIR/vendor/spdlog/include",
 		"AESIR/vendor/include",
 		"AESIR/vendor/lib",
-		--"AESIR/src/Renderer/Header Files",
-		"AESIR/src"
+		"AESIR/vendor/imgui",
+		"AESIR/src",
+		"AESIR/vendor/include/Glad/include"
 	}
 
 
 	links
 	{
-		"Aesir"
+		"AESIR",
+		"ImGui",
+		"Glad",
+        "opengl32.lib"
+		
 	}
 
 	filter "system:windows"

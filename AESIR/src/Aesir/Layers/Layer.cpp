@@ -1,6 +1,6 @@
 #include "Layer.h"
 
-namespace Hana {
+namespace Aesir {
 	// Layer::Layer(const std::string& name) : m_name(name) {}
 
 	// void Layer::OnAttach() {}

@@ -4,9 +4,9 @@
 
 #include <sstream>
 
-namespace Hana {
+namespace Aesir {
 
-	class HANA_API KeyEvent : public Event
+	class AESIR_API KeyEvent : public Event
 	{
 	public:
 		inline int GetKeyCode() const { return m_KeyCode; }
@@ -19,7 +19,7 @@ namespace Hana {
 		int m_KeyCode;
 	};
 
-	class HANA_API KeyPressedEvent : public KeyEvent
+	class AESIR_API KeyPressedEvent : public KeyEvent
 	{
 	public:
 		KeyPressedEvent(int keycode, int repeatCount)
@@ -39,7 +39,7 @@ namespace Hana {
 		int m_RepeatCount;
 	};
 
-	class HANA_API KeyReleasedEvent : public KeyEvent
+	class AESIR_API KeyReleasedEvent : public KeyEvent
 	{
 	public:
 		KeyReleasedEvent(int keycode)

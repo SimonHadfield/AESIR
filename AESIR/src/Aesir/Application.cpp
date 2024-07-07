@@ -28,7 +28,7 @@ namespace Aesir {
 
 		
 		RenderContext.Init();
-		RenderContext.ImGuiInit();
+		//RenderContext.ImGuiInit();
 
 		// load resources
 		for (Layer* layer : m_LayerStack) {
@@ -42,7 +42,7 @@ namespace Aesir {
 			for (Layer* layer : m_LayerStack) {
 						layer->OnRender();
 						layer->OnUpdate();
-						layer->OnImGuiRender();
+						//layer->OnImGuiRender();
 						//imguilayer->OnRender();
 						//imguilayer->Init();
 			}

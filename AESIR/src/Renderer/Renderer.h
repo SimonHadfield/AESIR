@@ -1,11 +1,10 @@
 #pragma once
 
 // include glad and glfw
-#include <glad/glad.h>
+#include <Glad/include/glad/glad.h>
 #include <GLFW/glfw3.h>
 
 // include window
-// #include "Aesir/Window.h"
 #include "Aesir/Log.h"
 
 
@@ -29,6 +28,7 @@
 #include "backends/imgui_impl_glfw.h"
 #include "backends/imgui_impl_opengl3.h"
 
+
 class Renderable;
 
 namespace Aesir {
@@ -38,7 +38,7 @@ namespace Aesir {
 	public:
 
 		void* Init();
-		void ImGuiInit();
+		//void ImGuiInit();
 		void StartFrame();
 		bool ShouldClose();
 
@@ -50,8 +50,6 @@ namespace Aesir {
 	private:
 		static inline GLFWwindow* m_Window;
 
-		// engine side test
-		//Renderable *renderable;
 	};
 
 }

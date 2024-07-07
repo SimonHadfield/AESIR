@@ -55,7 +55,7 @@ namespace Aesir {
 		return static_cast<void*>(m_Window);
 	};
 
-	void Renderer::ImGuiInit()
+	/*void Renderer::ImGuiInit()
 	{
 		IMGUI_CHECKVERSION();
 		ImGui::CreateContext();
@@ -65,7 +65,7 @@ namespace Aesir {
 		ImGui_ImplGlfw_InitForOpenGL(m_Window, true);
 		ImGui_ImplOpenGL3_Init("#version 330");
 		ImGui::StyleColorsDark();
-	}
+	}*/
 
     bool Renderer::ShouldClose() {
         return glfwWindowShouldClose(m_Window);

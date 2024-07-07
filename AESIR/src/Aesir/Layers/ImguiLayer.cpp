@@ -16,7 +16,7 @@ namespace Aesir {
 	}
 
 	void ImGuiLayer::OnDetach() {};
-	void ImGuiLayer::OnImGuiRender() {};
+	//void ImGuiLayer::OnImGuiRender() {};
 	void ImGuiLayer::Start() {};
 	void ImGuiLayer::End() {};
 }

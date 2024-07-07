@@ -1,19 +1,17 @@
 #pragma once
 
 
+#ifdef AE_PLATFORM_WINDOWS
 
-
-#ifdef HA_PLATFORM_WINDOWS
-
-extern Hana::Application* Hana::CreateApplication();
+extern Aesir::Application* Aesir::CreateApplication();
 
 int main(int argc, char** argv)
 {
-	Hana::Log::Init();
+	Aesir::Log::Init();
 
-	printf("Hana Engine\n");
+	printf("Aesir Engine\n");
 
-	auto app = Hana::CreateApplication();
+	auto app = Aesir::CreateApplication();
 	app->Run();
 	delete app;
 }

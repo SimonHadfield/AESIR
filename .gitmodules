@@ -4,9 +4,4 @@
 [submodule "AESIR/vendor/imgui"]
 	path = AESIR/vendor/imgui
 	url = https://github.com/SimonHadfield/imgui.git
-[submodule "Aesir/vendor/spdlog"]
-	path = Aesir/vendor/spdlog
-	url = https://github.com/gabime/spdlog
-[submodule "Aesir/vendor/imgui"]
-	path = Aesir/vendor/imgui
-	url = https://github.com/SimonHadfield/imgui.git
+

@@ -2,6 +2,7 @@
 
 #include "Aesir/Core.h"
 
+#include <sstream>
 #include <string>
 #include <functional>
 

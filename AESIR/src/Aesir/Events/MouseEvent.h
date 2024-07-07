@@ -4,9 +4,9 @@
 
 #include <sstream>
 
-namespace Hana {
+namespace Aesir {
 
-	class HANA_API MouseMovedEvent : public Event
+	class AESIR_API MouseMovedEvent : public Event
 	{
 	public:
 		MouseMovedEvent(float x, float y)
@@ -28,7 +28,7 @@ namespace Hana {
 		float m_MouseX, m_MouseY;
 	};
 
-	class HANA_API MouseScrolledEvent : public Event
+	class AESIR_API MouseScrolledEvent : public Event
 	{
 	public:
 		MouseScrolledEvent(float xOffset, float yOffset)
@@ -50,7 +50,7 @@ namespace Hana {
 		float m_XOffset, m_YOffset;
 	};
 
-	class HANA_API MouseButtonEvent : public Event
+	class AESIR_API MouseButtonEvent : public Event
 	{
 	public:
 		inline int GetMouseButton() const { return m_Button; }
@@ -63,7 +63,7 @@ namespace Hana {
 		int m_Button;
 	};
 
-	class HANA_API MouseButtonPressedEvent : public MouseButtonEvent
+	class AESIR_API MouseButtonPressedEvent : public MouseButtonEvent
 	{
 	public:
 		MouseButtonPressedEvent(int button)
@@ -79,7 +79,7 @@ namespace Hana {
 		EVENT_CLASS_TYPE(MouseButtonPressed)
 	};
 
-	class HANA_API MouseButtonReleasedEvent : public MouseButtonEvent
+	class AESIR_API MouseButtonReleasedEvent : public MouseButtonEvent
 	{
 	public:
 		MouseButtonReleasedEvent(int button)

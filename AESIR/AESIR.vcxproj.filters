@@ -73,10 +73,10 @@
     <ClInclude Include="src\Audio\Audio.h">
       <Filter>Audio</Filter>
     </ClInclude>
-    <ClInclude Include="src\Renderer\EBO.h">
+    <ClInclude Include="src\Renderer\AesirCube.h">
       <Filter>Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="src\Renderer\HanaCube.h">
+    <ClInclude Include="src\Renderer\EBO.h">
       <Filter>Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Renderer\OrthographicCamera.h">
@@ -154,9 +154,6 @@
       <Filter>Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Renderer\VBO.cpp">
-      <Filter>Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Renderer\glad.c">
       <Filter>Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Renderer\shaderClass.cpp">

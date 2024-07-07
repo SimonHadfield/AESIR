@@ -3,11 +3,9 @@
 #include "Aesir/Core.h"
 
 // Aesir apps
-// #include <stdio.h>
 #include "Aesir/Application.h"
 #include "Aesir/Layers/Layer.h"
 #include "Aesir/Log.h"
-//#include <GLFW/glfw3.h>
 
 #include "Time.h"
 
