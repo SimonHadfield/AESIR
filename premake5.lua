@@ -11,8 +11,17 @@ workspace "Aesir"
 
 outputdir = "%{cfg.buildcfg}.%{cfg.system}.%{cfg.architecture}"
 
+-- include directories
 include "AESIR/vendor/imgui/premake5.lua"
-include "AESIR/vendor/include/Glad/premake5.lua"
+include "AESIR/vendor/Glad/premake5.lua"
+include "AESIR/vendor/GLFW/premake5.lua"
+
+group "Dependencies"
+	include "AESIR/vendor/GLFW"
+	include "AESIR/vendor/Glad"
+	include "AESIR/vendor/imgui"
+
+group ""
 
 project "AESIR"
 	location "AESIR"
@@ -27,7 +36,12 @@ project "AESIR"
 	{
 		"%{prj.name}/src/**.h", -- ** search child folders
 		"%{prj.name}/src/**.cpp", -- include .shaders?
-		"%{prj.name}/src/**.c" -- for glad.c 
+		"%{prj.name}/src/**.c", -- for glad.c 
+
+		"%{prj.name}/vendor/stb_image/**.h",
+		"%{prj.name}/vendor/stb_image/**.cpp",
+		"%{prj.name}/vendor/glm/glm/**.hpp",
+		"%{prj.name}/vendor/glm/glm/**.inl"
 	}
 
 	includedirs
@@ -36,19 +50,16 @@ project "AESIR"
 		"%{prj.name}/vendor/spdlog/include",
 		"%{prj.name}/vendor/include",
 		"%{prj.name}/vendor/imgui",
-		"%{prj.name}/vendor/include/Glad/include"
-	}
-
-	print("%{prj.name}")
-
-	libdirs
-	{
-		"%{prj.name}/vendor/lib",
+		"%{prj.name}/vendor/Glad",
+		"%{prj.name}/vendor",
+		"%{prj.name}/vendor/GLFW/include",
+		"%{prj.name}/vendor/Glad/include" -- CHANGE
 
 	}
 
 	links
 	{
+		"GLFW",
 		"ImGui",
 		"Glad",
         "opengl32.lib"
@@ -57,7 +68,7 @@ project "AESIR"
 	filter "system:windows"
 		cppdialect "C++17"
 		staticruntime "off"
-		systemversion "latest"--"10.0.22000.0"
+		systemversion "10.0.22000.0"-- "latest"
 
 		defines
 		{
@@ -67,14 +78,17 @@ project "AESIR"
 
 	filter "configurations:Debug"
 		defines "AE_DEBUG"
+		runtime "Debug"
 		symbols "on"
 
 	filter "configurations:Release"
 		defines "AE_RELEASE"
+		runtime "Release"
 		optimize "on"
 
 	filter "configurations:Dist"
 		defines "AE_DIST"
+		runtime "Release"
 		symbols "on"
 
 project "Sandbox"
@@ -98,17 +112,16 @@ project "Sandbox"
 		"AESIR/vendor/include",
 		"AESIR/vendor/lib",
 		"AESIR/vendor/imgui",
+		"AESIR/vendor/Glad/include",
+		"AESIR/vendor/GLFW/include",
 		"AESIR/src",
-		"AESIR/vendor/include/Glad/include"
+		"AESIR/vendor"
 	}
 
 
 	links
 	{
-		"AESIR",
-		"ImGui",
-		"Glad",
-        "opengl32.lib"
+		"AESIR"
 		
 	}
 
@@ -119,17 +132,20 @@ project "Sandbox"
 
 		defines
 		{
-		"AE_PLATFORM_WINDOWS"
+			"AE_PLATFORM_WINDOWS"
 		}
 
 	filter "configurations:Debug"
 		defines "AE_DEBUG"
+		runtime "Debug"
 		symbols "on"
 
 	filter "configurations:Release"
 		defines "AE_RELEASE"
+		runtime "Release"
 		optimize "on"
 
 	filter "configurations:Dist"
 		defines "AE_DIST"
+		runtime "Release"
 		symbols "on"

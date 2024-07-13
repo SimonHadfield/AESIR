@@ -7,6 +7,9 @@
     <Filter Include="Aesir\Events">
       <UniqueIdentifier>{1D0091FC-0963-20A1-B2E8-58579E2AEC23}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Aesir\ImGui">
+      <UniqueIdentifier>{43A67D55-AF5B-F64A-3850-F021A404ED4E}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Aesir\Layers">
       <UniqueIdentifier>{F8EA730B-E44D-03B0-8DD3-3B667915CF32}</UniqueIdentifier>
     </Filter>
@@ -107,6 +110,9 @@
   <ItemGroup>
     <ClCompile Include="src\Aesir\Application.cpp">
       <Filter>Aesir</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Aesir\ImGui\ImGuiBuild.cpp">
+      <Filter>Aesir\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="src\Aesir\Input.cpp">
       <Filter>Aesir</Filter>
