@@ -2,7 +2,7 @@
 
 #include "Core.h"
 #include "utility"
-#include "Renderer/Renderer.h"
+//#include "Renderer/Renderer.h"
 #include "Application.h"
 
 

@@ -11,6 +11,13 @@ workspace "Aesir"
 
 outputdir = "%{cfg.buildcfg}.%{cfg.system}.%{cfg.architecture}"
 
+IncludeDir = {}
+IncludeDir["GLFW"] = "Aesir/vendor/GLFW/include"
+IncludeDir["Glad"] = "Aesir/vendor/Glad/include"
+IncludeDir["ImGui"] = "Aesir/vendor/imgui"
+IncludeDir["glm"] = "Aesir/vendor/glm"
+IncludeDir["stb_image"] = "Aesir/vendor/stb_image"
+
 -- include directories
 include "AESIR/vendor/imgui/premake5.lua"
 include "AESIR/vendor/Glad/premake5.lua"
@@ -27,6 +34,7 @@ project "AESIR"
 	location "AESIR"
 	kind "StaticLib" -- Static lib
 	language "C++"
+	cppdialect "C++17"
 	staticruntime "on"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
@@ -51,6 +59,7 @@ project "AESIR"
 		"%{prj.name}/vendor/include",
 		"%{prj.name}/vendor/imgui",
 		"%{prj.name}/vendor/Glad",
+		"%{prj.name}/vendor/GLFW",
 		"%{prj.name}/vendor",
 		"%{prj.name}/vendor/GLFW/include",
 		"%{prj.name}/vendor/Glad/include" -- CHANGE
@@ -66,8 +75,6 @@ project "AESIR"
 	}
 
 	filter "system:windows"
-		cppdialect "C++17"
-		staticruntime "off"
 		systemversion "10.0.22000.0"-- "latest"
 
 		defines
@@ -95,6 +102,7 @@ project "Sandbox"
 	location "Sandbox"
 	kind "ConsoleApp" -- executable
 	language "C++"
+	cppdialect "C++17"
 	staticruntime "on"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
@@ -126,8 +134,6 @@ project "Sandbox"
 	}
 
 	filter "system:windows"
-		cppdialect "C++17"
-		staticruntime "On"
 		systemversion "10.0.22000.0"
 
 		defines
@@ -148,4 +154,4 @@ project "Sandbox"
 	filter "configurations:Dist"
 		defines "AE_DIST"
 		runtime "Release"
-		symbols "on"
+		optimize "on"

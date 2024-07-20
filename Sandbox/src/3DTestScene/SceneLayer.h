@@ -24,7 +24,7 @@ public:
 	virtual void OnDetach() override;
 	virtual void OnRender() override;
 	virtual void OnUpdate() override;
-	//virtual void OnImGuiRender() override;
+	virtual void OnImGuiRender() override {};
 
 	void displayFPS(double dt);
 

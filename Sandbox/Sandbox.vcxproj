@@ -68,7 +68,7 @@
     <TargetExt>.exe</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
-    <LinkIncremental>true</LinkIncremental>
+    <LinkIncremental>false</LinkIncremental>
     <OutDir>..\bin\Dist.windows.x86_64\Sandbox\</OutDir>
     <IntDir>..\bin-int\Dist.windows.x86_64\Sandbox\</IntDir>
     <TargetName>Sandbox</TargetName>
@@ -118,34 +118,27 @@
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>AE_PLATFORM_WINDOWS;AE_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\AESIR\vendor\spdlog\include;..\AESIR\vendor\include;..\AESIR\vendor\lib;..\AESIR\vendor\imgui;..\AESIR\vendor\Glad\include;..\AESIR\vendor\GLFW\include;..\AESIR\src;..\AESIR\vendor;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
-      <Optimization>Disabled</Optimization>
+      <Optimization>Full</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="src\3DTestScene\SceneLayer.h" />
-    <ClInclude Include="src\Pong\GameLayer.h" />
-    <ClInclude Include="src\Pong\Level.h" />
-    <ClInclude Include="src\TrumpJump\GameLayer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\3DTestScene\SceneLayer.cpp" />
-    <ClCompile Include="src\Pong\GameLayer.cpp" />
-    <ClCompile Include="src\Pong\Level.cpp" />
     <ClCompile Include="src\SandboxApp.cpp" />
-    <ClCompile Include="src\TrumpJump\GameLayer.cpp">
-      <ObjectFileName>$(IntDir)\GameLayer1.obj</ObjectFileName>
-    </ClCompile>
-    <ClCompile Include="src\TrumpJump\States\GameOverState.cpp" />
-    <ClCompile Include="src\TrumpJump\States\GamePlayState.cpp" />
-    <ClCompile Include="src\TrumpJump\States\GameStartState.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AESIR\AESIR.vcxproj">

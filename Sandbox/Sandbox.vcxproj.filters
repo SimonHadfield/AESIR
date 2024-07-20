@@ -18,38 +18,11 @@
     <ClInclude Include="src\3DTestScene\SceneLayer.h">
       <Filter>3DTestScene</Filter>
     </ClInclude>
-    <ClInclude Include="src\Pong\GameLayer.h">
-      <Filter>Pong</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Pong\Level.h">
-      <Filter>Pong</Filter>
-    </ClInclude>
-    <ClInclude Include="src\TrumpJump\GameLayer.h">
-      <Filter>TrumpJump</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\3DTestScene\SceneLayer.cpp">
       <Filter>3DTestScene</Filter>
     </ClCompile>
-    <ClCompile Include="src\Pong\GameLayer.cpp">
-      <Filter>Pong</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Pong\Level.cpp">
-      <Filter>Pong</Filter>
-    </ClCompile>
     <ClCompile Include="src\SandboxApp.cpp" />
-    <ClCompile Include="src\TrumpJump\GameLayer.cpp">
-      <Filter>TrumpJump</Filter>
-    </ClCompile>
-    <ClCompile Include="src\TrumpJump\States\GameOverState.cpp">
-      <Filter>TrumpJump\States</Filter>
-    </ClCompile>
-    <ClCompile Include="src\TrumpJump\States\GamePlayState.cpp">
-      <Filter>TrumpJump\States</Filter>
-    </ClCompile>
-    <ClCompile Include="src\TrumpJump\States\GameStartState.cpp">
-      <Filter>TrumpJump\States</Filter>
-    </ClCompile>
   </ItemGroup>
 </Project>

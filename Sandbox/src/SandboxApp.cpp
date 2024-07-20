@@ -2,8 +2,8 @@
 #include "Aesir/EntryPoint.h"
 
 //#include "Pong/GameLayer.h"
-#include "TrumpJump/GameLayer.h"
-//#include "3DTestScene/SceneLayer.h"
+//#include "TrumpJump/GameLayer.h"
+#include "3DTestScene/SceneLayer.h"
 
 class Sandbox : public Aesir::Application
 {
@@ -12,9 +12,9 @@ public:
 	Sandbox()
 	{
 
-
-		PushLayer(new GameLayer());
-		//PushLayer(new SceneLayer());
+		 
+		//PushLayer(new GameLayer());
+		PushLayer(new SceneLayer());
 
 	}
 
@@ -22,7 +22,6 @@ public:
 	{
 	}
 };
-
 
 
 Aesir::Application* Aesir::CreateApplication()

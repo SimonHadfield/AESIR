@@ -17,7 +17,7 @@ namespace Aesir {
 		virtual void OnDetach() = 0;
 		virtual void OnRender() = 0;
 		virtual void OnUpdate() = 0;
-		virtual void OnImGuiRender() = 0; // render imgui elements
+		virtual void OnImGuiRender() {}; // render imgui elements
 		
 		// const std::string& GetName() const;
 	private:
