@@ -12,7 +12,7 @@ std::map <std::string, Texture2D> ResourceManager::Textures;
 std::map <std::string, Shader> ResourceManager::Shaders;
 
 Shader ResourceManager::LoadShader(const char* vertexShaderFile, const char* fragmentShaderFile, const char* geometryShaderFile, std::string name) {
-	Shaders[name] = loadShaderFromFile(vertexShaderFile, fragmentShaderFile, geometryShaderFile);
+	Shaders[name] = loadShaderFromFile(vertexShaderFile, fragmentShaderFile, geometryShaderFile); 
 	return Shaders[name];
 }
 
@@ -82,7 +82,7 @@ Shader ResourceManager::loadShaderFromFile(const char* vertexShaderFile, const c
     const char* gShaderCode = geometryCode.c_str();
     // 2. now create shader object from source code
     Shader shader;
-    shader.Compile(vShaderCode, fShaderCode, geometryShaderFile != nullptr ? gShaderCode : nullptr);
+    shader.Compile(vShaderCode, fShaderCode, geometryShaderFile != nullptr ? gShaderCode : nullptr); 
 
     return shader;
 }

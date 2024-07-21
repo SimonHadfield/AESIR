@@ -29,11 +29,13 @@ public:
 	void displayFPS(double dt);
 
 private:
-	Renderable *renderable;
+	Renderable *renderable_cube;
+	Renderable *renderable_background;
+	Renderable *renderable_texture;
 	float Width = 1080.0f;
 	float Height = 720.0f;
 
-	const char* path = "A:/dev/Aesir/Aesir/Aesir/src/Renderer/res/textures/Logo.png";
+	const char* Logo_path = "A:/dev/Aesir/Aesir/Aesir/src/Renderer/res/textures/Logo.png";
 	double cur_t = 0.0;
 	double fps = 0.0;
 	double prev_t = 0.0;
@@ -41,8 +43,9 @@ private:
 	double dt = 0.0;
 	double timer = 0.0;
 
-	glm::vec3 pos = glm::vec3(0.1f, 0.1f, 0.5f);
-	glm::vec3 dimen = glm::vec3(100.0f, 100.0f, 100.0f);
+	glm::vec3 pos = glm::vec3(0.0f, 0.0f, 0.0f);
+	glm::vec3 dimen = glm::vec3(1.0f, 1.0f, 1.0f);
+	glm::vec3 rotation = glm::vec3(0.0f, 0.0f, 0.0f);
 
 
 	Aesir::Application appInstance;

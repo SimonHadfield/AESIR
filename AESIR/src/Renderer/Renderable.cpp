@@ -12,6 +12,92 @@ void Renderable::initRenderData()
 {
 	// configure VAO/VBO
 	unsigned int VBO;
+	/*
+	float vertices[] = {
+		// pos          // tex
+		0.0f, 1.0f,		0.0f, 1.0f,
+		1.0f, 0.0f,		1.0f, 0.0f,
+		0.0f, 0.0f,		0.0f, 0.0f,
+
+		0.0f, 1.0f,		0.0f, 1.0f,
+		1.0f, 1.0f,		1.0f, 1.0f,
+		1.0f, 0.0f,		1.0f, 0.0f
+	};
+	*/
+
+	GLfloat vertices[] =
+	{
+		//  COORDINATES				// TEXTURE COORDINATES
+		-0.5f, -0.5f, -0.5f,		0.0f, 0.0f,
+		 0.5f, -0.5f, -0.5f,		1.0f, 0.0f,
+		 0.5f,  0.5f, -0.5f,		1.0f, 1.0f,
+		 0.5f,  0.5f, -0.5f,		1.0f, 1.0f,
+		-0.5f,  0.5f, -0.5f,		0.0f, 1.0f,
+		-0.5f, -0.5f, -0.5f,		0.0f, 0.0f,
+
+		-0.5f, -0.5f,  0.5f,		0.0f, 0.0f,
+		 0.5f, -0.5f,  0.5f,		1.0f, 0.0f,
+		 0.5f,  0.5f,  0.5f,		1.0f, 1.0f,
+		 0.5f,  0.5f,  0.5f,		1.0f, 1.0f,
+		-0.5f,  0.5f,  0.5f,		0.0f, 1.0f,
+		-0.5f, -0.5f,  0.5f,		0.0f, 0.0f,
+
+		-0.5f,  0.5f,  0.5f,		1.0f, 0.0f,
+		-0.5f,  0.5f, -0.5f,		1.0f, 1.0f,
+		-0.5f, -0.5f, -0.5f,		0.0f, 1.0f,
+		-0.5f, -0.5f, -0.5f,		0.0f, 1.0f,
+		-0.5f, -0.5f,  0.5f,		0.0f, 0.0f,
+		-0.5f,  0.5f,  0.5f,		1.0f, 0.0f,
+
+		 0.5f,  0.5f,  0.5f,		1.0f, 0.0f,
+		 0.5f,  0.5f, -0.5f,		1.0f, 1.0f,
+		 0.5f, -0.5f, -0.5f,		0.0f, 1.0f,
+		 0.5f, -0.5f, -0.5f,		0.0f, 1.0f,
+		 0.5f, -0.5f,  0.5f,		0.0f, 0.0f,
+		 0.5f,  0.5f,  0.5f,		1.0f, 0.0f,
+
+		-0.5f, -0.5f, -0.5f,		0.0f, 1.0f,
+		 0.5f, -0.5f, -0.5f,		1.0f, 1.0f,
+		 0.5f, -0.5f,  0.5f,		1.0f, 0.0f,
+		 0.5f, -0.5f,  0.5f,		1.0f, 0.0f,
+		-0.5f, -0.5f,  0.5f,		0.0f, 0.0f,
+		-0.5f, -0.5f, -0.5f,		0.0f, 1.0f,
+
+		-0.5f,  0.5f, -0.5f,		0.0f, 1.0f,
+		 0.5f,  0.5f, -0.5f,		1.0f, 1.0f,
+		 0.5f,  0.5f,  0.5f,		1.0f, 0.0f,
+		 0.5f,  0.5f,  0.5f,		1.0f, 0.0f,
+		-0.5f,  0.5f,  0.5f,		0.0f, 0.0f,
+		-0.5f,  0.5f, -0.5f,		0.0f, 1.0f
+
+	};
+
+	glGenVertexArrays(1, &this->quadVAO);
+	glGenBuffers(1, &VBO);
+
+	glBindBuffer(GL_ARRAY_BUFFER, VBO);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+	glBindVertexArray(this->quadVAO);
+
+	// Position attrib
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
+	glEnableVertexAttribArray(0);
+
+	// Texture coord attrib
+	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
+	glEnableVertexAttribArray(1);
+
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	glBindVertexArray(0);
+
+}
+
+
+void Renderable::DrawTextureQuad2D(Texture2D& texture, glm::vec3 position, glm::vec2 size, float rotate, glm::vec3 color)
+{
+	unsigned int VBO;
+	// prepare transformations
 	float vertices[] = {
 		// pos          // tex
 		0.0f, 1.0f,		0.0f, 1.0f,
@@ -34,26 +120,62 @@ void Renderable::initRenderData()
 	glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);
-}
 
-
-void Renderable::DrawTextureQuad2D(Texture2D& texture, glm::vec3 position, glm::vec2 size, float rotate, glm::vec3 color)
-{
-	// prepare transformations
 	this->shaderProgram.Use();
+	
 	glm::mat4 model = glm::mat4(1.0f);
+	glm::mat4 view = glm::mat4(1.0f);
+	view = glm::translate(view, glm::vec3(0.0f, 0.0f, 0.0f));
+	glm::mat4 projection = glm::perspective(glm::radians(45.0f), 1280.0f / 720.0f, 0.1f, 100.0f);
+
 	model = glm::translate(model, position);
-	model = glm::rotate(model, glm::radians(rotate), glm::vec3(0.0f, 0.0f, 1.0f));
+	//model = glm::rotate(model, glm::radians(rotate), glm::vec3(0.0f, 0.0f, 1.0f));
 	model = glm::scale(model, glm::vec3(size, 1.0f));
 
 	this->shaderProgram.SetMatrix4("model", model);
 	this->shaderProgram.SetVector3f("Color", color);
+	this->shaderProgram.SetMatrix4("projection", projection);
+	this->shaderProgram.SetMatrix4("view", view);
+
 	
 	glActiveTexture(GL_TEXTURE0);
 	texture.Bind();
 	
 	glBindVertexArray(this->quadVAO);
 	glDrawArrays(GL_TRIANGLES, 0, 6);
+	glBindVertexArray(0);
+}
+
+void Renderable::DrawCuboid(glm::vec3 pos, glm::vec3 dimen, glm::vec3 rotation, Texture2D &texture) {
+
+	this->shaderProgram.Use();
+
+
+	glm::mat4 model = glm::mat4(1.0f);
+	glm::mat4 view = glm::mat4(1.0f);
+	view = glm::translate(view, glm::vec3(0.0f, 0.0f, -10.0f));
+	glm::mat4 projection = glm::perspective(glm::radians(45.0f), 1280.0f / 720.0f, 0.1f, 100.0f);
+
+	model = glm::translate(model, pos);  // first translate (transformations are: scale happens first, then rotation, and then final //translation happens; reversed order)
+	//model = glm::rotate(model, glm::radians(1.0f), rotation);
+	model = glm::rotate(model, (float)glfwGetTime() * glm::radians(50.0f), glm::vec3(0.5f, 1.0f, 0.0f));
+	model = glm::scale(model, dimen);
+
+	glm::vec3 color = glm::vec3(1.0f, 1.0f, 1.0f);
+
+	this->shaderProgram.SetVector3f("Color", color);
+	this->shaderProgram.SetMatrix4("model", model);
+	this->shaderProgram.SetMatrix4("projection", projection);
+	this->shaderProgram.SetMatrix4("view", view);
+	
+	//this->shaderProgram.SetInteger("texture", 0);
+
+	glActiveTexture(GL_TEXTURE0);
+	texture.Bind();
+
+
+	glBindVertexArray(this->quadVAO);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
 	glBindVertexArray(0);
 }
 
@@ -70,37 +192,44 @@ void Renderable::DrawBackground(glm::vec3 color) // glm::vec3 color
 	width = 1.0f;
 	height = 1.0f;
 
+	glm::mat4 model = glm::mat4(1.0f);
+	glm::mat4 view = glm::mat4(1.0f);
+	view = glm::translate(view, glm::vec3(0.0f, 0.0f, -10.0f));
+	glm::mat4 projection = glm::perspective(glm::radians(45.0f), 1280.0f / 720.0f, 0.1f, 100.0f);
+
 	this->shaderProgram.Use();
 
-	glm::mat4 model = glm::mat4(1.0f);
 	model = glm::translate(model, glm::vec3(position, 0.0f));  // first translate (transformations are: scale happens first, then rotation, and then final //translation happens; reversed order)
 
 	model = glm::scale(model, glm::vec3(size, 1.0f)); // last scale
 	this->shaderProgram.SetMatrix4("model", model);
 	this->shaderProgram.SetVector3f("Color", color);
+	this->shaderProgram.SetMatrix4("projection", projection);
+	this->shaderProgram.SetMatrix4("view", view);
 
 	glBindVertexArray(this->quadVAO);
 	glDrawArrays(GL_TRIANGLES, 0, 6);
 	glBindVertexArray(0);
 }
 
+
 void Renderable::DrawImGuiText(const std::string& Text, unsigned int x, unsigned int y, float fontSize, unsigned int Alignment) {
 
 	ImGui::GetIO().FontGlobalScale = fontSize;
 	ImGui::GetStyle().AntiAliasedLines = true;
 	ImGui::GetStyle().AntiAliasedFill = true;
-	
+
 	ImGui_ImplOpenGL3_NewFrame();
 	ImGui_ImplGlfw_NewFrame();
 	ImGui::NewFrame();
 	//
-	
+
 	// Display scores in the middle
 	//ImVec2 Pos = ImVec2(x, y);
 	//ImGui::SetNextWindowPos(Pos, ImGuiCond_Always, ImVec2(0.5f, 0.5f));
 
 	ImVec2 Pos = ImVec2(ImGui::GetIO().DisplaySize.x * 0.5f, ImGui::GetIO().DisplaySize.y * 0.05f);
-	
+
 	// Alignment - 0 (x, y values), 1 (Left aligned, y), 2 (center aligned, y), 3 (Right aligned, y), 4 (Full Centered)
 	if (Alignment == 0) {
 		Pos = ImVec2(x, y);
@@ -111,19 +240,19 @@ void Renderable::DrawImGuiText(const std::string& Text, unsigned int x, unsigned
 		Pos = ImVec2(ImGui::GetIO().DisplaySize.x * 0.5f, ImGui::GetIO().DisplaySize.y * 0.5f);
 
 	ImGui::SetNextWindowPos(Pos, ImGuiCond_Always, ImVec2(0.5f, 0.5f));
-	
+
 	// Set the width of the window to be the window width
 	ImGui::SetNextWindowSize(ImVec2(ImGui::GetIO().DisplaySize.x, 100), ImGuiCond_Always);
-	
+
 	ImGui::GetColorU32(BACKGROUND_BLUE);
-	
+
 	// Create a window to display scores
 	ImGui::Begin("Text", nullptr, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize |
 		ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoBackground);
-	
+
 	// Display Player 1's score on the left
 	ImVec2 player1TextSize = ImGui::CalcTextSize(Text.c_str());
-	ImGui::SetCursorPos(ImVec2(Pos.x - player1TextSize.x/2, 70));
+	ImGui::SetCursorPos(ImVec2(Pos.x - player1TextSize.x / 2, 70));
 	ImGui::Text(Text.c_str());
 
 	ImGui::End();
@@ -131,25 +260,6 @@ void Renderable::DrawImGuiText(const std::string& Text, unsigned int x, unsigned
 	//// Render ImGui
 	ImGui::Render();
 	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-}
-
-void Renderable::DrawCuboid(glm::vec3 pos, glm::vec3 dimen) {
-
-	this->shaderProgram.Use();
-
-	glm::mat4 model = glm::mat4(1.0f);
-	model = glm::translate(model, pos);  // first translate (transformations are: scale happens first, then rotation, and then final //translation happens; reversed order)
-
-	glm::vec3 color = glm::vec3(0.5f, 0.5f, 0.5f);
-
-
-	model = glm::scale(model, dimen); // last scale
-	this->shaderProgram.SetMatrix4("model", model);
-	this->shaderProgram.SetVector3f("Color", color);
-
-	glBindVertexArray(this->quadVAO);
-	glDrawArrays(GL_TRIANGLES, 0, 6);
-	glBindVertexArray(0);
 }
 
 /*

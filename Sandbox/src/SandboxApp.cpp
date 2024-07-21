@@ -11,9 +11,6 @@ public:
 
 	Sandbox()
 	{
-
-		 
-		//PushLayer(new GameLayer());
 		PushLayer(new SceneLayer());
 
 	}

@@ -16,16 +16,6 @@
 
 std::string get_file_contents(const char* filename);
 
-//class Aesir_API Shader
-//{
-//public:
-//	GLuint ID;
-//	Shader(const char* vertexFile, const char* fragmentFile);
-//
-//	void Activate();
-//	void Delete();
-//};
-
 
 class AESIR_API Shader
 {

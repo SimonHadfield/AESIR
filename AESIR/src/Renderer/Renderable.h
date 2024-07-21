@@ -23,7 +23,7 @@ public:
 
 
 	// 3D 
-	void DrawCuboid(glm::vec3 pos, glm::vec3 dimen);
+	void DrawCuboid(glm::vec3 pos, glm::vec3 dimen, glm::vec3 rotation, Texture2D &texture);
 	static void Draw3DScene();
 
 private:
