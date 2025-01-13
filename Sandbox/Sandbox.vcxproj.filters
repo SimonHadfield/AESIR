@@ -15,14 +15,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\3DTestScene\SceneLayer.h">
-      <Filter>3DTestScene</Filter>
-    </ClInclude>
+    <ClCompile Include="src\SandboxApp.cpp" />
+    <ClCompile Include="src\3DTestScene\SceneLayer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\3DTestScene\SceneLayer.cpp">
-      <Filter>3DTestScene</Filter>
-    </ClCompile>
-    <ClCompile Include="src\SandboxApp.cpp" />
+    <ClInclude Include="src\3DTestScene\SceneLayer.h" />
   </ItemGroup>
 </Project>

@@ -62,40 +62,42 @@ void SceneLayer::OnUpdate()
 	prev_t = cur_t;
 	fps = 1 / dt;
 
-	float movement_speed = 0.1;
+	float movement_speed = 10.0;
 	float scale_speed = 0.1;
 
 	if (Aesir::Input::IsKeyPressed(AE_KEY_LEFT_SHIFT)) {
 		scale_speed = 0.01;
-		movement_speed = 0.01;
+		movement_speed = 0.0001;
 	}
 
 	if (Aesir::Input::IsKeyPressed(AE_KEY_W)) {
-		pos.y += movement_speed * 1;
+		pos.y += movement_speed * dt;
 	}
 	if (Aesir::Input::IsKeyPressed(AE_KEY_S)) {
-		pos.y -= movement_speed * 1;
+		pos.y -= movement_speed * dt;
 	}
 	if (Aesir::Input::IsKeyPressed(AE_KEY_A)) {
-		pos.x -= movement_speed * 1;
+		pos.x -= movement_speed * dt;
 	}
 	if (Aesir::Input::IsKeyPressed(AE_KEY_D)) {
-		pos.x += movement_speed * 1;
+		pos.x += movement_speed * dt;
 	}
 
 	if (Aesir::Input::IsKeyPressed(AE_KEY_Q)) {
-		pos.z -= movement_speed * 1;
+		pos.z -= movement_speed * dt
+			;
 	}
 	if (Aesir::Input::IsKeyPressed(AE_KEY_E)) {
-		pos.z += movement_speed * 1;
+		pos.z += movement_speed * dt
+			;
 	}
 
 	// rotate 
 	if (Aesir::Input::IsKeyPressed(AE_KEY_K)) {
-		rotation.x += 1;
+		rotation.x += 1000.0 * dt;
 	}
 	if (Aesir::Input::IsKeyPressed(AE_KEY_L)) {
-		rotation.x -= 1;
+		rotation.x -= 100;
 	}
 
 	if (Aesir::Input::IsKeyPressed(AE_KEY_I)) {

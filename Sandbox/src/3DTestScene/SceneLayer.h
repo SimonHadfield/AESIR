@@ -35,7 +35,7 @@ private:
 	float Width = 1080.0f;
 	float Height = 720.0f;
 
-	const char* Logo_path = "A:/dev/Aesir/Aesir/Aesir/src/Renderer/res/textures/Logo.png";
+	const char* Logo_path = "../Aesir/src/Renderer/res/textures/Logo.png";
 	double cur_t = 0.0;
 	double fps = 0.0;
 	double prev_t = 0.0;

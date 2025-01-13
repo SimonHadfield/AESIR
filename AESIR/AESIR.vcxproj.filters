@@ -169,4 +169,7 @@
       <Filter>Renderer</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="src\Renderer\res\textures\Logo.png" />
+  </ItemGroup>
 </Project>
